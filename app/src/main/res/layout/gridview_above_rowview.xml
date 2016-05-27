@@ -29,13 +29,13 @@
         android:orientation="vertical"
         android:visibility="gone" >
 
-        <com.example.laozhu.iteacher.widget.draggrid.CustomGridView
+        <com.li.zjut.iteacher.widget.draggrid.CustomGridView
             android:id="@+id/gridview_child_gridview"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="@color/color_777572"
             android:orientation="vertical" >
-        </com.example.laozhu.iteacher.widget.draggrid.CustomGridView>
+        </com.li.zjut.iteacher.widget.draggrid.CustomGridView>
     </LinearLayout>
 
 </RelativeLayout>

@@ -3,6 +3,7 @@ package com.li.zjut.iteacher.activity.main;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTabHost;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import com.li.zjut.iteacher.activity.main.fragment.MessageFragment;
 import com.li.zjut.iteacher.bean.Tab;
 import com.li.zjut.iteacher.common.SharePerfrence;
 import com.li.zjut.iteacher.common.StaticData;
+import com.li.zjut.iteacher.common.sha1.Utilgetsha1;
 
 import java.util.ArrayList;
 

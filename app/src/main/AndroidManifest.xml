@@ -79,9 +79,10 @@
         <activity android:name=".activity.checkIn.CheckInActivity" />
 
         <!--高德地图-->
-        <!--<service android:name="com.amap.api.location.APSService"></service>-->
-
-        <meta-data android:name="com.amap.api.v2.apikey" android:value="a4ba7767146bab193bef04efb517d208">//开发者申请的key
+        <service android:name="com.amap.api.location.APSService"/>
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="f65591a00e2174bc55e44cce093650d8">//开发者申请的key
 
         </meta-data>
 
