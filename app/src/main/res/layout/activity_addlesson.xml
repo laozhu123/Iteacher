@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/gray">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/left_right_margin"
+            android:layout_marginRight="@dimen/left_right_margin"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/linearlayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/lesson_item"
+                    android:layout_marginTop="@dimen/left_right_margin"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/lesson_img"
+                        android:layout_height="@dimen/lesson_img"
+                        android:layout_marginLeft="@dimen/left_right_margin"
+                        android:src="@drawable/icon_lesson" />
+
+                    <EditText
+                        android:id="@+id/coursename"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/lesson_img"
+                        android:layout_marginLeft="@dimen/left_right_margin"
+                        android:layout_marginRight="@dimen/left_right_margin"
+                        android:background="@null"
+                        android:hint="输入课程名称"
+                        android:textSize="@dimen/lesson_add_text" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/add"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/lesson_item"
+                android:layout_marginTop="@dimen/top_bottom_margin"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/add_yellow" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/left_right_margin"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:text="继续添加上课时间"
+                    android:textColor="@color/text_gray"
+                    android:textSize="@dimen/lesson_add_text" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

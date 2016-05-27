@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="64dp"
+    android:layout_marginEnd="64dp"
+    android:padding="10dp"
+    android:orientation="vertical" >
+    
+    <TextView
+        android:id="@+id/lname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="手机软件开发"
+        android:textColor="#ffff7777"
+        android:textSize="36sp" />
+    
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:src="#ff44ccff" />
+    
+    <TextView
+        android:id="@+id/week"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:textSize="18sp"
+        android:textColor="#ff404040"
+        android:text="1-8周，每周五" />
+    
+    <TextView
+        android:id="@+id/timeplace"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:textSize="18sp"
+        android:textColor="#ff404040"
+        android:text="9：00-11：00，博B110" />
+    
+    <Button
+        android:id="@+id/btn_mod"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="#50b0e0"
+        android:text="修改此项课程" />
+    
+    <Button
+        android:id="@+id/btn_del"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="#ff7090"
+        android:text="删除此项课程" />
+    <Button
+        android:id="@+id/btn_del_one"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="#ff7090"
+        android:text="删除此节课" />
+
+    <Button
+        android:id="@+id/invite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="#28d92b"
+        android:text="邀请码" />
+
+</LinearLayout>

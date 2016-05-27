@@ -1,0 +1,42 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:actbar="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/actBarColor"
+    android:orientation="vertical">
+
+    <com.example.laozhu.iteacher.widget.mylesson.actionbar.SimpleActionBar
+        android:id="@+id/actbar"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:padding="5dp"
+        actbar:separator="false"
+        actbar:title="设置">
+
+        <com.example.laozhu.iteacher.widget.mylesson.actionbar.ActionBarButton
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:onClick="onBtnClose"
+            actbar:align="left"
+            actbar:img="@drawable/icon_close" />
+
+        <com.example.laozhu.iteacher.widget.mylesson.actionbar.ActionBarButton
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:onClick="onBtnYes"
+            actbar:align="right"
+            actbar:img="@drawable/icon_yes" />
+
+    </com.example.laozhu.iteacher.widget.mylesson.actionbar.SimpleActionBar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/baseBGColor"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+    </LinearLayout>
+
+</LinearLayout>

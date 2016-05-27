@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:actbar="http://schemas.android.com/apk/res-auto"
+    android:clickable="true"
+    android:orientation="vertical"
+    android:padding="20.0dip">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/bg_bombbox"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/title"
+            style="@style/text_18_ffffff"
+            android:layout_width="fill_parent"
+            android:layout_height="40.0dip"
+            android:gravity="center"
+            android:text="设置"
+            android:visibility="visible" />
+
+        <LinearLayout
+            android:id="@+id/content"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center" >
+
+
+            <com.example.laozhu.iteacher.widget.mylesson.view.InputBlock
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                actbar:ico="@drawable/icon_week">
+
+                <com.example.laozhu.iteacher.widget.mylesson.view.FromToPicker
+                    android:id="@+id/npWeek"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:visibility="gone"
+                    actbar:maxValue="18"
+                    actbar:minValue="1"
+                    actbar:txtEnd="周"
+                    actbar:txtMid="周到第"
+                    actbar:txtStart="从第" />
+                <com.example.laozhu.iteacher.widget.mylesson.view.FromToPicker
+                    android:id="@+id/npTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:visibility="gone"
+                    actbar:maxValue="12"
+                    actbar:minValue="1"
+                    actbar:txtEnd="节"
+                    actbar:txtMid="节到第"
+                    actbar:txtStart="从第" />
+
+                <com.example.laozhu.iteacher.widget.mylesson.view.NumberPickerEx
+                    android:id="@+id/npWeekTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+            </com.example.laozhu.iteacher.widget.mylesson.view.InputBlock>
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1.0px"
+            android:background="#ffd0d0d0" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="60.0dip"
+            android:layout_gravity="bottom"
+            android:background="@drawable/dialog_bottom_bg"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/positiveButton"
+                style="@style/text_15_ffffff_sdw"
+                android:layout_width="114.0dip"
+                android:layout_height="40.0dip"
+                android:background="@drawable/btn_ok_selector"
+                android:gravity="center"
+                android:text="确定" />
+
+            <Button
+                android:id="@+id/negativeButton"
+                style="@style/text_15_666666_sdw"
+                android:layout_width="114.0dip"
+                android:layout_height="40.0dip"
+                android:layout_marginLeft="20.0dip"
+                android:background="@drawable/btn_cancel_selector"
+                android:gravity="center"
+                android:text="取消" />
+        </LinearLayout>
+    </LinearLayout>
+
+</FrameLayout>

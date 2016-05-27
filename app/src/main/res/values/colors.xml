@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="white">#ffffff</color>
+    <color name="black">#ff000000</color>
+
+    <color name="yellow_tabhost">#d2c511</color>
+    <color name="bg_color">#4d544f</color>
+
+    <color name="yellow">#FD8838</color>
+    <color name="gray_btn">#D6D6D6</color>
+    <color name="gray_back">#E7E7E7</color>
+
+    <!--ref to text-->
+    <color name="text_gray">#919090</color>
+
+    <!--color ref to register and login-->
+    <color name="account_register">#597eec</color>
+
+    <!--color ret to dragGrid-->
+    <color name="item_bg">#e5e5e5</color>
+    <color name="transparent">#00000000</color>
+    <color name="transparent_half">#23000000</color>
+    <color name="gap_line">#e2e2e2</color>
+    <color name="color_333333">#333333</color>
+    <color name="color_777572">#777572</color>
+
+    <!--color ref to currilum table-->
+    <color name="red">#96ff2536</color>
+    <color name="deep_blue">#a07ebae9</color>
+    <color name="shadow_blue">#0032485d</color>
+    <color name="text_blue">#153e64</color>
+    <color name="line_gray">#875f666c</color>
+    <color name="white_transport">#5ef3f5f7</color>
+    <color name="color1">#BA8ADF</color>
+    <color name="color2">#13CA9A</color>
+    <color name="color3">#FFBA07</color>
+    <color name="color4">#F87D8A</color>
+
+    <!--color ref to mylesson-->
+    <color name="actBarColor">#fff7f7f7</color>
+    <color name="baseBGColor">#ffdfe3e7</color>
+    <color name="gray">#F2F1ED</color>
+</resources>

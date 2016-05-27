@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="25dp"
+    android:layout_height="600dp"
+    android:background="@color/deep_blue"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/style_text_num"
+        android:text="1" />
+
+    <View style="@style/line_gray2" />
+
+    <TextView
+        style="@style/style_text_num"
+        android:text="2" />
+
+    <View style="@style/line_gray2" />
+
+    <TextView
+        style="@style/style_text_num"
+        android:text="3" />
+
+    <View style="@style/line_gray2" />
+
+    <TextView
+        style="@style/style_text_num"
+        android:text="4" />
+
+    <View style="@style/line_gray2" />
+
+    <TextView
+        style="@style/style_text_num"
+        android:text="5" />
+
+    <View style="@style/line_gray2" />
+
+    <TextView
+        style="@style/style_text_num"
+        android:text="6" />
+
+    <View style="@style/line_gray2" />
+
+    <TextView
+        style="@style/style_text_num"
+        android:text="7" />
+
+    <View style="@style/line_gray2" />
+
+    <TextView
+        style="@style/style_text_num"
+        android:text="8" />
+
+    <View style="@style/line_gray2" />
+
+    <TextView
+        style="@style/style_text_num"
+        android:text="9" />
+
+    <View style="@style/line_gray2" />
+
+    <TextView
+        style="@style/style_text_num"
+        android:text="10" />
+
+    <View style="@style/line_gray2" />
+
+    <TextView
+        style="@style/style_text_num"
+        android:text="11" />
+
+    <View style="@style/line_gray2" />
+
+    <TextView
+        style="@style/style_text_num"
+        android:text="12" />
+</LinearLayout>

@@ -1,0 +1,31 @@
+<resources>
+    <declare-styleable name="ActionBar">
+        <attr name="separator" format="boolean"/>
+        <attr name="title" format="string" />
+    </declare-styleable>
+    <declare-styleable name="ActionBarElement">
+        <attr name="align">
+            <enum name="middle" value="0"/>
+            <enum name="left" value="1"/>
+            <enum name="right" value="2"/>
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="ActionBarButton">
+        <attr name="img" format="reference|color" />
+    </declare-styleable>
+    <declare-styleable name="ActionBarNumPicker">
+        <attr name="minVal" format="integer" />
+        <attr name="maxVal" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="InputBlock">
+        <attr name="ico" format="reference" />
+    </declare-styleable>
+    <declare-styleable name="FromToPicker">
+        <attr name="minValue" format="integer" />
+        <attr name="maxValue" format="integer" />
+        <attr name="txtStart" format="string" />
+        <attr name="txtMid" format="string" />
+        <attr name="txtEnd" format="string" />
+    </declare-styleable>
+</resources>

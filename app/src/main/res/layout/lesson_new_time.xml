@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/gray"
+    android:orientation="horizontal"
+    android:paddingTop="@dimen/top_bottom_margin">
+
+    <ImageView
+        android:id="@+id/delete"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center_vertical"
+        android:src="@drawable/delete" />
+
+    <TextView
+        android:id="@+id/time_title"
+        android:layout_width="32dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="1dp"
+        android:background="@color/white"
+        android:ems="1"
+        android:gravity="center"
+        android:maxEms="1"
+        android:minEms="1"
+        android:paddingLeft="@dimen/left_right_margin"
+        android:paddingRight="@dimen/left_right_margin"
+        android:text="上课时间1"
+        android:textSize="@dimen/lesson_add_text" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/week_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/lesson_item"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/lesson_img"
+                android:layout_height="@dimen/lesson_img"
+                android:layout_marginLeft="@dimen/left_right_margin"
+                android:src="@drawable/icon_week" />
+
+            <TextView
+                android:id="@+id/week"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/lesson_img"
+                android:layout_marginLeft="@dimen/left_right_margin"
+                android:background="@null"
+                android:text="1-17"
+                android:textSize="@dimen/lesson_add_text" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/lesson_img"
+                android:layout_marginRight="@dimen/left_right_margin"
+                android:background="@null"
+                android:text="周"
+                android:textSize="@dimen/lesson_add_text" />
+
+            <TextView
+                android:id="@+id/singledouble"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/lesson_img"
+                android:layout_marginLeft="@dimen/left_right_margin"
+                android:background="@null"
+                android:text="每周"
+                android:textSize="@dimen/lesson_add_text" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/time_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/lesson_item"
+            android:layout_marginTop="1dp"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/lesson_img"
+                android:layout_height="@dimen/lesson_img"
+                android:layout_marginLeft="@dimen/left_right_margin"
+                android:src="@drawable/icon_time" />
+
+
+            <TextView
+                android:id="@+id/time"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/lesson_img"
+                android:layout_marginLeft="@dimen/left_right_margin"
+                android:background="@null"
+                android:text="1-1"
+                android:textSize="@dimen/lesson_add_text" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/lesson_img"
+                android:layout_marginRight="@dimen/left_right_margin"
+                android:background="@null"
+                android:text="节"
+                android:textSize="@dimen/lesson_add_text" />
+
+            <TextView
+                android:id="@+id/weekday"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/lesson_img"
+                android:layout_marginLeft="@dimen/left_right_margin"
+                android:background="@null"
+                android:text="周一"
+                android:textSize="@dimen/lesson_add_text" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/place_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/lesson_item"
+            android:layout_marginTop="1dp"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/lesson_img"
+                android:layout_height="@dimen/lesson_img"
+                android:layout_marginLeft="@dimen/left_right_margin"
+                android:src="@drawable/icon_addr" />
+
+            <EditText
+                android:id="@+id/place"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/lesson_img"
+                android:layout_marginLeft="@dimen/left_right_margin"
+                android:layout_marginRight="@dimen/left_right_margin"
+                android:background="@null"
+                android:hint="输入上课地点"
+                android:textSize="@dimen/lesson_add_text" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
