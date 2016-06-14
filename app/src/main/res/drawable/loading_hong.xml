@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android" android:oneshot="false">
+	<item android:drawable="@drawable/load_hong_0" android:duration="50"/>
+	<item android:drawable="@drawable/load_hong_11" android:duration="50"/>
+	<item android:drawable="@drawable/load_hong_10" android:duration="50"/>
+	<item android:drawable="@drawable/load_hong_9" android:duration="50"/>
+	<item android:drawable="@drawable/load_hong_8" android:duration="50"/>
+	<item android:drawable="@drawable/load_hong_7" android:duration="50"/>
+	<item android:drawable="@drawable/load_hong_6" android:duration="50"/>
+	<item android:drawable="@drawable/load_hong_5" android:duration="50"/>
+	<item android:drawable="@drawable/load_hong_4" android:duration="50"/>
+	<item android:drawable="@drawable/load_hong_3" android:duration="50"/>
+	<item android:drawable="@drawable/load_hong_2" android:duration="50"/>
+	<item android:drawable="@drawable/load_hong_1" android:duration="50"/>
+</animation-list>

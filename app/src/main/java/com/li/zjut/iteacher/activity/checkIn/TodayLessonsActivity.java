@@ -1,4 +1,4 @@
-package com.li.zjut.iteacher.activity.checkIn;
+package com.li.zjut.iteacher.activity.checkin;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -78,7 +78,7 @@ public class TodayLessonsActivity extends BaseActivity {
             @Override
             public void onClick(View v, int position, String school) {
 
-                startActivity(new Intent(TodayLessonsActivity.this, CheckInActivity.class)
+                startActivity(new Intent(TodayLessonsActivity.this, CheckActivity.class)
                         .putExtra("lesson", mDatas.get(position)));
             }
         });

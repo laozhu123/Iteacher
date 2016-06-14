@@ -3,12 +3,16 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-
+    <color name="red_shen">#ff980000</color>
+    <color name="red1">#ffFD0100</color>
     <color name="white">#ffffff</color>
     <color name="black">#ff000000</color>
-
+    <color name="blue">#ff4fc1e9</color>
+    <color name="shense_font">#ff555555</color>
     <color name="yellow_tabhost">#d2c511</color>
     <color name="bg_color">#4d544f</color>
+
+    <color name="green">#0ade46</color>
 
     <color name="yellow">#FD8838</color>
     <color name="gray_btn">#D6D6D6</color>
@@ -44,4 +48,12 @@
     <color name="actBarColor">#fff7f7f7</color>
     <color name="baseBGColor">#ffdfe3e7</color>
     <color name="gray">#F2F1ED</color>
+    <color name="di_se">#ffebebeb</color>
+    <color name="menu_btn_pressed">#ffdfdfdf</color>
+    <color name="gray_background">#ffdddddd</color>
+    <color name="gray_character">#cc8B8B8B</color>
+
+
+    <item name="gray_holo_dark" type="color">#ff464646</item>
+    <item name="gray_holo_light" type="color">#ffd0d0d0</item>
 </resources>

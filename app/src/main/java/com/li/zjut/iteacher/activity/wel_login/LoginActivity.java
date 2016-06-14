@@ -169,8 +169,8 @@ public class LoginActivity extends BaseActivity {
 
     private void register() {
 
-//        startActivityForResult(new Intent(this, RegisterActivity.class), mRequestCode);
         startActivity(new Intent(this, SelectSchoolActivity.class));
+//        startActivity(new Intent().setClassName("com.example.laozhu.littlecai","com.example.laozhu.littlecai.test_task.TaskActivity2"));
     }
 
 

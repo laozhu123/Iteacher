@@ -1,5 +1,6 @@
-package com.li.zjut.iteacher.activity.checkIn;
+package com.li.zjut.iteacher.activity.checkin;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
@@ -7,6 +8,8 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
@@ -21,12 +24,13 @@ import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
 import com.li.zjut.iteacher.R;
 import com.li.zjut.iteacher.activity.base.BaseActivity;
+import com.li.zjut.iteacher.bean.checkin.Lesson;
 import com.li.zjut.iteacher.common.bitmap.View2Bitmap;
 import com.li.zjut.iteacher.common.map.Utils;
 
 
-public class CheckInActivity extends BaseActivity implements
-        AMapLocationListener {
+public class CheckActivity extends BaseActivity implements
+        AMapLocationListener, View.OnClickListener {
 
     MapView mMapView = null;
     AMap aMap = null;
@@ -34,6 +38,7 @@ public class CheckInActivity extends BaseActivity implements
     private AMapLocationClientOption locationOption = null;
     Marker marker = null;
     Bitmap bitmap;
+    private TextView txClassNameTime, txPlace, txCheck,txReset;
 
 
     @Override
@@ -52,7 +57,7 @@ public class CheckInActivity extends BaseActivity implements
         View point = View.inflate(this, R.layout.point, null);
         ImageView img = (ImageView) point.findViewById(R.id.img);
         img.setImageResource(R.drawable.point);
-        bitmap = View2Bitmap.convertViewToBitmap(img,70,70);
+        bitmap = View2Bitmap.convertViewToBitmap(img, 70, 70);
 
         initView();
         initMap();
@@ -83,6 +88,21 @@ public class CheckInActivity extends BaseActivity implements
     private void initView() {
 
         findViewById(R.id.location).setOnClickListener(listener);
+        txCheck = (TextView) findViewById(R.id.txCheck);
+        txCheck.setOnClickListener(this);
+        txReset = (TextView) findViewById(R.id.txReset);
+        txReset.setText(getString(R.string.reset));
+        txReset.setOnClickListener(this);
+        txClassNameTime = (TextView) findViewById(R.id.txClassNameTime);
+        txPlace = (TextView) findViewById(R.id.txPlace);
+        TextView txTitleRig = (TextView) findViewById(R.id.txTitleRig);
+        txTitleRig.setText(getString(R.string.todaycheck));
+        txTitleRig.setVisibility(View.VISIBLE);
+        txTitleRig.setOnClickListener(this);
+
+        Lesson lesson = (Lesson) getIntent().getSerializableExtra("lesson");
+        String lessonName = getString(R.string.nowclass) + ":" + lesson.getName();
+        txClassNameTime.setText(lessonName);
     }
 
     View.OnClickListener listener = new View.OnClickListener() {
@@ -143,6 +163,13 @@ public class CheckInActivity extends BaseActivity implements
                     String result = Utils.getLocationStr(loc);
                     Log.d("helo", result);
                     LatLng latLng = new LatLng(loc.getLatitude(), loc.getLongitude());
+                    if (loc.getAddress() != null) {
+                        String place = getString(R.string.nowplace) + ":" + loc.getAddress();
+                        txPlace.setText(place);
+                    } else {
+                        txPlace.setText(getString(R.string.nowplace));
+                    }
+
                     aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 19));
                     if (marker != null) {
                         marker.remove();
@@ -160,8 +187,6 @@ public class CheckInActivity extends BaseActivity implements
                     break;
             }
         }
-
-        ;
     };
 
     @Override
@@ -171,6 +196,23 @@ public class CheckInActivity extends BaseActivity implements
             msg.obj = loc;
             msg.what = Utils.MSG_LOCATION_FINISH;
             mHandler.sendMessage(msg);
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.txCheck:
+                txCheck.setSelected(true);
+                txReset.setVisibility(View.VISIBLE);
+                break;
+            case R.id.txTitleRig:
+                startActivity(new Intent().setClass(getApplication(),TodayCheckInfoActivity.class));
+                break;
+            case R.id.txReset:
+                txCheck.setSelected(false);
+                txReset.setVisibility(View.GONE);
+                break;
         }
     }
 }

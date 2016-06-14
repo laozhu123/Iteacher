@@ -35,7 +35,7 @@ public class SchoolListAdapter extends RecyclerView.Adapter<SchoolListAdapter.Vi
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.allschool_list_item, parent, false);
+        View view = inflater.inflate(R.layout.item, parent, false);
         return new ViewHolder(view);
     }
 

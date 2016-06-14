@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/di_se">
+    <include layout="@layout/toolbar"
+        android:id="@+id/toolbar"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="20dp"
+                android:background="@color/white">
+                <RelativeLayout
+                    android:id="@+id/photo_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:background="@drawable/item_pressd_bg"
+                    android:orientation="horizontal"
+                    >
+                    <TextView
+                        style="@style/personl_info_left_text_style"
+                        android:text="头像"/>
+                    <ImageView
+                        android:id="@+id/photo"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="20dp"
+                        android:scaleType="fitCenter"
+                        />
+                </RelativeLayout>
+                <View style="@style/fengexian"/>
+                <RelativeLayout
+                    android:id="@+id/nickname_btn"
+                    style="@style/personl_relative_style"
+                    >
+                    <TextView
+                        style="@style/personl_info_left_text_style"
+                        android:text="昵称"/>
+                    <TextView
+                        android:id="@+id/nickname"
+                        style="@style/personl_info_right_text_style"
+                        />
+                </RelativeLayout>
+                <View style="@style/fengexian"/>
+                <RelativeLayout
+                    android:id="@+id/name_btn"
+                    style="@style/personl_relative_style"
+                    >
+                    <TextView
+                        style="@style/personl_info_left_text_style"
+                        android:text="姓名"/>
+                    <TextView
+                        android:id="@+id/name"
+                        style="@style/personl_info_right_text_style"
+                        />
+                </RelativeLayout>
+                <View style="@style/fengexian"/>
+                <RelativeLayout
+                    android:id="@+id/sex_btn"
+                    style="@style/personl_relative_style"
+                    >
+                    <TextView
+                        style="@style/personl_info_left_text_style"
+                        android:text="性别"/>
+                    <TextView
+                        android:id="@+id/sex"
+                        style="@style/personl_info_right_text_style"
+                        />
+                </RelativeLayout>
+                <View style="@style/fengexian"/>
+                <RelativeLayout
+                    android:id="@+id/birthday_btn"
+                    style="@style/personl_relative_style"
+                    >
+                    <TextView
+                        style="@style/personl_info_left_text_style"
+                        android:text="生日"/>
+                    <TextView
+                        android:id="@+id/birthday"
+                        style="@style/personl_info_right_text_style"
+                        />
+                </RelativeLayout>
+                <View style="@style/fengexian"/>
+
+                <RelativeLayout
+                    android:id="@+id/num_btn"
+                    style="@style/personl_relative_style"
+                    >
+                    <TextView
+                        style="@style/personl_info_left_text_style"
+                        android:text="人员编号"/>
+                    <TextView
+                        android:id="@+id/num"
+                        style="@style/personl_info_right_text_style"
+                        />
+                </RelativeLayout>
+                <View style="@style/fengexian"/>
+                <RelativeLayout
+                    android:id="@+id/score_btn"
+                    style="@style/personl_relative_style"
+                    >
+                    <TextView
+                        style="@style/personl_info_left_text_style"
+                        android:text="积分"/>
+                    <TextView
+                        android:id="@+id/score"
+                        style="@style/personl_info_right_text_style"
+                        />
+                </RelativeLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="20dp"
+                android:background="@color/white">
+                <RelativeLayout
+                    android:id="@+id/phone_btn"
+                    style="@style/personl_relative_style"
+                    >
+                    <TextView
+                        style="@style/personl_info_left_text_style"
+                        android:text="手机号"/>
+                    <TextView
+                        android:id="@+id/phone"
+                        style="@style/personl_info_right_text_style"
+                        />
+                </RelativeLayout>
+                <View style="@style/fengexian"/>
+                <RelativeLayout
+                    android:id="@+id/workphone_btn"
+                    style="@style/personl_relative_style"
+                    >
+                    <TextView
+                        style="@style/personl_info_left_text_style"
+                        android:text="工作电话"/>
+                    <TextView
+                        android:id="@+id/workphone"
+                        style="@style/personl_info_right_text_style"
+                        />
+                </RelativeLayout>
+                <View style="@style/fengexian"/>
+                <RelativeLayout
+                    android:id="@+id/shortphone_btn"
+                    style="@style/personl_relative_style"
+                    >
+                    <TextView
+                        style="@style/personl_info_left_text_style"
+                        android:text="短号"/>
+                    <TextView
+                        android:id="@+id/shortphone"
+                        style="@style/personl_info_right_text_style"
+                        />
+                </RelativeLayout>
+                <View style="@style/fengexian"/>
+                <RelativeLayout
+                    android:id="@+id/email_btn"
+                    style="@style/personl_relative_style"
+                    >
+                    <TextView
+                        style="@style/personl_info_left_text_style"
+                        android:text="邮箱"/>
+                    <TextView
+                        android:id="@+id/email"
+                        style="@style/personl_info_right_text_style"
+                        />
+                </RelativeLayout>
+                <View style="@style/fengexian"/>
+                <RelativeLayout
+                    android:id="@+id/mailplace_btn"
+                    style="@style/personl_relative_style"
+                    >
+                    <TextView
+                        style="@style/personl_info_left_text_style"
+                        android:text="邮寄地址"/>
+                    <TextView
+                        android:id="@+id/mailplace"
+                        style="@style/personl_info_right_text_style"
+                        />
+                </RelativeLayout>
+                <View style="@style/fengexian"/>
+                <RelativeLayout
+                    android:id="@+id/qq_btn"
+                    style="@style/personl_relative_style"
+                    >
+                    <TextView
+                        style="@style/personl_info_left_text_style"
+                        android:text="QQ"/>
+                    <TextView
+                        android:id="@+id/qq"
+                        style="@style/personl_info_right_text_style"
+                        />
+                </RelativeLayout>
+                <View style="@style/fengexian"/>
+                <RelativeLayout
+                    android:id="@+id/weixin_btn"
+                    style="@style/personl_relative_style"
+                    >
+                    <TextView
+                        style="@style/personl_info_left_text_style"
+                        android:text="微信"/>
+                    <TextView
+                        android:id="@+id/weixin"
+                        style="@style/personl_info_right_text_style"
+                        />
+                </RelativeLayout>
+                <View style="@style/fengexian"/>
+                <RelativeLayout
+                    android:id="@+id/yixin_btn"
+                    style="@style/personl_relative_style"
+                    >
+                    <TextView
+                        style="@style/personl_info_left_text_style"
+                        android:text="易信"/>
+                    <TextView
+                        android:id="@+id/yixin"
+                        style="@style/personl_info_right_text_style"
+                        />
+                </RelativeLayout>
+                <View style="@style/fengexian"/>
+                <RelativeLayout
+                    android:id="@+id/feixin_btn"
+                    style="@style/personl_relative_style"
+                    >
+                    <TextView
+                        style="@style/personl_info_left_text_style"
+                        android:text="飞信"/>
+                    <TextView
+                        android:id="@+id/feixin"
+                        style="@style/personl_info_right_text_style"
+                        />
+                </RelativeLayout>
+                <View style="@style/fengexian"/>
+                <RelativeLayout
+                    android:id="@+id/skype_btn"
+                    style="@style/personl_relative_style"
+                    >
+                    <TextView
+                        style="@style/personl_info_left_text_style"
+                        android:text="skype"/>
+                    <TextView
+                        android:id="@+id/skype"
+                        style="@style/personl_info_right_text_style"
+                        />
+                </RelativeLayout>
+                <View style="@style/fengexian"/>
+                <RelativeLayout
+                    android:id="@+id/laiwang_btn"
+                    style="@style/personl_relative_style"
+                    >
+                    <TextView
+                        style="@style/personl_info_left_text_style"
+                        android:text="来往"/>
+                    <TextView
+                        android:id="@+id/laiwang"
+                        style="@style/personl_info_right_text_style"
+                        />
+                </RelativeLayout>
+
+                <!-- 		    <View style="@style/fengexian"/> -->
+                <!-- 		    <RelativeLayout  -->
+                <!-- 		        android:id="@+id/diploma_btn" -->
+                <!-- 		        style="@style/personl_relative_style" -->
+                <!-- 		        > -->
+                <!-- 		        <TextView  -->
+                <!-- 		            style="@style/personl_info_left_text_style" -->
+                <!-- 		            android:text="学历"/> -->
+                <!-- 		        <TextView  -->
+                <!-- 		            android:id="@+id/diploma" -->
+                <!-- 		            style="@style/personl_info_right_text_style" -->
+                <!-- 		            /> -->
+                <!-- 		    </RelativeLayout>  -->
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="20dp"
+                android:background="@color/white">
+                <RelativeLayout
+                    android:id="@+id/editpassword_btn"
+                    style="@style/personl_relative_style"
+                    >
+                    <TextView
+                        style="@style/personl_info_left_text_style"
+                        android:text="修改密码"/>
+
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="20dp"
+                android:background="@color/white">
+                <RelativeLayout
+                    android:id="@+id/feedback_btn"
+                    style="@style/personl_relative_style"
+                    >
+                    <TextView
+                        style="@style/personl_info_left_text_style"
+                        android:text="当前版本"/>
+                    <TextView
+                        android:id="@+id/feedback"
+                        style="@style/personl_info_right_text_style"
+                        />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/loginout"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                style="@style/btn.hong"
+                android:text="注销当前账号"/>
+
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
+

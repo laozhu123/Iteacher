@@ -6,6 +6,8 @@
     <string name="nullpic">图片正在加载中</string>
     <string name="sure">确定</string>
     <string name="cancel">取消</string>
+    <string name="nodata">无数据</string>
+    <string name="soft_update_cancel">取消更新</string>
 
     <!--Strings related to main page-->
     <string name="firstpage">首页</string>
@@ -87,5 +89,43 @@
     <!--ref to checkin-->
     <string name="todayLesson">今日课程</string>
     <string name="checkIn">点到</string>
+    <string name="nowplace">当前位置</string>
+    <string name="nowclass">当前课程</string>
+    <string name="todaycheck">今日点到</string>
+    <string name="todaynocheck">该门课今天未点到</string>
+    <string name="reset">再点一次</string>
+    <string name="checkinfo">点到详情</string>
 
+    <!--ref to addresslist-->
+    <string name="addresslist">通讯录</string>
+
+    <!--ref to schedule-->
+    <string name="todaytask">该天日程</string>
+    <string name="myschdule">我的日程</string>
+    <string name="show">展开</string>
+    <string name="hidden">隐藏</string>
+    <string name="time">提醒时间:</string>
+    <string name="content">内容:</string>
+    <string name="tag">标签:</string>
+    <string name="date">日期</string>
+    <string name="minute">时分</string>
+    <string name="please_input">请输入内容</string>
+    <string name="repeat">重复次数:</string>
+    <string name="onetime">一次</string>
+    <string name="create">新建</string>
+    <string name="create_schedule">新建日程</string>
+    <string name="please_input_date">请选择日期</string>
+    <string name="please_input_minute">请选择时分</string>
+    <string name="please_input_content">请输入日程内容</string>
+    <string name="time_pass">设置的时间已过</string>
+    <string name="choose_repeat">选择重复次数</string>
+    <string name="everyday">每天</string>
+    <string name="everyweek">每周</string>
+    <string name="everymonth">每月</string>
+    <string name="everyyear">每年</string>
+
+    <!--ref to personinfo-->
+    <string name="myinfo">我的信息</string>
+    <string name="change">更改</string>
+    <string name="store">保存</string>
 </resources>

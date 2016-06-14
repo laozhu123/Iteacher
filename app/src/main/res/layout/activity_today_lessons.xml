@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.li.zjut.iteacher.activity.checkIn.TodayLessonsActivity">
+    tools:context="com.li.zjut.iteacher.activity.checkin.TodayLessonsActivity">
 
     <include
         android:id="@+id/toolbar"
@@ -12,7 +12,9 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin">
         <android.support.v7.widget.RecyclerView
             android:id="@+id/reCycleView"
             android:layout_width="match_parent"

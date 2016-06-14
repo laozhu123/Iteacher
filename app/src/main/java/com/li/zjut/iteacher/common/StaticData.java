@@ -13,7 +13,8 @@ import java.util.ArrayList;
 public class StaticData {
 
     public final static String URL = "http://115.28.24.114:8080";
-
+    public final static String WEATHER = "http://apicloud.mob.com";
+    public final static String KEYWEATHER = "139388b8e8bd0";
 
     /*
     * SharedPreferences params
@@ -67,4 +68,6 @@ public class StaticData {
 
     public static String country = "+86";
     public static boolean closeThread = true;
+
+    public static String id = "";
 }

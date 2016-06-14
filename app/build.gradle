@@ -4,6 +4,10 @@ android {
     compileSdkVersion 23
     buildToolsVersion "23.0.3"
 
+    aaptOptions.cruncherEnabled = false
+
+    aaptOptions.useNewCruncher = false
+
     defaultConfig {
         applicationId "com.li.zjut.iteacher"
         minSdkVersion 17
@@ -38,6 +42,9 @@ dependencies {
     compile 'com.android.support:design:23.1.1'
     compile(name: 'SMSSDK-2.0.2', ext: 'aar')
     compile(name: 'SMSSDKGUI-2.0.2', ext: 'aar')
+    compile files('libs/jg_filter_sdk_1.1.jar')
+    compile files('libs/wup-1.0.0.E-SNAPSHOT.jar')
+    compile files('libs/Xg_sdk_v2.46_20160602_1638.jar')
 }
 
 

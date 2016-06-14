@@ -4,6 +4,7 @@ package com.li.zjut.iteacher.interFace;
 import com.google.gson.JsonObject;
 import com.li.zjut.iteacher.bean.Ret_Login;
 import com.li.zjut.iteacher.bean.Ret_Register;
+import com.li.zjut.iteacher.bean.main.Ret_Weather;
 import com.li.zjut.iteacher.bean.register.Ret_Allcampus;
 import com.li.zjut.iteacher.bean.register.Ret_Allcollege;
 import com.li.zjut.iteacher.bean.register.Ret_Allschool;
@@ -35,7 +36,7 @@ public interface GetUrl {
 
 
     @GET("/Iteacher/course/coursetime/list")
-    Call<JsonObject> getcurriculms(@Query("sid") String uid); // 登录
+    Call<JsonObject> getcurriculms(@Query("sid") String uid); //
 
     @GET("/Iteacher/school/list")
     Call<Ret_Allschool> getschools(); // 获取所有学校
@@ -45,4 +46,7 @@ public interface GetUrl {
 
     @GET("/Iteacher/school/college/list")
     Call<Ret_Allcollege> getcolleges(@Query("campusid") int campusid); // 获取所有学院
+
+    @GET("/v1/weather/query")
+    Call<Ret_Weather> getweather(@Query("key") String key, @Query("city") String city, @Query("province") String province); // 获取天气
 }
