@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.li.zjut.iteacher.R;
+import com.li.zjut.iteacher.activity.main.MainActivity;
 
 
 /**
@@ -21,6 +22,7 @@ public class MessageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment,null);
         ImageView img = (ImageView) view.findViewById(R.id.img);
+        MainActivity.content.setVisibility(View.VISIBLE);
         return view;
     }
 }

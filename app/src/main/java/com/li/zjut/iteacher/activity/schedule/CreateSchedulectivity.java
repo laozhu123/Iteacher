@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -79,8 +80,10 @@ public class CreateSchedulectivity extends FragmentActivity implements View.OnCl
 
         TextView title = (TextView) findViewById(R.id.title);
         title.setText(getString(R.string.create_schedule));
-        findViewById(R.id.left_img).setOnClickListener(this);
-        findViewById(R.id.left_img).setVisibility(View.VISIBLE);
+        ImageView leftImg = (ImageView) findViewById(R.id.left_img);
+        leftImg.setOnClickListener(this);
+        leftImg.setImageResource(R.drawable.backarrow);
+        leftImg.setVisibility(View.VISIBLE);
 
         String date1 = getIntent().getStringExtra("date");
         if (date1 != null) {

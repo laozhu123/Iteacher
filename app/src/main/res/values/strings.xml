@@ -92,10 +92,19 @@
     <string name="nowplace">当前位置</string>
     <string name="nowclass">当前课程</string>
     <string name="todaycheck">今日点到</string>
+    <string name="check_select_check">选择点到</string>
     <string name="todaynocheck">该门课今天未点到</string>
     <string name="reset">再点一次</string>
     <string name="checkinfo">点到详情</string>
-
+    <string name="allLesson">所有课程</string>
+    <string name="lessonname">课程名称:</string>
+    <string name="select_check_point">选择点到时间</string>
+    <string name="check_select_student">查看学生</string>
+    <string name="place">上课地点:</string>
+    <string name="normal">正常签到:</string>
+    <string name="late">迟到签到:</string>
+    <string name="check_stu_list">学生列表</string>
+    <string name="minutes">分钟</string>
     <!--ref to addresslist-->
     <string name="addresslist">通讯录</string>
 

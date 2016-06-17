@@ -20,6 +20,7 @@ import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.li.zjut.iteacher.R;
+import com.li.zjut.iteacher.activity.main.MainActivity;
 import com.li.zjut.iteacher.activity.personinfo.PersonInfoActivity;
 import com.li.zjut.iteacher.activity.wel_login.LoginActivity;
 import com.li.zjut.iteacher.bean.main.Ret_Weather;
@@ -59,6 +60,7 @@ public class HomeFragment extends Fragment implements AMapLocationListener {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, null);
 
+        MainActivity.content.setVisibility(View.VISIBLE);
         initView(view);
         initMap();
         return view;

@@ -115,7 +115,7 @@ public class MyScheduleActivity extends BaseActivity implements View.OnClickList
 
             @Override
             public void onClick(View v, int position) {
-                startActivity(new Intent(getApplicationContext(), OneCheckInfoActivity.class));
+               pop.dismiss();
             }
         });
         reCycleView.setAdapter(mAdapter);

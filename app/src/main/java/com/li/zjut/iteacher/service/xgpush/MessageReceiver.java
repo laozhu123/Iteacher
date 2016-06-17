@@ -153,7 +153,7 @@ public class MessageReceiver extends XGPushBaseReceiver {
         if (errorCode == XGPushBaseReceiver.SUCCESS) {
             text = message + "注册成功";
             // 在这里拿token
-            String token = message.getToken();
+            StaticData.cid = message.getToken();
         } else {
             text = message + "注册失败，错误码：" + errorCode;
         }

@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.li.zjut.iteacher.R;
 import com.li.zjut.iteacher.activity.addresslist.AddressActivity;
+import com.li.zjut.iteacher.activity.main.MainActivity;
 import com.li.zjut.iteacher.adapter.address.AddressListAdapter;
 import com.li.zjut.iteacher.bean.address.Department;
 import com.li.zjut.iteacher.bean.address.People;
@@ -41,6 +42,7 @@ public class AddressFragment extends Fragment implements SwipeRefreshLayout.OnRe
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_address, null);
+        MainActivity.content.setVisibility(View.VISIBLE);
         initView(view);
         getData();
         return view;

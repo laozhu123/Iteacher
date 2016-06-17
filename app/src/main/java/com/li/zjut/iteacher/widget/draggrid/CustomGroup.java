@@ -8,9 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-
 import com.li.zjut.iteacher.R;
-import com.li.zjut.iteacher.activity.checkin.TodayLessonsActivity;
+import com.li.zjut.iteacher.activity.checkin.AllLessonsActivity;
+import com.li.zjut.iteacher.activity.checkin.CheckActivity;
 import com.li.zjut.iteacher.activity.myLesson.CurTableActivity;
 import com.li.zjut.iteacher.activity.schedule.MyScheduleActivity;
 import com.li.zjut.iteacher.bean.DargChildInfo;
@@ -416,12 +416,13 @@ public class CustomGroup extends ViewGroup {
 
         switch (id) {
             case 1:
-                mContext.startActivity(new Intent(mContext, TodayLessonsActivity.class));
+                mContext.startActivity(new Intent(mContext, CheckActivity.class));
                 break;
             case 2:
                 mContext.startActivity(new Intent(mContext, CurTableActivity.class));
                 break;
             case 3:
+                mContext.startActivity(new Intent(mContext, AllLessonsActivity.class));
                 break;
             case 4:
                 mContext.startActivity(new Intent(mContext, MyScheduleActivity.class));

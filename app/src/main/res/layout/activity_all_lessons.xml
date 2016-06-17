@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context="com.li.zjut.iteacher.activity.checkin.AllLessonsActivity">
 
     <include
         android:id="@+id/toolbar"
@@ -11,28 +12,17 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:layout_weight="1">
-
+        android:layout_marginRight="@dimen/activity_horizontal_margin">
         <android.support.v7.widget.RecyclerView
             android:id="@+id/reCycleView"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-
         <TextView
             android:id="@+id/noContext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"/>
     </FrameLayout>
-
-    <TextView
-        android:id="@+id/all"
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:gravity="center"
-        android:text="@string/allLesson"
-        android:textColor="@color/yellow" />
 </LinearLayout>

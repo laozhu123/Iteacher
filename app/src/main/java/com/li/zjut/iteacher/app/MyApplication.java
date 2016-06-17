@@ -1,5 +1,6 @@
 package com.li.zjut.iteacher.app;
 
+import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.smssdk.SMSSDK;
+import io.rong.imkit.RongIM;
 
 /**
  * Created by LaoZhu on 2016/5/12.
@@ -31,6 +33,20 @@ public class MyApplication extends Application {
         super.onCreate();
 
 
+
+
+        /**
+         * OnCreate 会被多个进程重入，这段保护代码，确保只有您需要使用 RongIM 的进程和 Push 进程执行了 init。
+         * io.rong.push 为融云 push 进程名称，不可修改。
+         */
+        if (getApplicationInfo().packageName.equals(getCurProcessName(getApplicationContext())) ||
+                "io.rong.push".equals(getCurProcessName(getApplicationContext()))) {
+
+            /**
+             * IMKit SDK调用第一步 初始化
+             */
+            RongIM.init(this);
+        }
 
         // 开启logcat输出，方便debug，发布时请关闭
         // XGPushConfig.enableDebug(this, true);
@@ -52,7 +68,6 @@ public class MyApplication extends Application {
         // 反注册（不再接收消息）：unregisterPush(context)
         // 设置标签：setTag(context, tagName)
         // 删除标签：deleteTag(context, tagName)
-
 
 
         //创建图片文件夹
@@ -81,18 +96,6 @@ public class MyApplication extends Application {
         });
         thread.start();
 
-
-//        final String APP_KEY = "23015524";
-////必须首先执行这部分代码, 如果在":TCMSSevice"进程中，无需进行云旺（OpenIM）和app业务的初始化，以节省内存;
-//        SysUtil.setApplication(this);
-//        if(SysUtil.isTCMSServiceProcess(this)){
-//            return;
-//        }
-////第一个参数是Application Context
-////这里的APP_KEY即应用创建时申请的APP_KEY，同时初始化必须是在主进程中
-//        if(SysUtil.isMainProcess()){
-//            YWAPI.init(this, APP_KEY);
-//        }
     }
 
     /**
@@ -125,4 +128,30 @@ public class MyApplication extends Application {
         return mSortList;
 
     }
+
+    /**
+     * 获得当前进程的名字
+     *
+     * @param context
+     * @return 进程号
+     */
+    public static String getCurProcessName(Context context) {
+
+        int pid = android.os.Process.myPid();
+
+        ActivityManager activityManager = (ActivityManager) context
+                .getSystemService(Context.ACTIVITY_SERVICE);
+
+        for (ActivityManager.RunningAppProcessInfo appProcess : activityManager
+                .getRunningAppProcesses()) {
+
+            if (appProcess.pid == pid) {
+                return appProcess.processName;
+            }
+        }
+        return null;
+    }
+
+
+
 }

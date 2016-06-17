@@ -70,4 +70,6 @@ public class StaticData {
     public static boolean closeThread = true;
 
     public static String id = "";
+
+    public static String cid = "";
 }

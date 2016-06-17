@@ -2,12 +2,21 @@ package com.li.zjut.iteacher.activity.checkin;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,9 +33,16 @@ import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
 import com.li.zjut.iteacher.R;
 import com.li.zjut.iteacher.activity.base.BaseActivity;
+import com.li.zjut.iteacher.adapter.schedule.ScheduleListAdapter;
 import com.li.zjut.iteacher.bean.checkin.Lesson;
+import com.li.zjut.iteacher.bean.test.Com;
 import com.li.zjut.iteacher.common.bitmap.View2Bitmap;
 import com.li.zjut.iteacher.common.map.Utils;
+import com.li.zjut.iteacher.common.mylesson.SizeUtil;
+import com.li.zjut.iteacher.widget.recycleview.DividerItemDecoration;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class CheckActivity extends BaseActivity implements
@@ -38,9 +54,20 @@ public class CheckActivity extends BaseActivity implements
     private AMapLocationClientOption locationOption = null;
     Marker marker = null;
     Bitmap bitmap;
-    private TextView txClassNameTime, txPlace, txCheck,txReset;
+    private TextView  txPlace, txCheck, txReset;
+    private List<Com> mData = new ArrayList<>();
+    private PopupWindow pop = null;
+    private PopupWindow pop1 = null;
+    private View mHidden;
+    private TextView popTxtTitle;
+    private RecyclerView reCycleView;
+    private TextView noContext;
+    private ScheduleListAdapter mAdapter;
 
+    private TextView place,lessonname;
+    private EditText normal,late;
 
+    public static final int REQUEST = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,8 +87,89 @@ public class CheckActivity extends BaseActivity implements
         bitmap = View2Bitmap.convertViewToBitmap(img, 70, 70);
 
         initView();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                pop();
+                pop1();
+                getTodayLesson();
+            }
+        }, 1000);
         initMap();
     }
+
+    private void getTodayLesson() {
+
+        for (int i = 1; i < 10; i++) {
+            Com com = new Com();
+            com.setText("helo");
+            mData.add(com);
+        }
+        mAdapter.notifyDataSetChanged();
+        reCycleView.setVisibility(View.VISIBLE);
+        noContext.setVisibility(View.GONE);
+    }
+
+    android.os.Handler handler = new android.os.Handler();
+
+    private void pop() {
+        View cont = LayoutInflater.from(this)
+                .inflate(R.layout.popup_lesson_list, null);
+        Rect rect = new Rect();
+        getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);
+        int w = rect.right - rect.left - 2 * SizeUtil.dp2px(32);
+        pop = new PopupWindow(cont, w, ViewGroup.LayoutParams.WRAP_CONTENT);
+        pop.setOutsideTouchable(true);
+        pop.setBackgroundDrawable(
+                getResources().getDrawable(R.drawable.popupwindow));
+
+        reCycleView = (RecyclerView) cont.findViewById(R.id.reCycleView);
+        reCycleView.setLayoutManager(new LinearLayoutManager(this));
+        reCycleView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
+        reCycleView.setItemAnimator(new DefaultItemAnimator());
+
+        noContext = (TextView) cont.findViewById(R.id.noContext);
+        noContext.setText(getString(R.string.nodata));
+        mAdapter = new ScheduleListAdapter(mData);
+        mAdapter.setOnItemClickListener(new ScheduleListAdapter.OnItemClickListener() {
+
+            @Override
+            public void onClick(View v, int position) {
+                pop.dismiss();
+                showPop1();
+            }
+        });
+        reCycleView.setAdapter(mAdapter);
+
+        popTxtTitle = (TextView) cont.findViewById(R.id.title);
+        popTxtTitle.setText(getString(R.string.todaytask));
+
+        cont.findViewById(R.id.allLesson).setOnClickListener(this);
+        cont.findViewById(R.id.close).setOnClickListener(this);
+
+    }
+
+    private void pop1() {
+        View cont = LayoutInflater.from(this)
+                .inflate(R.layout.popup_check, null);
+        Rect rect = new Rect();
+        getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);
+        int w = rect.right - rect.left - 2 * SizeUtil.dp2px(32);
+        pop1 = new PopupWindow(cont, w, ViewGroup.LayoutParams.WRAP_CONTENT);
+        pop1.setOutsideTouchable(true);
+        pop1.setBackgroundDrawable(
+                getResources().getDrawable(R.drawable.popupwindow));
+
+        lessonname = (TextView) cont.findViewById(R.id.lessonname);
+        place = (TextView) cont.findViewById(R.id.place);
+        normal = (EditText) cont.findViewById(R.id.normal);
+        late = (EditText) cont.findViewById(R.id.late);
+
+        cont.findViewById(R.id.sure).setOnClickListener(this);
+        cont.findViewById(R.id.cancel).setOnClickListener(this);
+
+    }
+
 
     private void initMap() {
 
@@ -86,23 +194,20 @@ public class CheckActivity extends BaseActivity implements
 
 
     private void initView() {
-
+        mHidden = findViewById(R.id.hidden);
+        findViewById(R.id.transparent).setOnClickListener(this);
         findViewById(R.id.location).setOnClickListener(listener);
         txCheck = (TextView) findViewById(R.id.txCheck);
         txCheck.setOnClickListener(this);
         txReset = (TextView) findViewById(R.id.txReset);
         txReset.setText(getString(R.string.reset));
         txReset.setOnClickListener(this);
-        txClassNameTime = (TextView) findViewById(R.id.txClassNameTime);
         txPlace = (TextView) findViewById(R.id.txPlace);
         TextView txTitleRig = (TextView) findViewById(R.id.txTitleRig);
         txTitleRig.setText(getString(R.string.todaycheck));
         txTitleRig.setVisibility(View.VISIBLE);
         txTitleRig.setOnClickListener(this);
 
-        Lesson lesson = (Lesson) getIntent().getSerializableExtra("lesson");
-        String lessonName = getString(R.string.nowclass) + ":" + lesson.getName();
-        txClassNameTime.setText(lessonName);
     }
 
     View.OnClickListener listener = new View.OnClickListener() {
@@ -115,6 +220,30 @@ public class CheckActivity extends BaseActivity implements
             }
         }
     };
+
+    private void showPop() {
+
+        pop.showAtLocation((View) mHidden.getParent(), Gravity.CENTER, 0, 0);
+        findViewById(R.id.transparent).setVisibility(View.VISIBLE);
+    }
+
+    private void showPop1() {
+
+        pop1.showAtLocation((View) mHidden.getParent(), Gravity.CENTER, 0, 0);
+        findViewById(R.id.transparent).setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        if (pop.isShowing()||pop1.isShowing()) {
+            pop.dismiss();
+            pop1.dismiss();
+            findViewById(R.id.transparent).setVisibility(View.GONE);
+        } else
+            super.onBackPressed();
+
+    }
 
     @Override
     protected void onDestroy() {
@@ -203,15 +332,47 @@ public class CheckActivity extends BaseActivity implements
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.txCheck:
-                txCheck.setSelected(true);
-                txReset.setVisibility(View.VISIBLE);
+                showPop();
                 break;
             case R.id.txTitleRig:
-                startActivity(new Intent().setClass(getApplication(),TodayCheckInfoActivity.class));
+                startActivity(new Intent().setClass(getApplication(), TodayCheckInfoActivity.class));
                 break;
             case R.id.txReset:
                 txCheck.setSelected(false);
                 txReset.setVisibility(View.GONE);
+                break;
+            case R.id.close:
+            case R.id.transparent:
+                pop.dismiss();
+                pop1.dismiss();
+                findViewById(R.id.transparent).setVisibility(View.GONE);
+                break;
+            case R.id.allLesson:
+                pop.dismiss();
+                findViewById(R.id.transparent).setVisibility(View.GONE);
+                startActivityForResult(new Intent(CheckActivity.this,AllLessonsActivity.class),REQUEST);
+                break;
+            case R.id.sure:
+                pop1.dismiss();
+                findViewById(R.id.transparent).setVisibility(View.GONE);
+
+                txCheck.setSelected(true);
+                txReset.setVisibility(View.VISIBLE);
+                break;
+            case R.id.cancel:
+                pop1.dismiss();
+                findViewById(R.id.transparent).setVisibility(View.GONE);
+                break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (resultCode){
+            case RESULT_OK:
+//                txCheck.setSelected(true);
+//                txReset.setVisibility(View.VISIBLE);
+                showPop1();
                 break;
         }
     }

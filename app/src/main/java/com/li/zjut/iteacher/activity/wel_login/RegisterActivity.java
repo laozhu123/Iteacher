@@ -399,7 +399,8 @@ public class RegisterActivity extends BaseActivity {
         map.put("schoolid", college.getSchoolid());
         map.put("campusid", college.getCampusid());
         map.put("collegeid", college.getId());
-        map.put("cid", "mfie");
+        map.put("cid", StaticData.cid);
+
         map.put("device", ANDROID);
         Call<Ret_Register> call = RetrofitHttp.github.accountRegister(map);
 
