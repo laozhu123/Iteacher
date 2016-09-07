@@ -20,17 +20,14 @@ import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
-
 import com.li.zjut.iteacher.R;
 import com.li.zjut.iteacher.activity.base.BaseActivity;
 import com.li.zjut.iteacher.bean.mylesson.Curriculum;
-import com.li.zjut.iteacher.bean.mylesson.LessonBean;
+import com.li.zjut.iteacher.common.StaticData;
 import com.li.zjut.iteacher.common.db.DBManager;
-import com.li.zjut.iteacher.common.mylesson.RandomUtil;
 import com.li.zjut.iteacher.common.mylesson.SizeUtil;
 import com.li.zjut.iteacher.widget.curimlum.Curriculum_table;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,17 +38,18 @@ public class CurTableActivity extends BaseActivity {
 
     Handler handler;
     private static Context context = null;
-    private final int REQUEST_ADD_CODE = 1, REQUEST_MOD_CODE = 2;
-    private String mCourseTimeId;
+    private final int REQUEST_ADD_CUR_CODE = 1, REQUEST_MOD_CUR_CODE = 2, REQUEST_MOD_CLASS_CODE = 3;
+    private int mCourseTimeId;
     private boolean first = true;   //通过oncreate之后的
 
     private PopupWindow pop = null;
     private TextView popTxtLN, popTxtWeek, popTxtTP;
-    private Button popBtnMod, popBtnDel, popBtnDelOne, popBtnInvite;
+    private Button popBtnMod, popBtnDel, popBtnDelOne, popBtnInvite, popBtnModClass;
     private String[] weekdays;
     private View mHidden;
 
     public enum Type {DELALL, DELONE, INVITE}
+
     SpannableString msp = null;
     DBManager mgr;
 
@@ -60,7 +58,7 @@ public class CurTableActivity extends BaseActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cur_table);
-        super.setContext(findViewById(R.id.toolbar),getString(R.string.week),true);
+        super.setContext(findViewById(R.id.toolbar), getString(R.string.week), true);
 
         context = getApplicationContext();
         weekdays = getResources().getStringArray(R.array.weekdays);
@@ -89,6 +87,7 @@ public class CurTableActivity extends BaseActivity {
         pop.setBackgroundDrawable(
                 getResources().getDrawable(R.drawable.popupwindow));
         popTxtLN = (TextView) cont.findViewById(R.id.lname);
+        popBtnModClass = (Button) cont.findViewById(R.id.btn_mod_class);
         popTxtWeek = (TextView) cont.findViewById(R.id.week);
         popTxtTP = (TextView) cont.findViewById(R.id.timeplace);
         popBtnMod = (Button) cont.findViewById(R.id.btn_mod);
@@ -115,7 +114,7 @@ public class CurTableActivity extends BaseActivity {
                     finish();
                     break;
                 case R.id.right_img:
-                    startActivityForResult(new Intent(CurTableActivity.this, AddLesson1Activity.class), REQUEST_ADD_CODE);
+                    startActivityForResult(new Intent(CurTableActivity.this, AddModifyCurriculumActivity.class).putExtra("type","create"), REQUEST_ADD_CUR_CODE);
                     break;
             }
         }
@@ -149,6 +148,12 @@ public class CurTableActivity extends BaseActivity {
                 delLesson(index);
             }
         });
+        popBtnModClass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                modClass(index);
+            }
+        });
         popBtnDelOne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -164,14 +169,31 @@ public class CurTableActivity extends BaseActivity {
         pop.showAtLocation((View) mHidden.getParent(), Gravity.CENTER, 0, 0);
     }
 
+    /*修改课头*/
+    private void modClass(int index) {
+        for (Curriculum c : ls) {
+            if (c.getId() == index) {
+                mCourseTimeId = c.getCourseTimeId();
+                break;
+            }
+        }
+
+        startActivityForResult(new Intent(CurTableActivity.this, AddModifyClassActivity.class)
+                        .putExtra(StaticData.COURSEID, 10)
+                        .putExtra(StaticData.COURSETIMEID, 10)
+                        .putExtra(StaticData.COURSENAME, "helo"),
+                REQUEST_MOD_CLASS_CODE);
+        pop.dismiss();
+    }
+
 
     /*
     * 获取邀请码
     * */
     private void getInvite(int index) {
 
-        for (Curriculum c : ls){
-            if (c.getId() == index){
+        for (Curriculum c : ls) {
+            if (c.getId() == index) {
                 getInviteFromHttp(c.getCourseTimeId());
                 break;
             }
@@ -181,9 +203,9 @@ public class CurTableActivity extends BaseActivity {
     /*
     * 连接服务器，传递coursetimeid，获取到邀请码
     * */
-    private void getInviteFromHttp(String coursetimeid) {
+    private void getInviteFromHttp(int coursetimeid) {
 
-        showCommonAlertDialog(Type.INVITE,0,"x2356d");
+        showCommonAlertDialog(Type.INVITE, 0, "x2356d");
     }
 
     /*
@@ -191,7 +213,7 @@ public class CurTableActivity extends BaseActivity {
     * */
     private void delLessonOne(int index) {
 
-        showCommonAlertDialog(Type.DELONE, index,"");
+        showCommonAlertDialog(Type.DELONE, index, "");
     }
 
     /*
@@ -199,7 +221,7 @@ public class CurTableActivity extends BaseActivity {
     * */
     private void delLesson(int index) {
 
-        showCommonAlertDialog(Type.DELALL, index,"");
+        showCommonAlertDialog(Type.DELALL, index, "");
     }
 
 
@@ -208,28 +230,16 @@ public class CurTableActivity extends BaseActivity {
     * */
     private void modLesson(int index) {
 
-        for (Curriculum c : ls){
-            if (c.getId() == index)
-            {
-                mCourseTimeId = c.getCourseTimeId();
-                break;
-            }
-        }
-        List<Curriculum> curls = new ArrayList<>();
-        for (Curriculum curriculum : ls) {
-            if (curriculum.getCourseTimeId().equals(mCourseTimeId)) {
-                curls.add(curriculum);
-            }
-        }
-        startActivityForResult(new Intent(CurTableActivity.this, ModLesson1Activity.class).putExtra("Curriculum", (Serializable) curls),
-                REQUEST_MOD_CODE);
+
+        startActivityForResult(new Intent(CurTableActivity.this, AddModifyCurriculumActivity.class).putExtra("type","modify").putExtra(StaticData.COURSEID, 10).putExtra(StaticData.COURSENAME, "helo"),
+                REQUEST_MOD_CUR_CODE);
     }
 
 
     /*
     * 显示删除一门课程和一节课的dialog
     * */
-    private void showCommonAlertDialog(Type s, final int index,String code) {
+    private void showCommonAlertDialog(Type s, final int index, String code) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(CurTableActivity.this);
         AlertDialog dialog = builder.create();
@@ -246,7 +256,7 @@ public class CurTableActivity extends BaseActivity {
 
                             mgr.removeOneLesson(index);
                             for (int i = 0; i < ls.size(); i++) {
-                                if (ls.get(i).getId()== index) {
+                                if (ls.get(i).getId() == index) {
                                     ls.remove(i);
                                     break;
                                 }
@@ -263,7 +273,7 @@ public class CurTableActivity extends BaseActivity {
 
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            String curid = null;
+                            int curid = 0;
                             for (Curriculum c : ls) {
                                 if (c.getId() == index) {
                                     curid = c.getCourseTimeId();
@@ -285,7 +295,7 @@ public class CurTableActivity extends BaseActivity {
                     });
         } else if (s == Type.INVITE) {
             dialog.setTitle(getResources().getString(R.string.invitecode));
-            msp = new SpannableString(getResources().getString(R.string.invitebefore)+code+"\n"+getResources().getString(R.string.codetimelimit));
+            msp = new SpannableString(getResources().getString(R.string.invitebefore) + code + "\n" + getResources().getString(R.string.codetimelimit));
             //设置字体前景色
             msp.setSpan(new ForegroundColorSpan(Color.MAGENTA), 7, 13, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);  //设置前景色为洋红色
             dialog.setMessage(msp);
@@ -315,16 +325,7 @@ public class CurTableActivity extends BaseActivity {
     private void init() {
 
         curriculum_table = new Curriculum_table(this);
-        curriculum_table.setListener(new Curriculum_table.Cur_OnClickListener() {
-            @Override
-            public void OnClickListener(int weekday, int begin) {
-//                startActivityForResult(new Intent(CurTableActivity.this, AddLessonActivity.class)
-//                        .putExtra("weekday", weekday).putExtra("begin", begin), REQUEST_ADD_CODE);
-                startActivityForResult(new Intent(CurTableActivity.this, AddLesson1Activity.class)
-                        .putExtra("weekday", weekday).putExtra("begin", begin), REQUEST_ADD_CODE);
-                curriculum_table.hidden();
-            }
-        });
+
 
         curriculum_table.setCurvListener(new Curriculum_table.Cur_v_listener() {
             @Override
@@ -341,40 +342,12 @@ public class CurTableActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        LessonBean lessonBean;
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
-                case REQUEST_ADD_CODE:
-//                    item = (Curriculum) data.getSerializableExtra("lessonbean");
-//                    item.setIndex(ls.size());
-//                    ls.add(item);
-//                    curriculum_table.addCurriculum(ls);
-                    lessonBean = (LessonBean) data.getSerializableExtra("Curriculum");
-                    for (Curriculum curriculum : lessonBean.getTimes()) {
-                        curriculum.setText(lessonBean.getCoursename());
-                        //这里生成一个随机数
-                        curriculum.setId(RandomUtil.getColor());
-                        ls.add(curriculum);
-                    }
-                    mgr.add(ls);
-                    curriculum_table.addCurriculumList(lessonBean.getTimes());
-                    break;
-                case REQUEST_MOD_CODE:
-                    for (int i = 0; i < ls.size(); ) {
-                        if (ls.get(i).getCourseTimeId().equals(mCourseTimeId)) {
-                            ls.remove(i);
-                            continue;
-                        }
-                        i++;
-                    }
-                    lessonBean = (LessonBean) data.getSerializableExtra("Curriculum");
-                    for (Curriculum c : lessonBean.getTimes()){
-                        //这里生成一个随机数
-                        c.setId(RandomUtil.getColor());
-                    }
-                    ls.addAll(lessonBean.getTimes());
-                    mgr.deleteOld();
-                    mgr.add(ls);
+                case REQUEST_ADD_CUR_CODE:
+                case REQUEST_MOD_CUR_CODE:
+                case REQUEST_MOD_CLASS_CODE:
+                    ls = mgr.query();
                     curriculum_table.modCurriculumList(ls);
                     break;
             }
@@ -404,6 +377,11 @@ public class CurTableActivity extends BaseActivity {
         curriculum_table.addCurriculumList(ls);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mgr.closeDB();
+    }
 }
 
 

@@ -14,9 +14,11 @@ import android.view.animation.TranslateAnimation;
 import android.widget.EditText;
 
 import com.li.zjut.iteacher.R;
+import com.li.zjut.iteacher.common.DensityUtil;
 
 public class ClearEditText extends EditText implements
         OnFocusChangeListener, TextWatcher {
+    private Context mContext;
     /**
      * 删除按钮的引用
      */
@@ -33,6 +35,7 @@ public class ClearEditText extends EditText implements
 
     public ClearEditText(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+        mContext = context;
         init();
     }
 
@@ -44,7 +47,7 @@ public class ClearEditText extends EditText implements
             mClearDrawable = getResources()
                     .getDrawable(R.drawable.emotionstore_progresscancelbtn);
         }
-        mClearDrawable.setBounds(0, 0, mClearDrawable.getIntrinsicWidth(), mClearDrawable.getIntrinsicHeight());
+        mClearDrawable.setBounds(0, 0, DensityUtil.dip2px(mContext,25), DensityUtil.dip2px(mContext,25));
         setClearIconVisible(false);
         setOnFocusChangeListener(this);
         addTextChangedListener(this);

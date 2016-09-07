@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_back"
+    tools:context=".activity.imteacher.StudentInfoActivity">
+
+    <include
+        android:id="@id/toolbar"
+        layout="@layout/toolbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:layout_below="@id/toolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:background="@color/person_info_blue"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/tv_head"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:background="@drawable/person_info_head_icon"
+                    android:gravity="center"
+                    android:text="老朱"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv_name_1"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_head"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:text="laozhu"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/cimg_head"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/tv_name_2"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/cimg_head"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:text="laozhu"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:visibility="gone" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:gravity="center_vertical"
+                android:text="个人信息"
+                android:textColor="@color/blue"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/name"
+                style="@style/black_17_stu_info"
+                android:layout_marginTop="25dp"
+                android:text="老朱" />
+
+            <TextView
+                style="@style/gray_14_stu_info"
+                android:text="姓名" />
+
+            <View style="@style/line_gray2_stu_info" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/phone"
+                    style="@style/black_17_stu_info"
+                    android:layout_marginTop="10dp"
+                    android:text="+86-18767122395" />
+
+                <TextView
+                    style="@style/gray_14_stu_info"
+                    android:layout_below="@id/phone"
+                    android:text="手机号" />
+
+                <ImageView
+                    android:id="@+id/call"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="16dp"
+                    android:src="@mipmap/user_info_phone_cn" />
+            </RelativeLayout>
+
+            <View style="@style/line_gray2" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:background="@color/gray_back_deep" />
+
+            <View style="@style/line_gray2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:gravity="center_vertical"
+                android:text="通讯信息"
+                android:textColor="@color/blue"
+                android:textSize="17sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:layout_marginTop="18dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/email"
+                    style="@style/black_17_stu_info"
+                    android:layout_marginTop="10dp"
+                    android:text="qqq2830@163.com" />
+
+                <TextView
+                    style="@style/gray_14_stu_info"
+                    android:layout_below="@id/email"
+                    android:text="邮箱" />
+
+                <ImageView
+                    android:id="@+id/send_mail"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="16dp"
+                    android:src="@mipmap/user_info_mail_cn" />
+            </RelativeLayout>
+
+            <View style="@style/line_gray2_stu_info" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/qq"
+                    style="@style/black_17_stu_info"
+                    android:layout_marginTop="10dp"
+                    android:text="+86-18767122395" />
+
+                <TextView
+                    style="@style/gray_14_stu_info"
+                    android:layout_below="@id/qq"
+                    android:text="QQ" />
+
+            </RelativeLayout>
+
+            <View style="@style/line_gray2" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:background="@color/gray_back_deep" />
+        </LinearLayout>
+
+    </ScrollView>
+</RelativeLayout>

@@ -1,22 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimary">#ff9738</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="red_shen">#ff980000</color>
     <color name="red1">#ffFD0100</color>
     <color name="white">#ffffff</color>
+    <color name="gray_white">#f7f7f7</color>
     <color name="black">#ff000000</color>
-    <color name="blue">#ff4fc1e9</color>
+    <color name="txt_black">#202020</color>
+    <color name="blue">#019fe8</color>
+    <color name="blue_deep_deep">#eea5eafa</color>
+    <color name="blue_shadow">#5303a9f5</color>
+
+    <!--person_info page-->
+    <color name="person_info_blue">#46b5fd</color>
+    <color name="person_info_yellow">#f6bf26</color>
+
+
     <color name="shense_font">#ff555555</color>
     <color name="yellow_tabhost">#d2c511</color>
     <color name="bg_color">#4d544f</color>
+    <color name="gray_back_deep">#f5f0f0f5</color>
+    <color name="gray_line_select">#c9c9cf</color>
 
-    <color name="green">#0ade46</color>
+    <color name="gray_toolbar">#019fe8</color>
+    <color name="gray_tab">#fff7f7f7</color>
+
+    <color name="black_toolbar_title">#555555</color>
+
+    <color name="green">#65cd22</color>
+    <color name="black_blue">#2b2e3f</color>
 
     <color name="yellow">#FD8838</color>
     <color name="gray_btn">#D6D6D6</color>
-    <color name="gray_back">#E7E7E7</color>
+    <color name="gray_back">#bdeeeff3</color>
+    <color name="gray_rig_bar">#bfbfbf</color>
+
+    <color name="calendar_bg_start">#3c3c3c</color>
+    <color name="calendar_bg_end">#735757</color>
+    <color name="calendar_text_color">#FFFFFF</color>
+    <color name="calendar_text_color_disable">#999999</color>
+    <color name="calendar_date_bg">#FF666666</color>
+    <color name="calendar_week_name">#FFCCCCCC</color>
 
     <!--ref to text-->
     <color name="text_gray">#919090</color>
@@ -27,17 +53,17 @@
     <!--color ret to dragGrid-->
     <color name="item_bg">#e5e5e5</color>
     <color name="transparent">#00000000</color>
-    <color name="transparent_half">#23000000</color>
     <color name="gap_line">#e2e2e2</color>
+    <color name="transparent_half">#23000000</color>
     <color name="color_333333">#333333</color>
     <color name="color_777572">#777572</color>
 
     <!--color ref to currilum table-->
     <color name="red">#96ff2536</color>
-    <color name="deep_blue">#a07ebae9</color>
+    <color name="deep_blue">#88cdf5fd</color>
     <color name="shadow_blue">#0032485d</color>
-    <color name="text_blue">#153e64</color>
-    <color name="line_gray">#875f666c</color>
+    <color name="text_blue">#257dd1</color>
+    <color name="line_gray">#87969fa7</color>
     <color name="white_transport">#5ef3f5f7</color>
     <color name="color1">#BA8ADF</color>
     <color name="color2">#13CA9A</color>
@@ -52,7 +78,7 @@
     <color name="menu_btn_pressed">#ffdfdfdf</color>
     <color name="gray_background">#ffdddddd</color>
     <color name="gray_character">#cc8B8B8B</color>
-
+    <color name="tx_black_light">#454545</color>
 
     <item name="gray_holo_dark" type="color">#ff464646</item>
     <item name="gray_holo_light" type="color">#ffd0d0d0</item>

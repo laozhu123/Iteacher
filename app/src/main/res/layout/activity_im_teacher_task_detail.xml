@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_back_deep"
+    tools:context="com.li.zjut.iteacher.activity.imteacher.ImTeacherTaskDetailActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
+    <View
+        style="@style/deep_line"
+        android:layout_below="@id/toolbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:layout_marginBottom="85dp"
+        android:layout_marginTop="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <View style="@style/deep_line" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/teacher_detail_text"
+                    android:text="@string/teacher_task_name" />
+
+                <EditText
+                    android:id="@+id/task_name"
+                    style="@style/teacher_detail_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:gravity="center_vertical"
+                    android:hint="@string/teacher_task_name_hint"
+                    android:paddingLeft="3dp"
+                    android:paddingRight="16dp"
+                    android:singleLine="true" />
+            </LinearLayout>
+
+            <View style="@style/deep_line" />
+
+            <View
+                style="@style/deep_line"
+                android:layout_marginTop="16dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/teacher_detail_text"
+                    android:layout_below="@id/task_name"
+                    android:text="@string/teacher_task_content" />
+
+                <EditText
+                    android:id="@+id/task_content"
+                    style="@style/teacher_detail_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="80dp"
+                    android:layout_marginBottom="23dp"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginRight="16dp"
+                    android:textSize="14sp"
+                    android:padding="3dp"
+                    android:gravity="left"
+                    android:background="@drawable/task_edit_bg"
+                    android:hint="@string/teacher_task_content_hint"
+                     />
+            </LinearLayout>
+
+            <View style="@style/deep_line" />
+
+            <View
+                style="@style/deep_line"
+                android:layout_marginTop="16dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/teacher_detail_text"
+                    android:text="@string/begin_time" />
+
+                <TextView
+                    android:id="@+id/begin_time"
+                    style="@style/teacher_detail_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:background="@null"
+                    android:gravity="center_vertical|right"
+                    android:paddingRight="23dp"
+                    android:text="请选择(必填)"
+                    android:textColor="@color/txt_black"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <View
+                style="@style/deep_line"
+                android:background="@color/gray_back_deep" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/teacher_detail_text"
+                    android:text="@string/end_time"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/end_time"
+                    style="@style/teacher_detail_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:background="@null"
+                    android:gravity="center_vertical|right"
+                    android:paddingRight="23dp"
+                    android:text="请选择(必填)"
+                    android:textColor="@color/txt_black" />
+            </LinearLayout>
+
+            <View style="@style/deep_line" />
+
+            <View
+                style="@style/deep_line"
+                android:layout_marginTop="16dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:minHeight="75dp"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/teacher_detail_text"
+                        android:text="@string/teacher_receiver"
+                        android:textSize="14sp" />
+
+
+                    <com.li.zjut.iteacher.widget.WordWrapView
+                        android:id="@+id/receiver"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1"
+                        android:background="@color/white" />
+
+
+                    <ImageView
+                        android:id="@+id/add"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:layout_marginRight="7dp"
+                        android:padding="7dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/icon_add" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <View style="@style/deep_line" />
+
+            <View
+                style="@style/deep_line"
+                android:layout_marginTop="16dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:minHeight="75dp"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/teacher_detail_text"
+                        android:text="@string/tag"
+                        android:textSize="14sp" />
+
+
+                    <com.li.zjut.iteacher.widget.WordWrapView
+                        android:id="@+id/tags"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1"
+                        android:background="@color/white" />
+
+
+                    <ImageView
+                        android:id="@+id/add_tag"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:layout_marginRight="7dp"
+                        android:padding="7dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/icon_add" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <View style="@style/deep_line" />
+
+            <View
+                style="@style/deep_line"
+                android:layout_marginTop="10dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:paddingLeft="16dp"
+                android:text="进度"
+                android:textColor="@color/yellow" />
+
+            <View style="@style/deep_line" />
+
+            <ListView
+                android:id="@+id/lv_progress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tags"
+                android:background="@color/white" />
+        </LinearLayout>
+    </ScrollView>
+
+
+    <LinearLayout
+        android:id="@+id/normal_btn"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/delete"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/btn_cancel"
+            android:gravity="center"
+            android:text="@string/delete"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="10dp"
+            android:layout_height="1dp" />
+
+        <TextView
+            android:id="@+id/modify"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/big_btn_bg"
+            android:gravity="center"
+            android:text="@string/modify"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/save"
+        style="@style/common_big_btn"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone" />
+</RelativeLayout>

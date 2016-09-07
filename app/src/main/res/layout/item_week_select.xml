@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/helo"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:paddingLeft="@dimen/left_right_margin"
+        android:textSize="16sp"
+        android:text="helo"
+        android:textColor="@color/week_select_tv_color"
+        android:background="@drawable/week_select_tv_bg"/>
+</LinearLayout>

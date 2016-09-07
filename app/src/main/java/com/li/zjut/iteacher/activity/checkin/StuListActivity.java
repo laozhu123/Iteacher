@@ -1,8 +1,6 @@
 package com.li.zjut.iteacher.activity.checkin;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 
 import com.li.zjut.iteacher.R;
 import com.li.zjut.iteacher.activity.base.BaseActivity;
@@ -19,5 +17,6 @@ public class StuListActivity extends BaseActivity {
     }
 
     private void initView() {
+
     }
 }

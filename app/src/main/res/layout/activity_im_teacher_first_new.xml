@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_back_deep"
+    android:orientation="vertical"
+    tools:context="com.li.zjut.iteacher.activity.imteacher.ImTeacherFirstNewActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
+    <View
+        style="@style/deep_line"
+        android:layout_marginTop="16dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#eff6fc"
+        android:drawableLeft="@mipmap/ic_syllabus_menu_setting_icon"
+        android:drawablePadding="3dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:text="学生信息"
+        android:textColor="#48758c"
+        android:textSize="16sp" />
+
+    <RelativeLayout
+        android:id="@+id/student_list"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/item_course_set_bg"
+        android:orientation="horizontal"
+        android:paddingLeft="3dp"
+        android:paddingRight="3dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingLeft="15dp"
+            android:text="学生列表"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/student_num"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:gravity="center_vertical"
+            android:textColor="@color/gray_character"
+            android:textSize="14sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/gray_back_deep" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/student_class"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/item_course_set_bg"
+        android:orientation="horizontal"
+        android:paddingLeft="3dp"
+        android:paddingRight="3dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingLeft="15dp"
+            android:text="学生课表"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+
+    </RelativeLayout>
+
+    <View style="@style/deep_line" />
+
+    <View
+        style="@style/deep_line"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#eff6fc"
+        android:drawableLeft="@mipmap/ic_syllabus_menu_setting_icon"
+        android:drawablePadding="3dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:text="任务相关"
+        android:textColor="#48758c"
+        android:textSize="16sp" />
+
+    <RelativeLayout
+        android:id="@+id/task_list"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/item_course_set_bg"
+        android:orientation="horizontal"
+        android:paddingLeft="3dp"
+        android:paddingRight="3dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingLeft="15dp"
+            android:text="任务列表"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/task_num"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:gravity="center_vertical"
+            android:textColor="@color/gray_character"
+            android:textSize="14sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/gray_back_deep" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/send_task"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/item_course_set_bg"
+        android:orientation="horizontal"
+        android:paddingLeft="3dp"
+        android:paddingRight="3dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingLeft="15dp"
+            android:text="发布任务"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+
+    </RelativeLayout>
+
+    <View style="@style/deep_line" />
+</LinearLayout>

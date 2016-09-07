@@ -1,27 +1,38 @@
 package com.li.zjut.iteacher.activity.addresslist;
 
 
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.li.zjut.iteacher.R;
 import com.li.zjut.iteacher.activity.base.BaseActivity;
+import com.li.zjut.iteacher.activity.imteacher.CallActivity;
 import com.li.zjut.iteacher.app.MyApplication;
 import com.li.zjut.iteacher.bean.address.Department;
 import com.li.zjut.iteacher.bean.address.People;
+import com.li.zjut.iteacher.common.Utils;
 import com.li.zjut.iteacher.widget.addresslist.CharacterParser;
 import com.li.zjut.iteacher.widget.addresslist.ClearEditText;
 import com.li.zjut.iteacher.widget.addresslist.GroupMemberBean;
@@ -33,16 +44,19 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class AddressActivity extends BaseActivity implements SectionIndexer {
+import de.hdodenhof.circleimageview.CircleImageView;
+
+public class AddressActivity extends BaseActivity implements SectionIndexer, View.OnClickListener {
 
     private ListView sortListView;
     private SideBar sideBar;
     private TextView dialog;
     private SortGroupMemberAdapter adapter;
     private ClearEditText mClearEditText;
+    private View search, searchBg;
 
-    private LinearLayout titleLayout;
-    private TextView title;
+    private RelativeLayout titleLayout;
+    private TextView title, title1;
     private TextView tvNofriends;
     /**
      * 上次第一个可见元素，用于滚动时记录标识。
@@ -59,21 +73,28 @@ public class AddressActivity extends BaseActivity implements SectionIndexer {
      */
     private PinyinComparator pinyinComparator;
 
-    private Department department;
-    private List<People> peoples;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_address);
-        department = (Department) getIntent().getSerializableExtra("peoples");
-        super.setContext(findViewById(R.id.toolbar),department.getName(),true);
+        setContentView(R.layout.activity_add_stu_from_address);
 
         initViews();
     }
 
     private void initViews() {
-        titleLayout = (LinearLayout) findViewById(R.id.title_layout);
+        title1 = (TextView) findViewById(R.id.title);
+        title1.setText(getString(R.string.phone_address));
+        ImageView leftImg = (ImageView) findViewById(R.id.left_img);
+        leftImg.setImageResource(R.drawable.backarrow);
+        leftImg.setVisibility(View.VISIBLE);
+        leftImg.setOnClickListener(this);
+
+        search = findViewById(R.id.search);
+        search.setOnClickListener(this);
+        searchBg = findViewById(R.id.search_bg);
+
+        titleLayout = (RelativeLayout) findViewById(R.id.title_layout);
         title = (TextView) this.findViewById(R.id.title_layout_catalog);
         tvNofriends = (TextView) this
                 .findViewById(R.id.title_layout_no_friends);
@@ -107,26 +128,17 @@ public class AddressActivity extends BaseActivity implements SectionIndexer {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 // 这里要利用adapter.getItem(position)来获取当前position所对应的对象
-                Toast.makeText(
-                        getApplication(),
-                        ((GroupMemberBean) adapter.getItem(position)).getName(),
-                        Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(AddressActivity.this, CallActivity.class);
+                intent.putExtra("name", ((GroupMemberBean) adapter.getItem(position)).getName());
+                intent.putExtra("phone", ((GroupMemberBean) adapter.getItem(position)).getPhone());
+                startActivity(intent);
             }
         });
 
         //数据转换
 //        SourceDateList = filledData(getResources().getStringArray(R.array.date));
-        String[] ss;
-        if(department.getName().equals("手机通讯录")){
-            SourceDateList = MyApplication.SourceDateList;
-        }else{
-            ss = new String[department.getList().size()];
-            for (int i = 0;i < department.getList().size();i++){
-                ss[i] = department.getList().get(i).getName();
-            }
-            SourceDateList = filledData(ss);
-        }
 
+        SourceDateList = MyApplication.SourceDateList;
 
 
         // 根据a-z进行排序源数据
@@ -174,7 +186,7 @@ public class AddressActivity extends BaseActivity implements SectionIndexer {
                 lastFirstVisibleItem = firstVisibleItem;
             }
         });
-        mClearEditText = (ClearEditText) findViewById(R.id.filter_edit);
+        mClearEditText = (ClearEditText) findViewById(R.id.filter_edit1);
 
         // 根据输入框输入值的改变来过滤搜索
         mClearEditText.addTextChangedListener(new TextWatcher() {
@@ -284,5 +296,57 @@ public class AddressActivity extends BaseActivity implements SectionIndexer {
             }
         }
         return -1;
+    }
+
+
+    /*监听popwindow的dismiss事件*/
+    class poponDismissListener implements PopupWindow.OnDismissListener {
+
+        @Override
+        public void onDismiss() {
+            // TODO Auto-generated method stub
+            //Log.v("List_noteTypeActivity:", "我是关闭事件");
+            backgroundAlpha(1f);
+        }
+
+    }
+
+    /*设置屏幕背景透明度*/
+    private void backgroundAlpha(float bgAlpha) {
+        WindowManager.LayoutParams lp = getWindow().getAttributes();
+        lp.alpha = bgAlpha; //0.0-1.0
+        getWindow().setAttributes(lp);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.search:
+                mClearEditText.setVisibility(View.VISIBLE);
+                search.setVisibility(View.GONE);
+                searchBg.setVisibility(View.VISIBLE);
+                title1.setVisibility(View.GONE);
+                break;
+            case R.id.left_img:
+                if (mClearEditText.getVisibility() == View.VISIBLE) {
+                    mClearEditText.setVisibility(View.GONE);
+                    search.setVisibility(View.VISIBLE);
+                    searchBg.setVisibility(View.GONE);
+                    title1.setVisibility(View.VISIBLE);
+                } else
+                    finish();
+                break;
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (mClearEditText.getVisibility() == View.VISIBLE) {
+            mClearEditText.setVisibility(View.GONE);
+            search.setVisibility(View.VISIBLE);
+            searchBg.setVisibility(View.GONE);
+            title1.setVisibility(View.VISIBLE);
+        } else
+            finish();
     }
 }

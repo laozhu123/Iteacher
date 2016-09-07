@@ -7,11 +7,20 @@ public class Tab {
     private int title;
     private int icon;
     private  Class fragment;
+    private int num = 0;
 
     public Tab(int title, int icon, Class fragment) {
         this.title = title;
         this.icon = icon;
         this.fragment = fragment;
+    }
+
+    public int getNum() {
+        return num;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
     }
 
     public Tab() {

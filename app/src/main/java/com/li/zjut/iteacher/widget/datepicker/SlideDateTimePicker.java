@@ -284,9 +284,6 @@ public class SlideDateTimePicker
             return this;
         }
         
-        /**
-         * ���ó�ʼ����չʾ����
-         */
         public Builder setSelectItem(int selectItem)
         {
         	this.selectItem = selectItem;

@@ -3,28 +3,71 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
-    android:orientation="vertical" >
+    android:background="@color/white"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/catalog"
         android:layout_width="fill_parent"
-        android:layout_height="30dp"
-        android:background="#E0E0E0"
+        android:layout_height="35dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="35dp"
+        android:background="@color/white"
         android:paddingBottom="5dip"
-        android:paddingLeft="5dip"
         android:paddingTop="5dip"
+        android:textSize="18sp"
         android:textColor="#454545" />
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_marginLeft="5dip"
-        android:gravity="center_vertical"
-        android:paddingBottom="10dip"
-        android:paddingTop="10dip"
-        android:text="hhhh"
-        android:textColor="#336598" />
+    <View
+        android:id="@+id/line"
+        style="@style/line_gray2"
+        android:layout_height="1.5dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="35dp"
+        android:background="@color/line_gray" />
 
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="35dp"
+        android:gravity="center_vertical">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/pic"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dip"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@id/pic"
+            android:text="hhhh"
+            android:textColor="@color/txt_black"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/title"
+            android:layout_marginLeft="5dip"
+            android:layout_toRightOf="@id/pic"
+            android:text="15618945671"
+            android:textSize="12sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/gray_back_deep"
+            android:layout_toRightOf="@id/pic"/>
+    </RelativeLayout>
 </LinearLayout>

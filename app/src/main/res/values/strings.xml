@@ -6,20 +6,85 @@
     <string name="nullpic">图片正在加载中</string>
     <string name="sure">确定</string>
     <string name="cancel">取消</string>
+    <string name="please_select">请选择(必填)</string>
     <string name="nodata">无数据</string>
     <string name="soft_update_cancel">取消更新</string>
+    <string name="modify">修改</string>
+    <string name="delete">删除</string>
+    <string name="begin_time">开始时间</string>
+    <string name="end_time">结束时间</string>
+    <string name="loading">正在加载中…</string>
+    <string name="more">更多</string>
+    <string name="account_safe">账号与安全</string>
+    <string name="new_message_notify">新消息通知</string>
+    <string name="style_slience">勿扰模式</string>
+    <string name="self_private">隐私</string>
+    <string name="common">通用</string>
+    <string name="relate_app">当前版本</string>
+    <string name="logout">退出登录</string>
+    <string name="setting">设置</string>
+
 
     <!--Strings related to main page-->
     <string name="firstpage">首页</string>
     <string name="addressbook">通讯录</string>
     <string name="message">消息</string>
     <string name="chat">聊天</string>
+    <string name="my">我的</string>
     <string name="myday">我的今天</string>
+    <string name="today_cur">今日课程</string>
+    <string name="today_schedule">今日日程</string>
+    <string name="today_activity">今日动态</string>
+    <string name="add_app">添加应用</string>
+    <string name="often_contact">常用联系人</string>
+    <string name="local_contact">手机通讯录</string>
+    <string name="class_group">班级群组</string>
+    <string name="apartment_group">学校部门</string>
+    <string name="contact_concern">特别关注</string>
+    <string name="college_apartment">学院部门</string>
+    <string name="school_apartment">学校部门</string>
+
+    <!--message-->
+    <string name="message_detail">消息详情</string>
+    <string name="message_hope_comment">期待你的评论</string>
+    <string name="message_more">更多评论</string>
+    <string name="moretext">多写几个字又不会死</string>
+    <string name="message_send">发送</string>
 
 
+    <!--im teacher-->
+    <string name="teacher_add_stu">添加学生</string>
+    <string name="teacher_stu_phone">学生手机号</string>
+    <string name="teacher_stu_name">学生名称</string>
+    <string name="name">名称</string>
+    <string name="add">添加</string>
+    <string name="teacher_stu_list">学生列表</string>
+    <string name="task_num">任务数</string>
+    <string name="task">任务</string>
+    <string name="all_task">所有任务</string>
+    <string name="xingming">姓名</string>
+    <string name="teacher_stu_info">学生信息</string>
+    <string name="teacher_task_list">任务列表</string>
+    <string name="teacher_add_task">发布任务</string>
+    <string name="teacher_task_name">任务名</string>
+    <string name="teacher_task_name_hint">请输入任务名(必填)</string>
+    <string name="teacher_task_content">任务内容</string>
+    <string name="teacher_task_content_hint">请输入任务内容(必填)</string>
+    <string name="teacher_progress">任务进度</string>
+    <string name="teacher_receiver">接收者</string>
+    <string name="teacher_task_detail">任务详情</string>
+    <string name="teacher_task_create">发布任务</string>
+    <string name="teacher_task_create_btn">发布</string>
+    <string name="teacher_stu_select">选择学生</string>
+    <string name="add_tags">添加标签</string>
+    <string name="finish">完成</string>
+    <string name="going">进行中</string>
+    <string name="have_finished">已完成</string>
+    <string name="detail_info">详细资料</string>
     <!--Strings related to network-->
     <string name="return_null">返回内容为空</string>
     <string name="disconnect">链接失败</string>
+    <string name="save">保存</string>
 
     <!-- Strings related to register and login-->
     <string name="register">注册</string>
@@ -71,8 +136,23 @@
         <item>单周</item>
         <item>双周</item>
     </string-array>
-    <string name="addLesson">添加课程</string>
+    <string name="addCurriculum">添加课程</string>
     <string name="changeLesson">修改课程</string>
+    <string name="modifyClass">修改班级课时</string>
+    <string name="curname">课程名称</string>
+    <string name="now_cur">当前课程</string>
+    <string name="local_cross">签到范围</string>
+    <string name="late_time">延迟时间</string>
+    <string name="place_change">地点微调</string>
+    <string name="history_check">点到历史</string>
+    <string name="cur_time">上课时间</string>
+    <string name="addClassLesson">添加班级课时</string>
+    <string name="inputClassName">输入班级名称</string>
+    <string name="atLastOne">最少需要有一个时间</string>
+    <string name="one_more_time">再点一次</string>
+    <string name="last_check">最后一次点到</string>
+    <string name="select_cur_class">选择课程班级</string>
+    <string name="select_time">选择时间</string>
 
     <string name="week">第12周</string>
     <string name="weeks1">周，每</string>
@@ -85,6 +165,7 @@
     <string name="codetimelimit">该邀请码30分钟后过期</string>
     <string name="invitebefore">课程邀请码为：</string>
     <string name="title_activity_select_school">SelectSchoolActivity</string>
+    <string name="modifycurriculum">修改课程</string>
 
     <!--ref to checkin-->
     <string name="todayLesson">今日课程</string>
@@ -93,36 +174,48 @@
     <string name="nowclass">当前课程</string>
     <string name="todaycheck">今日点到</string>
     <string name="check_select_check">选择点到</string>
+
     <string name="todaynocheck">该门课今天未点到</string>
     <string name="reset">再点一次</string>
     <string name="checkinfo">点到详情</string>
+    <string name="show_in_map">在地图上显示</string>
+    <string name="check_list">点到列表</string>
+    <string name="check_place">签到地点</string>
+    <string name="all_check_place">所有签到地点</string>
+    <string name="select_cur">选择课程</string>
     <string name="allLesson">所有课程</string>
-    <string name="lessonname">课程名称:</string>
-    <string name="select_check_point">选择点到时间</string>
+    <string name="lessonname">课程名称</string>
+    <string name="select_check_point">选择点到班级</string>
+    <string name="select_check_time">选择点到时间</string>
     <string name="check_select_student">查看学生</string>
-    <string name="place">上课地点:</string>
-    <string name="normal">正常签到:</string>
-    <string name="late">迟到签到:</string>
+    <string name="place">上课地点</string>
+    <string name="normal">正常签到</string>
+    <string name="late">迟到签到</string>
     <string name="check_stu_list">学生列表</string>
     <string name="minutes">分钟</string>
     <!--ref to addresslist-->
     <string name="addresslist">通讯录</string>
+
 
     <!--ref to schedule-->
     <string name="todaytask">该天日程</string>
     <string name="myschdule">我的日程</string>
     <string name="show">展开</string>
     <string name="hidden">隐藏</string>
-    <string name="time">提醒时间:</string>
-    <string name="content">内容:</string>
-    <string name="tag">标签:</string>
+    <string name="time">提醒时间</string>
+    <string name="content">内容</string>
+    <string name="tag">标签</string>
     <string name="date">日期</string>
     <string name="minute">时分</string>
+    <string name="please_select_minute">请选择(时分)</string>
     <string name="please_input">请输入内容</string>
-    <string name="repeat">重复次数:</string>
+    <string name="please_input_alarm">请输入提醒内容</string>
+    <string name="alarm_info">提醒内容</string>
+    <string name="repeat">重复次数</string>
     <string name="onetime">一次</string>
     <string name="create">新建</string>
     <string name="create_schedule">新建日程</string>
+    <string name="schedule_detail">日程详情</string>
     <string name="please_input_date">请选择日期</string>
     <string name="please_input_minute">请选择时分</string>
     <string name="please_input_content">请输入日程内容</string>
@@ -137,4 +230,25 @@
     <string name="myinfo">我的信息</string>
     <string name="change">更改</string>
     <string name="store">保存</string>
+
+    <string name="monday">周一</string>
+    <string name="tuesday">周二</string>
+    <string name="wednesday">周三</string>
+    <string name="thursday">周四</string>
+    <string name="friday">周五</string>
+    <string name="saturday">周六</string>
+    <string name="sunday">周七</string>
+    <string name="modify_now_week">修改当前周</string>
+    <string name="select_now_week">选择当前周数</string>
+    <string name="select_term">选择学期</string>
+
+
+    <string name="apart_address">部门通讯录</string>
+    <string name="apartment">部门</string>
+    <string name="im_teacher">我是导师</string>
+    <string name="student_list">学生列表</string>
+    <string name="add_student">添加学生</string>
+    <string name="must_input">必填</string>
+    <string name="send_message">发消息</string>
+    <string name="phone_address">手机通讯录</string>
 </resources>

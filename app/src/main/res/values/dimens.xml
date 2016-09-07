@@ -10,6 +10,7 @@
     <dimen name="middle_character">14.0sp</dimen>
     <dimen name="big_character">18.0sp</dimen>
     <dimen name="text_16">16sp</dimen>
+    <dimen name="margin_top_select_toolbar">53dp</dimen>
 
     <!--textsize-->
     <dimen name="toolbar_title_size">18sp</dimen>
@@ -25,13 +26,21 @@
     <dimen name="profile_img_size">35dp</dimen>
     <dimen name="lesson_item">40dp</dimen>
     <dimen name="lesson_img">20dp</dimen>
+    <dimen name="item_class_group_marginLeft_common">15dp</dimen>
 
     <!--margin-->
-    <dimen name="left_right_margin">5dp</dimen>
+    <dimen name="left_right_margin">10dp</dimen>
     <dimen name="top_bottom_margin">10dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="address_icon_paddingtop">15dp</dimen>
 
     <!--calendar-->
     <dimen name="historyscore_tb">25dp</dimen>
+    <dimen name="calender_height">240dp</dimen>
+    <dimen name="mindistance">10dp</dimen>
+    <dimen name="calender_item_height">40dip</dimen>
+    <dimen name="calender_item_text_height">28dp</dimen>
 
+    <!--imteacher-->
+    <dimen name="little_margin_left">65dp</dimen>
 </resources>

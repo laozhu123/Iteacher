@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_back_deep"
+    android:orientation="vertical"
+    tools:context="com.li.zjut.iteacher.activity.checkin.newactivity.CheckInfoActivity">
+
+    <include
+        android:id="@id/toolbar"
+        layout="@layout/toolbar" />
+
+    <TextView
+        android:id="@+id/tv_date"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/black_blue"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginLeft="16dp"
+        android:gravity="center_vertical"
+        android:textColor="@color/gray_character"
+        android:textSize="14sp" />
+
+    <ListView
+        android:id="@+id/lv_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:divider="@null"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="25dp"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:cacheColorHint="#00000000"
+        android:listSelector="#00000000"  />
+</LinearLayout>

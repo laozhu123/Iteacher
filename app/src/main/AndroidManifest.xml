@@ -3,9 +3,10 @@
     package="com.li.zjut.iteacher">
 
     <!-- To auto-complete the phone text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
-
+    <uses-permission android:name="android.permission.SEND_SMS" />
     <!-- 震动权限 -->
     <uses-permission android:name="android.permission.VIBRATE" />
 
@@ -14,6 +15,8 @@
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.WRITE_CONTACTS" />
 
+    <!-- 电话 -->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <!-- 高德地图 -->
     <!-- 用于进行网络定位 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -76,8 +79,6 @@
         <activity android:name=".activity.myLesson.CurTableActivity" />
 
         <!-- ref to lesson -->
-        <activity android:name=".activity.myLesson.AddLesson1Activity" />
-        <activity android:name=".activity.myLesson.ModLesson1Activity" />
         <activity
             android:name=".activity.register.SelectSchoolActivity"
             android:taskAffinity="" />
@@ -190,7 +191,9 @@
             android:name=".activity.addresslist.AddressActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".activity.schedule.MyScheduleActivity" />
-        <activity android:name=".activity.schedule.CreateSchedulectivity" />
+        <activity
+            android:name=".activity.schedule.CreateSchedulectivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity android:name=".activity.personinfo.PersonInfoActivity" />
         <activity android:name=".activity.personinfo.BigPicActivity" />
         <activity android:name=".activity.personinfo.EditPersonalInfoActivity" />
@@ -242,9 +245,60 @@
                     android:scheme="rong" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.checkin.AllLessonsActivity" />
         <activity android:name=".activity.checkin.SelectCheckPointActivity" />
-        <activity android:name=".activity.checkin.StuListActivity"></activity>
+        <activity android:name=".activity.checkin.StuListActivity" />
+        <activity android:name=".activity.message.MessageDetailActivity" />
+        <activity android:name=".activity.imteacher.ImTeacherFirstActivity" />
+        <activity android:name=".activity.imteacher.StuInfoActivity" />
+        <activity
+            android:name=".activity.imteacher.ImTeacherTaskDetailActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!--
+ ATTENTION: This was auto-generated to add Google Play services to your project for
+     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
+        -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <activity
+            android:name=".activity.imteacher.ImteacherNewTaskActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity android:name=".activity.imteacher.ImteacherStuSelectActivity" />
+        <activity android:name=".activity.imteacher.ImTeacherStuDetailActivity" />
+        <activity android:name=".activity.checkin.CheckInAllClassesActivity" />
+        <activity
+            android:name=".activity.schedule.ScheduleDetailPageActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity android:name=".activity.myLesson.AddModifyCurriculumActivity" />
+        <activity android:name=".activity.myLesson.AddModifyClassActivity" />
+        <activity android:name=".activity.schedule.MyScheduleNewActivity" />
+        <activity android:name=".activity.addresslist.ClassGroupActivity" />
+        <activity android:name=".activity.addresslist.ApartmentActivity" />
+        <activity android:name=".activity.setting.SettingActivity" />
+        <activity android:name=".activity.myLesson.MyLessonActivity" />
+        <activity android:name=".activity.myLesson.SetNowWeekActivity" />
+        <activity android:name=".activity.myLesson.SelectTermActivity" />
+        <activity android:name=".activity.myLesson.CreateTermActivity" />
+        <activity android:name=".activity.imteacher.ImTeacherFirstNewActivity" />
+        <activity android:name=".activity.imteacher.StudentListActivity" />
+        <activity android:name=".activity.imteacher.AddStuByHandActivity" />
+        <activity android:name=".activity.imteacher.StudentInfoActivity" />
+        <activity
+            android:name=".activity.imteacher.AddStuFromAddressActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity android:name=".activity.imteacher.AddTagsActivity" />
+        <activity android:name=".activity.imteacher.TaskListActivity" />
+        <activity android:name=".activity.imteacher.CallActivity" />
+        <activity android:name=".activity.checkin.newactivity.CheckInActivity" />
+        <activity android:name=".activity.checkin.newactivity.PlaceChangeActivity" />
+        <activity android:name=".activity.checkin.newactivity.CheckHistoryActivity" />
+        <activity android:name=".activity.checkin.newactivity.CheckInfoActivity" />
+        <activity android:name=".activity.checkin.newactivity.StuListNewActivity" />
+        <activity android:name=".activity.checkin.newactivity.StuListNoActivity" />
+        <activity android:name=".activity.checkin.newactivity.MapOnePlaceActivity" />
+        <activity android:name=".activity.checkin.newactivity.MapShowEveryOneActivity" />
+        <activity android:name=".activity.checkin.newactivity.SelectCurActivity"></activity>
     </application>
 
 </manifest>

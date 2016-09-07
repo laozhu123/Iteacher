@@ -32,12 +32,12 @@ public class DBManager {
         try {
             for (Curriculum curriculum : ls) {
                 db.execSQL(
-                        "INSERT INTO lesson VALUES(null,?,?,?,?,?,?,?,?,?,?)",
+                        "INSERT INTO lesson VALUES(null,?,?,?,?,?,?,?,?,?,?,?)",
                         new Object[]{curriculum.getId(),
                                 curriculum.getCourseTimeId(), curriculum.getText(),
                                 curriculum.getPlace(), curriculum.getBegin(), curriculum.getEnd(),
                                 curriculum.getFromWeek(), curriculum.getEndWeek(), curriculum.getSingle_double(),
-                                curriculum.getWeekday()});
+                                curriculum.getWeekday(),curriculum.getCourseId()});
             }
             db.setTransactionSuccessful(); // 设置事务成功完成
         } finally {
@@ -74,10 +74,13 @@ public class DBManager {
         db.delete("lesson", "Lid = ?", new String[]{Lid + ""});
     }
 
-    public void removeOneClass(String CourseTimeId) {
-        db.delete("lesson", "CourseTimeId = ?", new String[]{CourseTimeId});
+    public void removeOneClass(int CourseTimeId) {
+        db.delete("lesson", "CourseTimeId = ?", new String[]{CourseTimeId+""});
     }
 
+    public void removeOneCur(String CourseId) {
+        db.delete("lesson", "CourseId = ?", new String[]{CourseId});
+    }
 
     /**
      * query all lesson, return list
@@ -90,7 +93,7 @@ public class DBManager {
         while (c.moveToNext()) {
             Curriculum curriculum = new Curriculum();
             curriculum.setId(c.getInt(c.getColumnIndex("Lid")));
-            curriculum.setCourseTimeId(c.getString(c.getColumnIndex("CourseTimeId")));
+            curriculum.setCourseTimeId(c.getInt(c.getColumnIndex("CourseTimeId")));
             curriculum.setText(c.getString(c.getColumnIndex("LN")));
             curriculum.setPlace(c.getString(c.getColumnIndex("Place")));
             curriculum.setBegin(c.getInt(c.getColumnIndex("Begin")));
@@ -99,6 +102,7 @@ public class DBManager {
             curriculum.setEndWeek(c.getInt(c.getColumnIndex("EndWeek")));
             curriculum.setSingle_double(c.getInt(c.getColumnIndex("SingleDouble")));
             curriculum.setWeekday(c.getInt(c.getColumnIndex("WeekDay")));
+            curriculum.setCourseId(c.getInt(c.getColumnIndex("CourseId")));
             curriculumArrayList.add(curriculum);
         }
         c.close();
@@ -120,5 +124,6 @@ public class DBManager {
      */
     public void closeDB() {
         db.close();
+        helper.close();
     }
 }

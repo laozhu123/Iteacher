@@ -44,6 +44,22 @@ public class StaticData {
         return iconInfoList;
     }
 
+    public final static int[] lesson_bg = {
+            R.drawable.ic_course_bg_bohelv,
+            R.drawable.ic_course_bg_huang,
+            R.drawable.ic_course_bg_fen,
+            R.drawable.ic_course_bg_cheng,
+            R.drawable.ic_course_bg_cyan
+    };
+
+    public final static int[] circle_bg = {
+            R.color.color1,
+            R.color.color2,
+            R.color.color3,
+            R.color.color4,
+            R.color.yellow
+    };
+
     /**
      * 方法: initChildList <p>
      * 描述: 初始化child list <p>
@@ -72,4 +88,11 @@ public class StaticData {
     public static String id = "";
 
     public static String cid = "";
+
+    public final static String COURSENAME = "coursename";
+    public final static String COURSEID = "courseid";
+    public final static String COURSETIMEID = "coursetimeid";
+    public final static String CHANGE = "change";
+    public final static String CURRICULUM = "Curriculum";
+
 }

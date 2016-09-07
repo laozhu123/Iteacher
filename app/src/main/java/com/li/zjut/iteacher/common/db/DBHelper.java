@@ -18,7 +18,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		db.execSQL("CREATE TABLE IF NOT EXISTS lesson"
-				+ "(_id INTEGER PRIMARY KEY AUTOINCREMENT, Lid INTEGER, CourseTimeId VARCHAR, LN VARCHAR,Place VARCHAR,Begin INTEGER,End INTEGER,BeginWeek INTEGER,EndWeek INTEGER,SingleDouble INTEGER,WeekDay INTEGER)");
+				+ "(_id INTEGER PRIMARY KEY AUTOINCREMENT, Lid INTEGER, CourseTimeId INTEGER, LN VARCHAR,Place VARCHAR,Begin INTEGER,End INTEGER,BeginWeek INTEGER,EndWeek INTEGER,SingleDouble INTEGER,WeekDay INTEGER,CourseId INTEGER)");
 	}
 
 	// 如果DATABASE_VERSION值被改为2,系统发现现有数据库版本不同,即会调用onUpgrade

@@ -11,27 +11,35 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.AdapterView;
+import android.widget.GridView;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.li.zjut.iteacher.R;
+import com.li.zjut.iteacher.activity.checkin.newactivity.CheckInActivity;
+import com.li.zjut.iteacher.activity.imteacher.ImTeacherFirstNewActivity;
 import com.li.zjut.iteacher.activity.main.MainActivity;
-import com.li.zjut.iteacher.activity.personinfo.PersonInfoActivity;
-import com.li.zjut.iteacher.activity.wel_login.LoginActivity;
+import com.li.zjut.iteacher.activity.myLesson.MyLessonActivity;
+import com.li.zjut.iteacher.activity.schedule.MyScheduleNewActivity;
+import com.li.zjut.iteacher.adapter.main.MyGridAdapter;
 import com.li.zjut.iteacher.bean.main.Ret_Weather;
 import com.li.zjut.iteacher.common.CommonTestUtil;
-import com.li.zjut.iteacher.common.SharePerfrence;
 import com.li.zjut.iteacher.common.StaticData;
 import com.li.zjut.iteacher.common.map.Utils;
-import com.li.zjut.iteacher.common.weather.WeatherImg;
 import com.li.zjut.iteacher.http.Weather;
+import com.li.zjut.iteacher.widget.banner.BannerView;
+import com.li.zjut.iteacher.widget.main.MyGridView;
 
-import de.hdodenhof.circleimageview.CircleImageView;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -40,20 +48,21 @@ import retrofit2.Response;
 /**
  * Created by LaoZhu on 2016/4/26.
  */
-public class HomeFragment extends Fragment implements AMapLocationListener {
+public class HomeFragment extends Fragment implements AMapLocationListener, GridView.OnItemClickListener, View.OnClickListener {
 
-    String Tag = "HomeFragment";
-
-    private ImageView mImg_left;
-    private CircleImageView mImg_profile;
     private AMapLocationClient locationClient = null;
     private AMapLocationClientOption locationOption = null;
-
-    LinearLayout ll_yes, ll_no;
-    TextView tv_date0,tv_date1, tv_date2,tv_wd0, tv_wd1, tv_wd2;
-    ImageView ima0, ima1, ima2;
-
+    private MyGridAdapter adapter;
     boolean haveWeather = false;
+    TextView weather;
+
+    View curView;
+    ListView lvTodayCur;
+    View moreCur;
+
+
+    BannerView bannerView;
+    List<Integer> mImgDatas;
 
     @Nullable
     @Override
@@ -62,8 +71,24 @@ public class HomeFragment extends Fragment implements AMapLocationListener {
 
         MainActivity.content.setVisibility(View.VISIBLE);
         initView(view);
+        getDataFromNetwork();
         initMap();
         return view;
+    }
+
+    private void getDataFromNetwork() {
+
+        mImgDatas = new ArrayList<>();
+        mImgDatas.add(R.mipmap.banner1);
+        mImgDatas.add(R.mipmap.banner1);
+        mImgDatas.add(R.mipmap.banner1);
+        bannerView.setList(mImgDatas);
+        bannerView.setOnBannerItemClickListener(new BannerView.OnBannerItemClickListener() {
+            @Override
+            public void onClick(int position) {
+                Toast.makeText(getActivity(), position + "", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void getWeather(String provider, String city) {
@@ -76,21 +101,17 @@ public class HomeFragment extends Fragment implements AMapLocationListener {
             public void onResponse(Call<Ret_Weather> call, Response<Ret_Weather> response) {
 
                 if (response.body().getMsg().equals("success")) {
-                    Log.d("out", response.body().getResult().get(0).getFuture().get(0).getTemperature());
-                    ll_yes.setVisibility(View.VISIBLE);
                     haveWeather = true;
-                    tv_date0.setText("今天    " + response.body().getResult().get(0).getFuture().get(0).getDayTime());
-                    tv_wd0.setText(response.body().getResult().get(0).getFuture().get(0).getTemperature());
-                    ima0.setImageResource(WeatherImg.imageResoId(response.body().getResult().get(0).getFuture().get(0).getDayTime()));
+                    if (!weather.isShown())
+                        weather.setVisibility(View.VISIBLE);
+                    if (response.body().getResult().get(0).getFuture().get(0).getDayTime() != null) {
+                        weather.setText(response.body().getResult().get(0).getFuture().get(0).getDayTime()
+                                + " " + response.body().getResult().get(0).getFuture().get(0).getTemperature());
+                    } else {
+                        weather.setText("温度:" + response.body().getResult().get(0).getFuture().get(0).getTemperature());
+                    }
 
-                    tv_date1.setText("明天    " + response.body().getResult().get(0).getFuture().get(1).getDayTime());
-                    tv_wd1.setText(response.body().getResult().get(0).getFuture().get(1).getTemperature());
-                    ima1.setImageResource(WeatherImg.imageResoId(response.body().getResult().get(0).getFuture().get(1).getDayTime()));
 
-                    tv_date2.setText("后天    " + response.body().getResult().get(0).getFuture().get(2).getDayTime());
-                    tv_wd2.setText(response.body().getResult().get(0).getFuture().get(2).getTemperature());
-                    ima2.setImageResource(WeatherImg.imageResoId(response.body().getResult().get(0).getFuture().get(2).getDayTime()));
-                } else {
                 }
             }
 
@@ -154,42 +175,25 @@ public class HomeFragment extends Fragment implements AMapLocationListener {
 
     private void initView(View v) {
         TextView title = (TextView) v.findViewById(R.id.title);
-        title.setText(getResources().getString(R.string.myday));
+        title.setText(getResources().getString(R.string.firstpage));
 
 
-        mImg_profile = (CircleImageView) v.findViewById(R.id.profile_image);
-        mImg_profile.setImageResource(R.mipmap.palette);
-        mImg_profile.setVisibility(View.VISIBLE);
-        mImg_profile.setOnClickListener(listener);
+        weather = (TextView) v.findViewById(R.id.weather);
+        TextView activity = (TextView) v.findViewById(R.id.txTitleRig);
+        activity.setText("更多动态");
+        activity.setVisibility(View.VISIBLE);
+        activity.setOnClickListener(this);
 
+        MyGridView gridView = (MyGridView) v.findViewById(R.id.gridview);
+        adapter = new MyGridAdapter(getActivity());
+        adapter.setTodayLessonNum(10);   //设置小红点
+        adapter.setTodaySchedule(3);
+        gridView.setAdapter(adapter);
+        gridView.setOnItemClickListener(this);
 
-        ll_yes = (LinearLayout) v.findViewById(R.id.ws2_ll_yes);
-
-
-        tv_date0 = (TextView) v.findViewById(R.id.ws2_tv_0_date);
-        tv_date1 = (TextView) v.findViewById(R.id.ws2_tv_1_date);
-        tv_date2 = (TextView) v.findViewById(R.id.ws2_tv_2_date);
-        tv_wd0 = (TextView) v.findViewById(R.id.ws2_tv_0_wd);
-        tv_wd1 = (TextView) v.findViewById(R.id.ws2_tv_1_wd);
-        tv_wd2 = (TextView) v.findViewById(R.id.ws2_tv_2_wd);
-
-        ima0 = (ImageView) v.findViewById(R.id.ws2_iv_0_image);
-        ima1 = (ImageView) v.findViewById(R.id.ws2_iv_1_image);
-        ima2 = (ImageView) v.findViewById(R.id.ws2_iv_2_image);
-
+        v.findViewById(R.id.ll_add_app).setOnClickListener(this);
+        bannerView = (BannerView) v.findViewById(R.id.banner_view);
     }
-
-    View.OnClickListener listener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            switch (v.getId()) {
-                case R.id.profile_image:
-                    startActivity(new Intent(getActivity(), PersonInfoActivity.class));
-                    break;
-            }
-        }
-    };
-
 
 
     @Override
@@ -215,9 +219,9 @@ public class HomeFragment extends Fragment implements AMapLocationListener {
                     String result = Utils.getLocationStr(loc);
                     if (loc.getAddress() != null) {
                         Log.d("out", result);
-//                        getWeather(loc.getProvider(), loc.getCity().replace("市", ""));
-                        getWeather("浙江", "杭州");
+                        getWeather(loc.getProvider(), loc.getCity().replace("市", ""));
                     } else {
+//                        getWeather("浙江", "杭州");
                         locationClient.startLocation();
                     }
                     break;
@@ -226,4 +230,45 @@ public class HomeFragment extends Fragment implements AMapLocationListener {
             }
         }
     };
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        switch (position) {
+            case 0:
+                getActivity().startActivity(new Intent(getActivity(), CheckInActivity.class));
+                break;
+            case 1:
+                getActivity().startActivity(new Intent(getActivity(), MyLessonActivity.class));
+                break;
+            case 2:
+                getActivity().startActivity(new Intent(getActivity(), MyScheduleNewActivity.class));
+                break;
+            case 3:
+                getActivity().startActivity(new Intent(getActivity(), ImTeacherFirstNewActivity.class));
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            case 6:
+                break;
+            default:
+                break;
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        HashMap<String, String> h = new HashMap<String, String>();
+        switch (v.getId()) {
+            case R.id.ll_add_app:
+                Toast.makeText(getActivity(), "add app", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.txTitleRig:
+                Toast.makeText(getActivity(), "show all activity", Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                break;
+        }
+    }
 }

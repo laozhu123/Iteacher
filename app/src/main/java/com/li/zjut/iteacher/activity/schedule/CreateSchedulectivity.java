@@ -1,72 +1,69 @@
 package com.li.zjut.iteacher.activity.schedule;
 
-import android.graphics.Rect;
-import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.AppCompatActivity;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
-import android.view.Gravity;
+import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.li.zjut.iteacher.R;
 import com.li.zjut.iteacher.activity.base.BaseActivity;
-import com.li.zjut.iteacher.adapter.schedule.RepeatAdapter;
-import com.li.zjut.iteacher.common.mylesson.SizeUtil;
+import com.li.zjut.iteacher.activity.imteacher.AddTagsActivity;
+import com.li.zjut.iteacher.widget.CustomDialog;
+import com.li.zjut.iteacher.widget.WordWrapView;
+import com.li.zjut.iteacher.widget.common.WheelView;
 import com.li.zjut.iteacher.widget.datepicker.SlideDateTimeListener;
 import com.li.zjut.iteacher.widget.datepicker.SlideDateTimePicker;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class CreateSchedulectivity extends FragmentActivity implements View.OnClickListener {
+public class CreateSchedulectivity extends BaseActivity implements View.OnClickListener {
 
     private TextView date, minute, repeat;
-    private EditText content, tags;
+    private EditText content;
     private SimpleDateFormat mFormatterday = new SimpleDateFormat("yyyy-MM-dd");
     private SimpleDateFormat mFormattertime = new SimpleDateFormat("a hh:mm");
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-    private ListView lv;
-    private PopupWindow pop = null;
-    private View mHidden;
+    private int index = 0;
+    private List<String> repeatList;                  //重复次数选择的数组
+
+    private WordWrapView wwTags;
+    ArrayList<String> tags = new ArrayList<>();      //已选标签列表
+    List<View> tagViewList = new ArrayList<>();       //单个标签view的list
+
+    final int REQUEST_ADD_TAG = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_schedulectivity);
-
+        super.setContext(findViewById(R.id.toolbar), getString(R.string.create_schedule), true);
         initView();
-        pop();
+        initData();
     }
 
-    private void pop() {
-        View cont = LayoutInflater.from(this)
-                .inflate(R.layout.select_repeat, null);
-        Rect rect = new Rect();
-        getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);
-        int w = rect.right - rect.left - 2 * SizeUtil.dp2px(32);
-        pop = new PopupWindow(cont, w, ViewGroup.LayoutParams.WRAP_CONTENT);
-        pop.setOutsideTouchable(true);
-        pop.setBackgroundDrawable(
-                getResources().getDrawable(R.drawable.popupwindow));
-        lv = (ListView) cont.findViewById(R.id.lv);
-
+    private void initData() {
+        repeatList = Arrays.asList(getResources().getStringArray(R.array.repeat));
     }
+
 
     private void initView() {
-
+        findViewById(R.id.add_tag).setOnClickListener(this);
+        wwTags = (WordWrapView) findViewById(R.id.tags);
         findViewById(R.id.create).setOnClickListener(this);
         date = (TextView) findViewById(R.id.tv_date);
         date.setOnClickListener(this);
@@ -75,15 +72,6 @@ public class CreateSchedulectivity extends FragmentActivity implements View.OnCl
         repeat = (TextView) findViewById(R.id.repeat);
         repeat.setOnClickListener(this);
         content = (EditText) findViewById(R.id.content);
-        tags = (EditText) findViewById(R.id.tags);
-        mHidden = findViewById(R.id.hidden);
-
-        TextView title = (TextView) findViewById(R.id.title);
-        title.setText(getString(R.string.create_schedule));
-        ImageView leftImg = (ImageView) findViewById(R.id.left_img);
-        leftImg.setOnClickListener(this);
-        leftImg.setImageResource(R.drawable.backarrow);
-        leftImg.setVisibility(View.VISIBLE);
 
         String date1 = getIntent().getStringExtra("date");
         if (date1 != null) {
@@ -102,8 +90,8 @@ public class CreateSchedulectivity extends FragmentActivity implements View.OnCl
 
     @Override
     public void onClick(View v) {
+        Intent intent = new Intent();
         switch (v.getId()) {
-
             case R.id.create:
                 if (createJudge())
                     sumbit();
@@ -114,33 +102,61 @@ public class CreateSchedulectivity extends FragmentActivity implements View.OnCl
             case R.id.tv_date:
                 showDateChoose();
                 break;
-            case R.id.left_img:
-                finish();
-                break;
             case R.id.repeat:
                 selectRepeat();
+                break;
+            case R.id.add_tag:
+                intent.setClass(CreateSchedulectivity.this, AddTagsActivity.class);
+                intent.putExtra("tags", getTags());
+                startActivityForResult(intent, REQUEST_ADD_TAG);
+                break;
+            default:
                 break;
         }
     }
 
-    private void selectRepeat() {
+    private String[] getTags() {
+        int count = wwTags.getChildCount();
+        String[] tags = new String[count];
+        for (int i = 0; i < count; i++) {
+            tags[i] = ((TextView) wwTags.getChildAt(i)).getText().toString();
+        }
+        return tags;
+    }
 
-        String[] ss = getResources().getStringArray(R.array.repeat);
-        List<String> l = new ArrayList<>();
-        for (String s : ss)
-            l.add(s);
-        RepeatAdapter adapter = new RepeatAdapter(l,this);
-        adapter.setOnItemClick(new RepeatAdapter.OnItemClick() {
+
+    private void selectRepeat() {
+        View outerView = LayoutInflater.from(this).inflate(R.layout.wheel_view, null);
+        WheelView wv = (WheelView) outerView.findViewById(R.id.wheel_view_wv);
+        wv.setOffset(2);
+        wv.setItems(repeatList);
+        wv.setSeletion(index);
+        wv.setOnWheelViewListener(new WheelView.OnWheelViewListener() {
             @Override
-            public void onclick(int id) {
-                pop.dismiss();
-                repeat.setText(getResources().getStringArray(R.array.repeat)[id]);
+            public void onSelected(int selectedIndex, String item) {
+                index = selectedIndex - 2;
             }
         });
-        lv.setAdapter(adapter);
 
+        CustomDialog.Builder builder = new CustomDialog.Builder(this);
+        builder.setContentView(outerView);
+        builder.setTitle("重复次数");
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                //设置你的操作事项
+                repeat.setText(repeatList.get(index));
+            }
+        });
 
-        pop.showAtLocation((View) mHidden.getParent(), Gravity.CENTER, 0, 0);
+        builder.setNegativeButton("取消",
+                new android.content.DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+
+        builder.create().show();
     }
 
     private boolean createJudge() {
@@ -198,7 +214,7 @@ public class CreateSchedulectivity extends FragmentActivity implements View.OnCl
     private void showTimeChoose() {
 
         Date date = new Date();
-        if (!minute.getText().toString().equals(getString(R.string.minute))) {
+        if (!minute.getText().toString().equals(getString(R.string.please_select_minute))) {
             String[] time = minute.getText().toString().split(":");
             date.setHours(Integer.parseInt(time[0]));
             date.setMinutes(Integer.parseInt(time[1]));
@@ -220,5 +236,38 @@ public class CreateSchedulectivity extends FragmentActivity implements View.OnCl
                     }
                 }).setInitialDate(date).setSelectItem(1).setIs24HourTime(false)
                 .setisClientSpecified24HourTime(false).build().show();
+    }
+
+    /*添加标签view*/
+    private void addView(String s, boolean selected) {
+        TextView textview = new TextView(this);
+        textview.setText(s);
+        textview.setBackgroundResource(R.drawable.tag_bg);
+        ColorStateList csl = (ColorStateList) getResources().getColorStateList(R.color.tag_text_color);
+        textview.setTextColor(csl);
+        textview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                wwTags.removeView(v);
+            }
+        });
+        textview.setSelected(selected);
+        wwTags.addView(textview);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK) {
+            if (data != null && requestCode == REQUEST_ADD_TAG) {  //添加标签返回
+                tags = data.getStringArrayListExtra("tags");
+                wwTags.removeAllViews();
+                if (tags != null) {
+                    for (String s : tags) {
+                        addView(s, true);
+                    }
+                }
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

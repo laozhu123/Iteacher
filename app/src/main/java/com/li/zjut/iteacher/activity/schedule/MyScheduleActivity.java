@@ -115,7 +115,9 @@ public class MyScheduleActivity extends BaseActivity implements View.OnClickList
 
             @Override
             public void onClick(View v, int position) {
-               pop.dismiss();
+                pop.dismiss();
+                findViewById(R.id.transparent).setVisibility(View.GONE);
+                startActivity(new Intent(MyScheduleActivity.this, ScheduleDetailPageActivity.class).putExtra("id", mData.get(position).getText()));
             }
         });
         reCycleView.setAdapter(mAdapter);

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_back"
+    android:orientation="vertical"
+    tools:context="com.li.zjut.iteacher.activity.setting.SettingActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray_back_deep" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/gray_back_deep">
+
+                <TextView
+                    style="@style/setting_tv_style"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginTop="1dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/account_safe" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="25dp"
+                android:background="@color/gray_back_deep">
+
+                <TextView
+                    style="@style/setting_tv_style"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginTop="1dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/new_message_notify" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/gray_back_deep">
+
+                <TextView
+                    style="@style/setting_tv_style"
+                    android:layout_marginBottom="1dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/style_slience" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/gray_back_deep">
+
+                <TextView
+                    style="@style/setting_tv_style"
+                    android:layout_marginBottom="1dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/self_private" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/gray_back_deep">
+
+                <TextView
+                    style="@style/setting_tv_style"
+                    android:layout_marginBottom="1dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/common" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="25dp"
+                android:background="@color/gray_back_deep">
+
+                <TextView
+                    style="@style/setting_tv_style"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginTop="1dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/relate_app" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/logout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="25dp"
+                android:background="@color/gray_back_deep">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:text="@string/logout"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+
+            </RelativeLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

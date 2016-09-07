@@ -33,13 +33,14 @@
 
     <style name="text_18_ffffff">
         <item name="android:textSize">18.0dip</item>
-        <item name="android:textColor">#ffffffff</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="text_16_666666">
         <item name="android:textSize">16.0dip</item>
         <item name="android:textColor">#ff666666</item>
     </style>
+
     <style name="btn">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/btn_height</item>
@@ -50,9 +51,11 @@
         <item name="android:textSize">@dimen/big_character</item>
         <item name="android:background">@drawable/btn_bg</item>
     </style>
+
     <style name="btn.hong">
         <item name="android:background">@drawable/btn_hong_bg</item>
     </style>
+
     <style name="dialog_tran" parent="android:style/Theme.Dialog">
         <item name="android:windowFrame">@null</item>
         <item name="android:windowNoTitle">true</item>
@@ -63,6 +66,7 @@
         <item name="android:backgroundDimEnabled">true</item>
         <item name="android:backgroundDimAmount">0.4</item>
     </style>
+
     <style name="personl_info_right_text_style">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -72,6 +76,7 @@
         <item name="android:textSize">@dimen/middle_character</item>
         <item name="android:layout_marginRight">20dp</item>
     </style>
+
     <style name="personl_info_left_text_style">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -81,11 +86,13 @@
         <item name="android:textSize">14sp</item>
         <item name="android:layout_marginLeft">20dp</item>
     </style>
+
     <style name="personl_relative_style">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">40dp</item>
         <item name="android:background">@drawable/item_pressd_bg</item>
     </style>
+
     <style name="fengexian">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/line_height</item>
@@ -136,5 +143,171 @@
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+    <style name="common_big_btn">
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginLeft">20dp</item>
+        <item name="android:layout_marginRight">20dp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:background">@drawable/big_btn_bg</item>
+        <item name="android:layout_marginTop">15dp</item>
+        <item name="android:layout_marginBottom">15dp</item>
+    </style>
+
+    <style name="common_item">
+        <item name="android:paddingLeft">15dp</item>
+        <item name="android:paddingRight">15dp</item>
+        <item name="android:paddingBottom">5dp</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <style name="teacher_detail_text">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_width">60dp</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:textColor">@color/txt_black</item>
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <style name="teacher_detail_edit">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/gray_character</item>
+        <item name="android:background">@null</item>
+    </style>
+
+    <style name="addteamate_text_style">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/middle_character</item>
+    </style>
+
+    <style name="weekName">
+        <item name="android:layout_width">0.0dip</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_weight">1.0</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="icon_address">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingTop">@dimen/address_icon_paddingtop</item>
+    </style>
+
+    <style name="apartment_toolbar_selectors">
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/apartment_toolbar_selector_tv_color</item>
+    </style>
+
+    <style name="setting_tv_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:paddingLeft">15dp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="stu_select_item_bg">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/stu_select_item_bg</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="add_stu_by_hand_ll">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:paddingLeft">15dp</item>
+        <item name="android:paddingRight">15dp</item>
+    </style>
+
+    <style name="add_stu_by_hand_tv">
+        <item name="android:layout_width">90dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">17sp</item>
+    </style>
+
+    <style name="add_stu_by_hand_et">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:paddingLeft">7dp</item>
+        <item name="android:background">@null</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:hint">@string/must_input</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">17sp</item>
+    </style>
+
+    <style name="black_17">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/txt_black</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="gray_12">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="black_17_stu_info" parent="black_17">
+        <item name="android:layout_marginLeft">16dp</item>
+    </style>
+
+    <style name="gray_12_stu_info" parent="gray_12">
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+    </style>
+
+    <style name="gray_14_stu_info" parent="gray_12_stu_info">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="line_gray2_stu_info" parent="line_gray2">
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:layout_marginRight">16dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+    </style>
+
+
+    <style name="deep_line">
+        <item name="android:background">@color/line_gray</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.5dp</item>
+    </style>
+
+    <style name="address_info_bottom">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingLeft">20dp</item>
+        <item name="android:paddingRight">20dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:background">@drawable/address_info_bottom_bg</item>
     </style>
 </resources>

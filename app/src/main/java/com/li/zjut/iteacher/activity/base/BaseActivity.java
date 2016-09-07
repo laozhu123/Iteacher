@@ -1,15 +1,19 @@
 package com.li.zjut.iteacher.activity.base;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.li.zjut.iteacher.R;
 
 
-public class BaseActivity extends Activity {
+public class BaseActivity extends FragmentActivity {
 
 
     @Override
@@ -24,7 +28,7 @@ public class BaseActivity extends Activity {
         public void onClick(View v) {
 
             switch (v.getId()) {
-                case R.id.left_img:
+                case R.id.v_back:
                     finish();
                     break;
             }
@@ -37,7 +41,7 @@ public class BaseActivity extends Activity {
             ImageView left = (ImageView) view.findViewById(R.id.left_img);
             left.setImageResource(R.drawable.backarrow);
             left.setVisibility(View.VISIBLE);
-            left.setOnClickListener(listener);
+            view.findViewById(R.id.v_back).setOnClickListener(listener);
         }
 
         TextView tv = (TextView) view.findViewById(R.id.title);

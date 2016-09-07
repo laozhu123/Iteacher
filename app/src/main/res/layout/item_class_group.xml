@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="65dp">
+
+    <ImageView
+        android:id="@+id/img_pic"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:scaleType="fitXY"
+        android:src="@mipmap/img_pic_test" />
+
+    <TextView
+        android:id="@+id/tv_group_name"
+        android:layout_width="wrap_content"
+        android:layout_height="22dp"
+        android:layout_marginLeft="@dimen/item_class_group_marginLeft_common"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@id/img_pic"
+        android:text="老主队"
+        android:textColor="@color/black"
+        android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/teammate_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_group_name"
+        android:layout_marginLeft="@dimen/item_class_group_marginLeft_common"
+        android:layout_marginTop="3dp"
+        android:layout_toRightOf="@id/img_pic"
+        android:text="7人"
+        android:textColor="@color/gray_holo_dark"
+        android:textSize="12sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="@dimen/item_class_group_marginLeft_common"
+        android:layout_below="@id/img_pic"
+        android:layout_toRightOf="@id/img_pic"
+        android:layout_marginTop="3dp"
+        android:background="@color/gray_back_deep" />
+</RelativeLayout>

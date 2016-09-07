@@ -1,38 +1,124 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android">
     <!--第几周-->
     <TextView
-        android:text="一"
-        android:layout_width="25dp"
-        android:layout_height="35dp"
-        android:gravity="center"
-        android:textColor="@color/text_blue"
-        />
-    <View style="@style/line_gray1"/>
-    <TextView
-        android:text="周一"
-        style="@style/style_text_day"/>
-    <View style="@style/line_gray1"/>
-    <TextView
-        android:text="周二"
-        style="@style/style_text_day"/>
-    <View style="@style/line_gray1"/>
-    <TextView
-        android:text="周三"
-        style="@style/style_text_day"/>
-    <View style="@style/line_gray1"/>
-    <TextView
-        android:text="周四"
-        style="@style/style_text_day"/>
-    <View style="@style/line_gray1"/>
-    <TextView
-        android:text="周五"
-        style="@style/style_text_day"/>
-    <View style="@style/line_gray1"/>
-    <TextView
-        android:text="周六"
-        style="@style/style_text_day"/>
-    <View style="@style/line_gray1"/>
-    <TextView
-        android:text="周日"
-        style="@style/style_text_day"/>
+        android:id="@+id/month"
+        style="@style/style_text_day_num"
+        android:layout_width="30dp"
+        android:text="7月" />
+
+    <View style="@style/line_gray1" />
+
+    <LinearLayout
+        android:id="@+id/monday_content"
+        style="@style/style_view_out">
+
+        <TextView
+            android:id="@+id/monday"
+            style="@style/style_text_day_num"
+            android:text="12" />
+
+        <TextView
+            style="@style/style_text_day"
+            android:text="@string/monday" />
+    </LinearLayout>
+
+    <View style="@style/line_gray1" />
+
+    <LinearLayout
+        android:id="@+id/tuesday_content"
+        style="@style/style_view_out">
+
+        <TextView
+            android:id="@+id/tuesday"
+            style="@style/style_text_day_num"
+            android:text="12" />
+
+        <TextView
+            style="@style/style_text_day"
+            android:text="@string/tuesday" />
+    </LinearLayout>
+
+    <View style="@style/line_gray1" />
+
+    <LinearLayout
+        android:id="@+id/wednesday_content"
+        style="@style/style_view_out">
+
+        <TextView
+            android:id="@+id/wednesday"
+            style="@style/style_text_day_num"
+            android:text="12" />
+
+        <TextView
+            style="@style/style_text_day"
+            android:text="@string/wednesday" />
+    </LinearLayout>
+
+    <View style="@style/line_gray1" />
+
+    <LinearLayout
+        android:id="@+id/thursday_content"
+        style="@style/style_view_out">
+
+        <TextView
+            android:id="@+id/thursday"
+            style="@style/style_text_day_num"
+            android:text="12" />
+
+        <TextView
+            style="@style/style_text_day"
+            android:text="@string/thursday" />
+    </LinearLayout>
+
+    <View style="@style/line_gray1" />
+
+    <LinearLayout
+        android:id="@+id/friday_content"
+        style="@style/style_view_out">
+
+        <TextView
+            android:id="@+id/friday"
+            style="@style/style_text_day_num"
+            android:text="12" />
+
+        <TextView
+            style="@style/style_text_day"
+            android:text="@string/friday" />
+    </LinearLayout>
+
+    <View style="@style/line_gray1" />
+
+    <LinearLayout
+        android:id="@+id/saturday_content"
+        style="@style/style_view_out">
+
+        <TextView
+            android:id="@+id/saturday"
+            style="@style/style_text_day_num"
+            android:text="12" />
+
+        <TextView
+            style="@style/style_text_day"
+            android:text="@string/saturday" />
+    </LinearLayout>
+
+    <View style="@style/line_gray1" />
+
+    <LinearLayout
+        android:id="@+id/sunday_content"
+        style="@style/style_view_out">
+
+        <TextView
+            android:id="@+id/sunday"
+            style="@style/style_text_day_num"
+            android:text="12" />
+
+        <TextView
+            style="@style/style_text_day"
+            android:text="@string/sunday" />
+    </LinearLayout>
+
+    <View style="@style/line_gray1" />
+
+
 </merge>

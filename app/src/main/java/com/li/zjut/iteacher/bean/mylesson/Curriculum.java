@@ -7,10 +7,10 @@ import java.io.Serializable;
  */
 public class Curriculum implements Serializable {
 
-    private int begin, end, weekday, index, fromWeek, endWeek, single_double,id;
-    private String text, place,courseTimeId;
+    private int begin, end, weekday, index, fromWeek, endWeek, single_double, id, courseId,courseTimeId;
+    private String text, place ;
 
-    public Curriculum(int weekday, int begin, int end, String text, int index, String palce, int fromWeek, int endWeek, int single_double,String courseTimeId,int id) {
+    public Curriculum(int weekday, int begin, int end, String text, int index, String palce, int fromWeek, int endWeek, int single_double, int courseTimeId, int id,int courseId) {
         this.begin = begin;
         this.end = end;
         this.weekday = weekday;
@@ -22,6 +22,15 @@ public class Curriculum implements Serializable {
         this.single_double = single_double;
         this.courseTimeId = courseTimeId;
         this.id = id;
+        this.courseId = courseId;
+    }
+
+    public int getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(int courseId) {
+        this.courseId = courseId;
     }
 
     public int getId() {
@@ -32,11 +41,11 @@ public class Curriculum implements Serializable {
         this.id = id;
     }
 
-    public String getCourseTimeId() {
+    public int getCourseTimeId() {
         return courseTimeId;
     }
 
-    public void setCourseTimeId(String courseTimeId) {
+    public void setCourseTimeId(int courseTimeId) {
         this.courseTimeId = courseTimeId;
     }
 

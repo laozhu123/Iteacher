@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_back_deep"
+    tools:context="com.li.zjut.iteacher.activity.imteacher.AddStuByHandActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
+    <LinearLayout
+        android:id="@+id/ll1"
+        style="@style/add_stu_by_hand_ll"
+        android:layout_below="@id/toolbar"
+        android:layout_marginTop="16dp">
+
+        <TextView
+            style="@style/add_stu_by_hand_tv"
+            android:text="学生手机号" />
+
+        <EditText
+            android:id="@+id/phone"
+            style="@style/add_stu_by_hand_et"
+            android:hint="@string/must_input" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll2"
+        style="@style/add_stu_by_hand_ll"
+        android:layout_below="@id/ll1">
+
+        <TextView
+            style="@style/add_stu_by_hand_tv"
+            android:text="学生姓名" />
+
+        <EditText
+            android:id="@+id/name"
+            style="@style/add_stu_by_hand_et"
+            android:hint="@string/must_input" />
+    </LinearLayout>
+    <View
+        android:id="@+id/view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"/>
+</RelativeLayout>

@@ -2,10 +2,12 @@ package com.li.zjut.iteacher.adapter.checkin;
 
 import android.content.Context;
 import android.database.DataSetObserver;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.li.zjut.iteacher.R;
@@ -21,6 +23,13 @@ public class CheckTimeExpandAdapter implements ExpandableListAdapter {
 
     private List<DateTime> mDatas;
     private Context context;
+    private OnSelectListener onSelectListener;
+    private int expandIndex = -1;
+    private ImageView expandImg = null;
+
+    public void setOnSelectListener(OnSelectListener onSelectListener) {
+        this.onSelectListener = onSelectListener;
+    }
 
     public CheckTimeExpandAdapter(Context context, List<DateTime> mDatas) {
 
@@ -81,17 +90,48 @@ public class CheckTimeExpandAdapter implements ExpandableListAdapter {
         return true;
     }
 
+    private View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Log.d("helo", v.getTag().toString());
+            if ((int) v.getTag() == expandIndex) {
+                ((ImageView) v.findViewById(R.id.img_arrow)).setImageResource(R.mipmap.item_arrow_normal);
+                expandIndex = -1;
+            } else {
+                if (expandIndex != -1) {
+                    expandImg.setImageResource(R.mipmap.item_arrow_normal);
+                }
+                expandImg = (ImageView) v.findViewById(R.id.img_arrow);
+                expandImg.setImageResource(R.mipmap.item_arrow_selected);
+                expandIndex = (int) v.getTag();
+            }
+            onSelectListener.onSelect((int) v.getTag());
+        }
+    };
+
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.parent_item_checkinfo, null);
+            convertView = inflater.inflate(R.layout.item_group_check_point, null);
         }
-        TextView tv = (TextView) convertView
-                .findViewById(R.id.parent_textview);
-        tv.setText(mDatas.get(groupPosition).getDate());
-        return tv;
+        if (groupPosition == 0) {
+            convertView.findViewById(R.id.tv_check_date).setVisibility(View.GONE);
+            convertView.findViewById(R.id.img_arrow).setVisibility(View.GONE);
+            convertView.findViewById(R.id.line).setVisibility(View.GONE);
+            return convertView;
+        }
+        convertView.findViewById(R.id.tv_check_date).setVisibility(View.VISIBLE);
+        convertView.findViewById(R.id.img_arrow).setVisibility(View.VISIBLE);
+        convertView.findViewById(R.id.line).setVisibility(View.VISIBLE);
+
+        TextView tvCheckDate = (TextView) convertView
+                .findViewById(R.id.tv_check_date);
+        tvCheckDate.setText(mDatas.get(groupPosition).getDate());
+        convertView.setTag(groupPosition);
+        convertView.setOnClickListener(onClickListener);
+        return convertView;
     }
 
     @Override
@@ -100,12 +140,12 @@ public class CheckTimeExpandAdapter implements ExpandableListAdapter {
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.child_item_checkinfo, null);
+            convertView = inflater.inflate(R.layout.item_child_check_point, null);
         }
-        TextView tv = (TextView) convertView
-                .findViewById(R.id.second_textview);
-        tv.setText(info);
-        return tv;
+        TextView tvCheckTime = (TextView) convertView
+                .findViewById(R.id.tv_check_time);
+        tvCheckTime.setText(info);
+        return convertView;
     }
 
     @Override
@@ -141,5 +181,9 @@ public class CheckTimeExpandAdapter implements ExpandableListAdapter {
     @Override
     public long getCombinedGroupId(long groupId) {
         return 0;
+    }
+
+    public static interface OnSelectListener {
+        public void onSelect(int index);
     }
 }

@@ -142,7 +142,7 @@ public class CheckActivity extends BaseActivity implements
         reCycleView.setAdapter(mAdapter);
 
         popTxtTitle = (TextView) cont.findViewById(R.id.title);
-        popTxtTitle.setText(getString(R.string.todaytask));
+        popTxtTitle.setText(getString(R.string.todayLesson));
 
         cont.findViewById(R.id.allLesson).setOnClickListener(this);
         cont.findViewById(R.id.close).setOnClickListener(this);
@@ -350,7 +350,7 @@ public class CheckActivity extends BaseActivity implements
             case R.id.allLesson:
                 pop.dismiss();
                 findViewById(R.id.transparent).setVisibility(View.GONE);
-                startActivityForResult(new Intent(CheckActivity.this,AllLessonsActivity.class),REQUEST);
+                startActivityForResult(new Intent(CheckActivity.this,CheckInAllClassesActivity.class),REQUEST);
                 break;
             case R.id.sure:
                 pop1.dismiss();
@@ -372,6 +372,7 @@ public class CheckActivity extends BaseActivity implements
             case RESULT_OK:
 //                txCheck.setSelected(true);
 //                txReset.setVisibility(View.VISIBLE);
+                lessonname.setText(data.getStringExtra("helo"));
                 showPop1();
                 break;
         }

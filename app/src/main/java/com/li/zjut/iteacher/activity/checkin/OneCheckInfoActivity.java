@@ -1,5 +1,6 @@
 package com.li.zjut.iteacher.activity.checkin;
 
+import android.content.Intent;
 import android.database.DataSetObserver;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import com.li.zjut.iteacher.R;
 import com.li.zjut.iteacher.activity.base.BaseActivity;
+import com.li.zjut.iteacher.activity.imteacher.ImTeacherStuDetailActivity;
 import com.li.zjut.iteacher.adapter.checkin.CheckInfoExpandAdapter;
 import com.li.zjut.iteacher.bean.checkin.Student;
 import com.li.zjut.iteacher.bean.checkin.ThreeType;
@@ -46,7 +48,13 @@ public class OneCheckInfoActivity extends BaseActivity implements SwipeRefreshLa
         swipeRef.setOnRefreshListener(this);
         txNoContent = (TextView) findViewById(R.id.txNoContent);
         expLv = (ExpandableListView) findViewById(R.id.expLv);
-
+        expLv.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            @Override
+            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+                startActivity(new Intent(OneCheckInfoActivity.this, ImTeacherStuDetailActivity.class));
+                return false;
+            }
+        });
     }
 
     private void getData() {
@@ -60,18 +68,18 @@ public class OneCheckInfoActivity extends BaseActivity implements SwipeRefreshLa
 
         List<ThreeType> data = new ArrayList<>();
         ThreeType t1 = new ThreeType();
-        t1.setType("已签到");
+        t1.setType("未签到");
         List<Student> l1 = new ArrayList<>();
         l1.add(s1);
         l1.add(s1);
         t1.setList(l1);
         data.add(t1);
         ThreeType t2 = new ThreeType();
-        t2.setType("未签到");
+        t2.setType("签到异常");
         t2.setList(l1);
         data.add(t2);
         ThreeType t3 = new ThreeType();
-        t3.setType("超出范围");
+        t3.setType("已签到");
         t3.setList(l1);
         data.add(t3);
 

@@ -50,26 +50,15 @@
         android:layout_marginBottom="5dp"
         android:background="#50b0e0"
         android:text="修改此项课程" />
-    
     <Button
-        android:id="@+id/btn_del"
+        android:id="@+id/btn_mod_class"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:background="#ff7090"
-        android:text="删除此项课程" />
-    <Button
-        android:id="@+id/btn_del_one"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:background="#ff7090"
-        android:text="删除此节课" />
-
+        android:background="#50b0e0"
+        android:text="修改对应的班级课时" />
     <Button
         android:id="@+id/invite"
         android:layout_width="match_parent"
@@ -79,5 +68,26 @@
         android:layout_marginBottom="5dp"
         android:background="#28d92b"
         android:text="邀请码" />
+    
+
+    <Button
+        android:id="@+id/btn_del_one"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="#ff7090"
+        android:text="删除此课时" />
+    <Button
+        android:id="@+id/btn_del"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="#ff7090"
+        android:text="删除此项课程" />
+
 
 </LinearLayout>

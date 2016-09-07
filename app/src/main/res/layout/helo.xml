@@ -50,16 +50,6 @@
                     <include layout="@layout/layout_weekly_columns" />
                 </LinearLayout>
 
-
-                <ImageView
-                    android:id="@+id/add"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/add_radius"
-                    android:padding="2dp"
-                    android:src="@drawable/add"
-                    android:visibility="gone" />
-
             </RelativeLayout>
 
         </LinearLayout>

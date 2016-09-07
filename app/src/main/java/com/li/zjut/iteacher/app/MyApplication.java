@@ -84,14 +84,21 @@ public class MyApplication extends Application {
             public void run() {
                 List<People> peoples;
                 peoples = Contacts.readAllContacts(getApplicationContext());
-                String[] ss;
-                ss = new String[peoples.size()];
-                int i = 0;
-                for (People people : peoples) {
-                    ss[i] = people.getName();
-                    i++;
+
+                SourceDateList = filledData(peoples);
+                if (SourceDateList.size() == 0){
+                    peoples = new ArrayList<>();
+                    People p1 = new People();
+                    p1.setName("helo");
+                    p1.setPhone("123456568");
+                    People p2 = new People();
+                    p2.setName("dela");
+                    p2.setPhone("123456568");
+                    peoples.add(p1);
+                    peoples.add(p2);
+
+                    SourceDateList = filledData(peoples);
                 }
-                SourceDateList = filledData(ss);
             }
         });
         thread.start();
@@ -104,16 +111,17 @@ public class MyApplication extends Application {
      * @param date
      * @return
      */
-    private List<GroupMemberBean> filledData(String[] date) {
+    private List<GroupMemberBean> filledData(List<People> date) {
         List<GroupMemberBean> mSortList = new ArrayList<GroupMemberBean>();
 
-        for (int i = 0; i < date.length; i++) {
+        for (int i = 0; i < date.size(); i++) {
             GroupMemberBean sortModel = new GroupMemberBean();
-            sortModel.setName(date[i]);
+            sortModel.setName(date.get(i).getName());
+            sortModel.setPhone(date.get(i).getPhone());
             // 汉字转换成拼音
             CharacterParser characterParser;
             characterParser = CharacterParser.getInstance();
-            String pinyin = characterParser.getSelling(date[i]);
+            String pinyin = characterParser.getSelling(date.get(i).getName());
             String sortString = pinyin.substring(0, 1).toUpperCase();
 
             // 正则表达式，判断首字母是否是英文字母

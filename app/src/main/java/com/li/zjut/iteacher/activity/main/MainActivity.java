@@ -3,7 +3,6 @@ package com.li.zjut.iteacher.activity.main;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTabHost;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,15 +13,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.li.zjut.iteacher.R;
-import com.li.zjut.iteacher.activity.main.fragment.AddressFragment;
+import com.li.zjut.iteacher.activity.main.fragment.AddressNewFragment;
 import com.li.zjut.iteacher.activity.main.fragment.ChatFragment;
 import com.li.zjut.iteacher.activity.main.fragment.HomeFragment;
 import com.li.zjut.iteacher.activity.main.fragment.MessageFragment;
+import com.li.zjut.iteacher.activity.main.fragment.MyFragment;
 import com.li.zjut.iteacher.app.MyApplication;
 import com.li.zjut.iteacher.bean.Tab;
 import com.li.zjut.iteacher.common.SharePerfrence;
 import com.li.zjut.iteacher.common.StaticData;
-import com.li.zjut.iteacher.common.sha1.Utilgetsha1;
+import com.li.zjut.iteacher.common.Utils;
 
 import java.util.ArrayList;
 
@@ -64,27 +64,34 @@ public class MainActivity extends AppCompatActivity {
         mTabs = new ArrayList<>();
 
         Tab home = new Tab(R.string.firstpage, R.drawable.tab_home_btn, HomeFragment.class);
-        Tab message = new Tab(R.string.addressbook, R.drawable.tab_address_btn, AddressFragment.class);
-        Tab friends = new Tab(R.string.message, R.drawable.tab_message_btn, MessageFragment.class);
-        Tab square = new Tab(R.string.chat, R.drawable.tab_chat_btn, ChatFragment.class);
+        Tab address = new Tab(R.string.addressbook, R.drawable.tab_address_btn, AddressNewFragment.class);
+        Tab message = new Tab(R.string.message, R.drawable.tab_message_btn, MessageFragment.class);
+        Tab chat = new Tab(R.string.chat, R.drawable.tab_chat_btn, ChatFragment.class);
+        Tab my = new Tab(R.string.my, R.drawable.tab_my_btn, MyFragment.class);
+
+        /*测试数据，用于设置小红点*/
+        message.setNum(7);
+        chat.setNum(6);
+
         mTabs.add(home);
         mTabs.add(message);
-        mTabs.add(friends);
-        mTabs.add(square);
+        mTabs.add(address);
+        mTabs.add(chat);
+        mTabs.add(my);
 
-        FragmentTabHost mTabhost;
         mInflater = LayoutInflater.from(this);
-        mTabhost = (FragmentTabHost) this.findViewById(R.id.tabhost);
-        mTabhost.setup(this, getSupportFragmentManager(), R.id.realtabcontent);        //讲realtabcontent与mTabhost相关联，realtabcontent就是展示fragment的控件
+        FragmentTabHost mTabHost = (FragmentTabHost) this.findViewById(R.id.tabhost);
+        mTabHost.setup(this, getSupportFragmentManager(), R.id.realtabcontent);        //讲realtabcontent与mTabHost相关联，realtabcontent就是展示fragment的控件
 
         for (Tab tab : mTabs) {
-            mTabhost.addTab(mTabhost.newTabSpec(getString(tab.getTitle())).setIndicator(initIndicate(tab)),
-                    tab.getFragment(), null);           //將fragment于底部的按鈕關聯起來后添加到mTabhost上，給個底部按鈕設置相應的icon
-            mTabhost.getTabWidget().getChildAt(mTabhost.getTabWidget().getChildCount() - 1)
-                    .setBackgroundResource(R.drawable.selector_tab_background);   //給個底部按鈕設置相應的背景圖片
+            mTabHost.addTab(mTabHost.newTabSpec(getString(tab.getTitle())).setIndicator(initIndicate(tab)),
+                    tab.getFragment(), null);           //將fragment于底部的按鈕關聯起來后添加到mTabHost上，給個底部按鈕設置相應的icon
+
+            mTabHost.getTabWidget().getChildAt(mTabHost.getTabWidget().getChildCount() - 1);   //給個底部按鈕設置相應的背景圖片
+
         }
-        mTabhost.getTabWidget().setShowDividers(LinearLayout.SHOW_DIVIDER_NONE);   //去除底部按钮间的divider
-        mTabhost.setCurrentTab(0);                                             //设置当前所选择的fragment为第一个
+        mTabHost.getTabWidget().setShowDividers(LinearLayout.SHOW_DIVIDER_NONE);   //去除底部按钮间的divider
+        mTabHost.setCurrentTab(0);                                             //设置当前所选择的fragment为第一个
     }
 
     private View initIndicate(Tab tab) {
@@ -93,6 +100,11 @@ public class MainActivity extends AppCompatActivity {
         TextView text = (TextView) view.findViewById(R.id.textview);
         text.setText(tab.getTitle());
         img.setImageResource(tab.getIcon());
+        if (tab.getNum() != 0) {
+            ImageView redDot = (ImageView) view.findViewById(R.id.red_dot);
+            redDot.setVisibility(View.VISIBLE);
+            redDot.setImageDrawable(Utils.initCounterResources(tab.getNum(), this));
+        }
         return view;
     }
 
@@ -102,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
 //        super.onBackPressed();
         //实现Home键效果
         //super.onBackPressed();这句话一定要注掉,不然又去调用默认的back处理方式了
-        Intent i= new Intent(Intent.ACTION_MAIN);
+        Intent i = new Intent(Intent.ACTION_MAIN);
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         i.addCategory(Intent.CATEGORY_HOME);
         startActivity(i);
@@ -137,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
                  */
                 @Override
                 public void onSuccess(String userid) {
-                    Toast.makeText(getApplicationContext(),"im登录成功",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "im登录成功", Toast.LENGTH_SHORT).show();
                     Log.d("LoginActivity", "--onSuccess" + userid);
 //                    startActivity(new Intent(MainActivity.this, ConversationListActivity.class));
                     //启动会话列表界面

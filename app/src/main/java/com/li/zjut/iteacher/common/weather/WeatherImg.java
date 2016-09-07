@@ -19,6 +19,8 @@ public class WeatherImg {
      */
     public static int imageResoId(String weather){
         int resoid=R.drawable.s_2;
+        if (weather == null)
+            return R.drawable.s_1;
         if(weather.indexOf("多云")!=-1||weather.indexOf("晴")!=-1){//多云转晴，以下类同 indexOf:包含字串
             resoid=R.drawable.s_1;}
         else if(weather.indexOf("多云")!=-1&&weather.indexOf("阴")!=-1){

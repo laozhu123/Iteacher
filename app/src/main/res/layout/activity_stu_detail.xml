@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/di_se"
+    android:orientation="vertical">
+
+    <include layout="@layout/toolbar"
+        android:id="@id/toolbar"/>
+
+    <FrameLayout
+        android:id="@+id/loadframe"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:padding="@dimen/main_padding">
+
+                    <com.li.zjut.iteacher.widget.common.HeadPhotoView
+                        android:id="@+id/photo"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_gravity="center_horizontal" />
+
+                    <TextView
+                        android:id="@+id/name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/big_character" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical">
+
+                    <RelativeLayout style="@style/personl_relative_style">
+
+                        <TextView
+                            android:id="@+id/phonetext"
+                            style="@style/personl_info_left_text_style"
+                            android:text="手机号" />
+
+                        <ImageView
+                            android:id="@+id/message"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="10dp"
+                            android:background="@drawable/item_pressd_bg"
+                            android:src="@drawable/messagedan" />
+
+                        <View
+                            android:id="@+id/xian"
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_toLeftOf="@id/message"
+                            android:background="@color/gray_background" />
+
+                        <ImageView
+                            android:id="@+id/call"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="5dp"
+                            android:layout_toLeftOf="@id/xian"
+                            android:background="@drawable/item_pressd_bg"
+                            android:src="@drawable/call" />
+
+                        <TextView
+                            android:id="@+id/phone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="20dp"
+                            android:layout_toLeftOf="@id/call"
+                            android:textColor="@color/gray_character"
+                            android:textSize="@dimen/middle_character" />
+                    </RelativeLayout>
+
+                    <View style="@style/fengexian" />
+
+
+                    <RelativeLayout
+                        style="@style/personl_relative_style"
+                        android:layout_marginTop="20dp">
+
+                        <TextView
+                            style="@style/personl_info_left_text_style"
+                            android:text="邮箱" />
+
+                        <TextView
+                            android:id="@+id/email"
+                            style="@style/personl_info_right_text_style" />
+                    </RelativeLayout>
+
+                    <View style="@style/fengexian" />
+
+                    <RelativeLayout style="@style/personl_relative_style">
+
+                        <TextView
+                            style="@style/personl_info_left_text_style"
+                            android:text="QQ" />
+
+                        <TextView
+                            android:id="@+id/qq"
+                            style="@style/personl_info_right_text_style" />
+                    </RelativeLayout>
+
+                    <View style="@style/fengexian" />
+
+                    <RelativeLayout style="@style/personl_relative_style">
+
+                        <TextView
+                            style="@style/personl_info_left_text_style"
+                            android:text="生日" />
+
+                        <TextView
+                            android:id="@+id/birthday"
+                            style="@style/personl_info_right_text_style" />
+                    </RelativeLayout>
+
+                    <View style="@style/fengexian" />
+
+                    <RelativeLayout style="@style/personl_relative_style">
+
+                        <TextView
+                            style="@style/personl_info_left_text_style"
+                            android:text="微信" />
+
+                        <TextView
+                            android:id="@+id/weixin"
+                            style="@style/personl_info_right_text_style" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        style="@style/personl_relative_style"
+                        android:layout_marginTop="20dp">
+
+                        <TextView
+                            style="@style/personl_info_left_text_style"
+                            android:text="工作电话" />
+
+                        <TextView
+                            android:id="@+id/workphone"
+                            style="@style/personl_info_right_text_style" />
+                    </RelativeLayout>
+
+                    <View style="@style/fengexian" />
+
+                    <RelativeLayout style="@style/personl_relative_style">
+
+                        <TextView
+                            style="@style/personl_info_left_text_style"
+                            android:text="短号" />
+
+                        <TextView
+                            android:id="@+id/shortphone"
+                            style="@style/personl_info_right_text_style" />
+                    </RelativeLayout>
+                    <View style="@style/fengexian" />
+
+                    <RelativeLayout style="@style/personl_relative_style">
+
+                        <TextView
+                            style="@style/personl_info_left_text_style"
+                            android:text="短号" />
+
+                        <TextView
+                            android:id="@+id/stu_detail"
+                            style="@style/personl_info_right_text_style"
+                            android:text="学习相关详情"/>
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/message_btn"
+                    style="@style/common_big_btn"
+                    android:layout_marginTop="20dp"
+                    android:text="发消息" />
+
+
+            </LinearLayout>
+        </ScrollView>
+    </FrameLayout>
+
+</LinearLayout>
+

@@ -49,7 +49,9 @@
         <FrameLayout
             android:id="@+id/tabcontent"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="50dp"
+            android:background="@color/gray_white"
+            android:layout_gravity="center_vertical"
             android:layout_weight="0" />
     </android.support.v4.app.FragmentTabHost>
 

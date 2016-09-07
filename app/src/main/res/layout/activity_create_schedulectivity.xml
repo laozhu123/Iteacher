@@ -1,162 +1,201 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    >
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_back_deep">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
         <include
             android:id="@+id/toolbar"
             layout="@layout/toolbar" />
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:orientation="horizontal">
+            android:layout_marginBottom="75dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/tv_height"
-                android:gravity="center"
-                android:text="@string/time"
-                android:textColor="@color/yellow"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/tv_date"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/tv_height"
-                android:layout_marginLeft="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/edit_bg"
-                android:gravity="center"
-                android:text="@string/date" />
-
-            <TextView
-                android:id="@+id/tv_minute"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/tv_height"
-                android:layout_weight="1"
-                android:background="@drawable/edit_bg"
-                android:gravity="center"
-                android:text="@string/minute" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/content"
-                android:textColor="@color/yellow"
-                android:textSize="16sp" />
-
-            <EditText
-                android:id="@+id/content"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_marginLeft="35dp"
-                android:background="@drawable/edit_bg"
-                android:gravity="left"
-                android:hint="@string/please_input"
-                android:padding="5dp"
-                android:textSize="14sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/tag"
-                android:textColor="@color/yellow"
-                android:textSize="16sp" />
+                android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/tags"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/tv_height"
-                android:layout_marginLeft="35dp"
-                android:background="@drawable/edit_bg"
-                android:gravity="center_vertical"
+                <View
+                    style="@style/deep_line"
+                    android:layout_marginTop="16dp" />
 
-                android:hint="各标签间用空格分开"
-                android:paddingLeft="5dp"
-                android:textSize="14sp" />
-        </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+                    <TextView
+                        style="@style/teacher_detail_text"
+                        android:text="@string/time" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/repeat"
-                android:textColor="@color/yellow"
-                android:textSize="16sp" />
 
-            <TextView
-                android:id="@+id/repeat"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/tv_height"
-                android:layout_marginLeft="5dp"
-                android:background="@drawable/edit_bg"
-                android:gravity="center_vertical"
-                android:paddingLeft="5dp"
-                android:text="@string/onetime" />
-        </LinearLayout>
+                    <TextView
+                        android:id="@+id/tv_date"
+                        style="@style/teacher_detail_edit"
+                        android:layout_width="0dp"
+                        android:layout_height="45dp"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:gravity="center_vertical|right"
+                        android:paddingRight="23dp"
+                        android:text="请选择(日期)"
+                        android:textColor="@color/txt_black"
+                        android:textSize="14sp" />
 
-        <View
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
+                    <View
+                        android:layout_width="0.5dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/line_gray" />
 
-        <TextView
-            android:id="@+id/create"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/height"
-            android:layout_marginBottom="30dp"
-            android:layout_marginLeft="@dimen/margin"
-            android:layout_marginRight="@dimen/margin"
-            android:background="@drawable/big_btn_bg"
-            android:gravity="center"
-            android:text="@string/create"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
+                    <TextView
+                        android:id="@+id/tv_minute"
+                        style="@style/teacher_detail_edit"
+                        android:layout_width="0dp"
+                        android:layout_height="45dp"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:gravity="center_vertical|right"
+                        android:paddingRight="23dp"
+                        android:text="请选择(时分)"
+                        android:textColor="@color/txt_black"
+                        android:textSize="14sp" />
+                </LinearLayout>
 
+                <View style="@style/deep_line" />
+
+                <View
+                    style="@style/deep_line"
+                    android:layout_marginTop="@dimen/activity_vertical_margin" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/teacher_detail_text"
+                        android:text="@string/alarm_info" />
+
+                    <EditText
+                        android:id="@+id/content"
+                        style="@style/teacher_detail_edit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="80dp"
+                        android:layout_marginBottom="23dp"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginRight="16dp"
+                        android:textSize="14sp"
+                        android:padding="3dp"
+                        android:gravity="left"
+                        android:background="@drawable/task_edit_bg"
+                        android:hint="@string/please_input_alarm"
+                        />
+                </LinearLayout>
+
+                <View style="@style/deep_line" />
+
+                <View
+                    style="@style/deep_line"
+                    android:layout_marginTop="@dimen/activity_vertical_margin" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:minHeight="75dp"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/teacher_detail_text"
+                            android:text="@string/tag"
+                            android:textSize="14sp" />
+
+
+                        <com.li.zjut.iteacher.widget.WordWrapView
+                            android:id="@+id/tags"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="15dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_weight="1"
+                            android:background="@color/white" />
+
+
+                        <ImageView
+                            android:id="@+id/add_tag"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:layout_marginRight="5dp"
+                            android:padding="7dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/icon_add" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <View style="@style/deep_line" />
+
+                <View
+                    style="@style/deep_line"
+                    android:layout_marginTop="@dimen/activity_vertical_margin" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/teacher_detail_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/repeat" />
+
+
+                    <TextView
+                        android:id="@+id/repeat"
+                        style="@style/teacher_detail_edit"
+                        android:layout_width="0dp"
+                        android:layout_height="45dp"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:gravity="center_vertical|right"
+                        android:paddingRight="23dp"
+                        android:text="请选择(必选)"
+                        android:textColor="@color/txt_black"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
-    <View
-        android:id="@+id/hidden"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/create"
+        style="@style/common_big_btn"
+        android:layout_alignParentBottom="true"
+        android:text="@string/create" />
+
 </RelativeLayout>
 

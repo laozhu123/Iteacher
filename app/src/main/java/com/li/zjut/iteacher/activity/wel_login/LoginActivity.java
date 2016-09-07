@@ -13,6 +13,7 @@ import android.view.View.OnClickListener;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -56,6 +57,9 @@ public class LoginActivity extends BaseActivity {
                 case R.id.register:
                     register();
                     break;
+                case R.id.txTitleRig:
+                    startActivity(new Intent(LoginActivity.this,MainActivity.class));
+                    break;
             }
         }
     };
@@ -83,6 +87,11 @@ public class LoginActivity extends BaseActivity {
         mProgressView = findViewById(R.id.login_progress);
 
         findViewById(R.id.register).setOnClickListener(listener);
+
+        TextView tv = (TextView) findViewById(R.id.txTitleRig);
+        tv.setOnClickListener(listener);
+        tv.setText("跳过");
+        tv.setVisibility(View.VISIBLE);
     }
 
     @Override

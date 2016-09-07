@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_back"
+    android:orientation="vertical">
+
+    <include
+        android:id="@id/toolbar"
+        layout="@layout/toolbar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/contact_local"
+            style="@style/icon_address"
+            android:drawableTop="@mipmap/icon_contact_local"
+            android:text="@string/local_contact" />
+
+        <TextView
+            android:id="@+id/class_group"
+            style="@style/icon_address"
+            android:drawableTop="@mipmap/icon_class_group"
+            android:text="@string/class_group" />
+
+        <TextView
+            android:id="@+id/apartment_group"
+            style="@style/icon_address"
+            android:drawableTop="@mipmap/icon_apartment_group"
+            android:text="@string/apartment_group" />
+
+        <TextView
+            android:id="@+id/contact_concern"
+            style="@style/icon_address"
+            android:drawableTop="@mipmap/icon_contact_concern"
+            android:text="@string/contact_concern" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray_back_deep" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/gray_back_deep" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:text="@string/often_contact"
+        android:textColor="@color/txt_black"
+        android:textSize="18sp" />
+
+    <ListView
+        android:id="@+id/often_contact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white" />
+</LinearLayout>

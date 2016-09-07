@@ -29,7 +29,6 @@ public class Curriculum_table {
     private ViewGroup decorView;//activity的根View
     private ViewGroup rootView;//附加View 的 根View
 
-    private View mView_add;
     private RelativeLayout back;
     private RelativeLayout tmpLayout;
 
@@ -43,10 +42,8 @@ public class Curriculum_table {
 
     private List<Curriculum> mLs = new ArrayList<>();
     private int index = 0;
-    private Cur_OnClickListener listener;
     private Cur_v_listener vListener;
 
-    private int mWeekday, mBegin;
 
     private final LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT
@@ -72,10 +69,8 @@ public class Curriculum_table {
         contentContainer.setLayoutParams(params);
 
         tmpLayout = (RelativeLayout) rootView.findViewById(R.id.Monday);
-        mView_add = rootView.findViewById(R.id.add);
         back = (RelativeLayout) rootView.findViewById(R.id.back);
 
-        setAdapter();
     }
 
     public void focus() {
@@ -85,89 +80,7 @@ public class Curriculum_table {
 
     }
 
-    public void hidden() {
 
-        mView_add.setVisibility(View.GONE);
-    }
-
-    public interface Cur_OnClickListener {
-
-        public void OnClickListener(int weekday, int begin);
-    }
-
-    public void setListener(Cur_OnClickListener listener) {
-
-        this.listener = listener;
-    }
-
-    private void setAdapter() {
-
-        mView_add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                Toast.makeText(context, "添加课程", Toast.LENGTH_SHORT).show();
-//                context.startActivity(new Intent(context, AddLessonActivity.class));
-                listener.OnClickListener(mWeekday, mBegin);
-            }
-        });
-
-        back.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        mView_add.setVisibility(View.GONE);
-                        break;
-                    case MotionEvent.ACTION_MOVE:
-                        return false;
-                    case MotionEvent.ACTION_UP:
-                        mView_add.setVisibility(View.VISIBLE);
-                        layoutParams = new RelativeLayout.LayoutParams(gridWidth, gridHeight);
-                        Log.d(gridWidth + " ", gridHeight + " ");
-                        xx = (int) event.getX();
-                        yy = (int) event.getY();
-                        calculate_move();
-
-                        break;
-                }
-
-                return true;
-            }
-        });
-    }
-
-    private void calculate_move() {
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-
-                for (int i = 0; i < 8; i++) {
-                    if (xx <= i * gridWidth) {
-                        xx = gridWidth * (i - 1);
-                        mWeekday = i;
-                        break;
-                    }
-                }
-
-                for (int i = 0; i < 14; i++) {
-                    if (yy <= i * gridHeight) {
-                        yy = gridHeight * (i - 1);
-                        mBegin = i;
-                        break;
-                    }
-                }
-                layoutParams.setMargins(xx, yy, 0, 0);
-                handler.post(new Runnable() {
-                    @Override
-                    public void run() {
-
-                        mView_add.setLayoutParams(layoutParams);
-                    }
-                });
-            }
-        }).start();
-    }
 
     public void addCurriculumList(List<Curriculum> ls) {
 
@@ -252,7 +165,6 @@ public class Curriculum_table {
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mView_add.setVisibility(View.GONE);
                 vListener.OnClickListener(Integer.parseInt(v.getTag().toString()));
 //                Toast.makeText(context, v.getTag().toString(), Toast.LENGTH_SHORT).show();
             }
@@ -263,7 +175,7 @@ public class Curriculum_table {
 
     public interface Cur_v_listener {
 
-        public void OnClickListener(int index);
+        void OnClickListener(int index);
     }
 
     public void setCurvListener(Cur_v_listener vlistener) {
