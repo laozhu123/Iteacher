@@ -24,6 +24,8 @@ import java.util.List;
  */
 public class ScheduleTaskListAdapter implements ExpandableListAdapter {
 
+
+
     private List<CheckInLesson> mDatas;
     private Context context;
     private OnSelectListener onSelectListener;
