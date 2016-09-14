@@ -87,8 +87,8 @@ public class StudentListActivity extends BaseActivity implements View.OnClickLis
         // 下面是两种方法得到宽度和高度 getWindow().getDecorView().getWidth()
 
         final PopupWindow window = new PopupWindow(view,
-                getWindow().getDecorView().getWidth() * 3 / 5, ViewGroup.LayoutParams.WRAP_CONTENT);
-
+                getWindow().getDecorView().getWidth(), ViewGroup.LayoutParams.WRAP_CONTENT);
+        window.showAtLocation(view, Gravity.BOTTOM, 0, 0);
         // 设置popWindow弹出窗体可点击，这句话必须添加，并且是true
         window.setFocusable(true);
 

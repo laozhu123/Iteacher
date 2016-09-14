@@ -4,21 +4,38 @@ import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Environment;
+import android.os.Message;
+import android.text.TextUtils;
+import android.util.Log;
+import android.widget.Toast;
 
+import com.li.zjut.iteacher.R;
 import com.li.zjut.iteacher.bean.address.People;
+import com.li.zjut.iteacher.common.SharePerfrence;
+import com.li.zjut.iteacher.common.StaticData;
 import com.li.zjut.iteacher.common.contacts.Contacts;
+import com.li.zjut.iteacher.common.observer.SubjectImpl_sms;
 import com.li.zjut.iteacher.widget.addresslist.CharacterParser;
 import com.li.zjut.iteacher.widget.addresslist.GroupMemberBean;
+import com.tencent.android.tpush.XGIOperateCallback;
 import com.tencent.android.tpush.XGPushManager;
 import com.tencent.android.tpush.service.XGPushService;
+
+import org.json.JSONObject;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
+import cn.smssdk.UserInterruptException;
+import cn.smssdk.utils.SMSLog;
 import io.rong.imkit.RongIM;
+
+import static android.os.SystemClock.sleep;
 
 /**
  * Created by LaoZhu on 2016/5/12.
@@ -26,14 +43,13 @@ import io.rong.imkit.RongIM;
 public class MyApplication extends Application {
 
     public static List<GroupMemberBean> SourceDateList;
-
+    EventHandler mEh;
+    String TAG = "app";
+    public static Subject_sms subject_sms = new Subject_sms();
 
     @Override
     public void onCreate() {
         super.onCreate();
-
-
-
 
         /**
          * OnCreate 会被多个进程重入，这段保护代码，确保只有您需要使用 RongIM 的进程和 Push 进程执行了 init。
@@ -55,7 +71,20 @@ public class MyApplication extends Application {
         // 具体可参考详细的开发指南
         // 传递的参数为ApplicationContext
         Context context = getApplicationContext();
-        XGPushManager.registerPush(context);
+        XGPushManager.registerPush(context, new XGIOperateCallback() {
+            @Override
+            public void onSuccess(Object data, int flag) {
+                Log.d("TPush", "注册成功，设备token为：" + data);
+                getSharedPreferences(StaticData.USER_DATA, StaticData.SHARE_MODE).edit()
+                        .putString(SharePerfrence.DEVICE_TOKEN, data.toString())
+                        .commit();
+            }
+
+            @Override
+            public void onFail(Object data, int errCode, String msg) {
+                Log.d("TPush", "注册失败，错误码：" + errCode + ",错误信息：" + msg);
+            }
+        });
 
         // 2.36（不包括）之前的版本需要调用以下2行代码
         Intent service = new Intent(context, XGPushService.class);
@@ -79,6 +108,67 @@ public class MyApplication extends Application {
 
         //短信验证
         SMSSDK.initSDK(this, "132742f5b37e8", "799757b88bea7bf8d6d2843d45d9cfc8");
+        mEh = new EventHandler() {
+
+            @Override
+            public void beforeEvent(int event, Object data) {
+                if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE) {
+//                    showProgress(true);
+                } else if (event == SMSSDK.EVENT_GET_VERIFICATION_CODE) {
+                    subject_sms.notifyAll(0);
+                }
+            }
+
+            @Override
+            public void afterEvent(int event, int result, Object data) {
+
+                if (result == SMSSDK.RESULT_COMPLETE) {
+                    //回调完成
+                    if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE) {
+                        //提交验证码成功
+                        subject_sms.notifyAll(1);
+
+                    } else if (event == SMSSDK.EVENT_GET_VERIFICATION_CODE) {
+                        //获取验证码成功
+                        subject_sms.notifyAll(2);
+                    } else if (event == SMSSDK.EVENT_GET_SUPPORTED_COUNTRIES) {
+                        //返回支持发送验证码的国家列表
+                        Log.d(TAG, data.toString());
+                    }
+                } else {
+                    if (event == 2 && data != null && data instanceof UserInterruptException) {
+                        subject_sms.notifyAll(3);
+                        return;
+                    }
+                    if (event == 3) {
+                        subject_sms.notifyAll(4);
+                        return;
+                    }
+
+
+                    try {
+                        if (data != null) {
+                            ((Throwable) data).printStackTrace();
+                        }
+                        Throwable resId = (Throwable) data;
+                        assert resId != null;
+                        JSONObject object = new JSONObject(resId.getMessage());
+                        String des = object.optString("detail");
+//                        int status1 = object.optInt("status");
+
+                        if (!TextUtils.isEmpty(des)) {
+                            Toast.makeText(getApplicationContext(), des, Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (Exception var5) {
+                        SMSLog.getInstance().w(var5);
+                    }
+
+                }
+            }
+        };
+        SMSSDK.registerEventHandler(mEh); //注册短信回调
+
+
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -86,7 +176,7 @@ public class MyApplication extends Application {
                 peoples = Contacts.readAllContacts(getApplicationContext());
 
                 SourceDateList = filledData(peoples);
-                if (SourceDateList.size() == 0){
+                if (SourceDateList.size() == 0) {
                     peoples = new ArrayList<>();
                     People p1 = new People();
                     p1.setName("helo");
@@ -159,7 +249,5 @@ public class MyApplication extends Application {
         }
         return null;
     }
-
-
 
 }

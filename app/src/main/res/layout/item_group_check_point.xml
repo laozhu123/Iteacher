@@ -4,15 +4,24 @@
     android:layout_width="match_parent"
     android:layout_height="65dp"
     android:background="@color/white"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp">
+    >
+
+    <ImageView
+        android:id="@+id/dot"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="16dp"
+        android:src="@mipmap/blue_icon" />
 
     <TextView
         android:id="@+id/tv_check_date"
         android:layout_width="wrap_content"
         android:layout_height="65dp"
         android:gravity="center_vertical"
-        android:textColor="@color/txt_black"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/dot"
+        android:textColor="#222222"
         android:textSize="18sp" />
 
     <ImageView
@@ -20,6 +29,7 @@
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_alignParentRight="true"
+        android:layout_marginRight="16dp"
         android:layout_centerVertical="true"
         android:src="@mipmap/item_arrow_normal" />
 

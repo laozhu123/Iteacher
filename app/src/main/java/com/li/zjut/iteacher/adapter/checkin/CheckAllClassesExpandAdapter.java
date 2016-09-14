@@ -129,11 +129,13 @@ public class CheckAllClassesExpandAdapter implements ExpandableListAdapter {
             convertView.findViewById(R.id.tv_cur_name).setVisibility(View.GONE);
             convertView.findViewById(R.id.img_arrow).setVisibility(View.GONE);
             convertView.findViewById(R.id.line).setVisibility(View.GONE);
+            convertView.findViewById(R.id.dot).setVisibility(View.GONE);
             return convertView;
         }
         convertView.findViewById(R.id.tv_cur_name).setVisibility(View.VISIBLE);
         convertView.findViewById(R.id.img_arrow).setVisibility(View.VISIBLE);
         convertView.findViewById(R.id.line).setVisibility(View.VISIBLE);
+        convertView.findViewById(R.id.dot).setVisibility(View.VISIBLE);
         TextView tvCurName = (TextView) convertView
                 .findViewById(R.id.tv_cur_name);
         Log.d("helo", mDatas.get(groupPosition).getLessonName() + getGroupCount());

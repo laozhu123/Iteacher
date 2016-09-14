@@ -62,6 +62,7 @@ public class StudentListAdapter extends BaseAdapter {
                     /*得到各个控件的对象*/
             holder.name = (TextView) convertView.findViewById(R.id.name);
             holder.pic = (CircleImageView) convertView.findViewById(R.id.pic);
+            holder.content = (TextView) convertView.findViewById(R.id.content);
 
             convertView.setTag(holder);//绑定ViewHolder对象
         } else {
@@ -69,12 +70,21 @@ public class StudentListAdapter extends BaseAdapter {
             /*设置TextView显示的内容，即我们存放在动态数组中的数据*/
         }
         holder.name.setText(list.get(position).getName());
-        holder.pic.setImageResource(R.mipmap.img_pic_test);
+        if (position % 2 == 1){
+            holder.pic.setImageResource(R.mipmap.head1);
+            holder.content.setText("研1");
+        }
+        else{
+            holder.pic.setImageResource(R.mipmap.head2);
+            holder.content.setText("研2");
+        }
+
         return convertView;
     }
 
     final class ViewHolder {
         public TextView name;
+        public TextView content;
         public CircleImageView pic;
     }
 

@@ -11,4 +11,7 @@ public class SharePerfrence {
     public static String UNLOGIN = "unLogin";
     public static String FIRSTTIME = "firstTime";
     public static String VERSION = "version";
+    public static String SID = "sid";
+    public static String IM_TOKEN = "imToken";
+    public static String DEVICE_TOKEN = "device_token";
 }

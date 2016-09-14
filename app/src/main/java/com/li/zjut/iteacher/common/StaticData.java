@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public class StaticData {
 
-    public final static String URL = "http://115.28.24.114:8080";
+    public final static String URL = "http://114.215.110.134:8080";
     public final static String WEATHER = "http://apicloud.mob.com";
     public final static String KEYWEATHER = "139388b8e8bd0";
 

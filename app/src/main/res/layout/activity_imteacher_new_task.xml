@@ -18,15 +18,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/toolbar"
-        android:layout_marginBottom="75dp"
-        android:layout_marginTop="16dp">
+        android:layout_marginBottom="75dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <View style="@style/deep_line" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -47,14 +45,11 @@
                     android:hint="@string/teacher_task_name_hint"
                     android:paddingLeft="3dp"
                     android:paddingRight="16dp"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:textColorHint="#b7b7b7" />
             </LinearLayout>
 
             <View style="@style/deep_line" />
-
-            <View
-                style="@style/deep_line"
-                android:layout_marginTop="16dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -72,22 +67,65 @@
                     style="@style/teacher_detail_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:minHeight="80dp"
                     android:layout_marginBottom="23dp"
-                    android:layout_marginTop="1dp"
                     android:layout_marginRight="16dp"
-                    android:textSize="14sp"
-                    android:padding="3dp"
-                    android:gravity="left"
+                    android:layout_marginTop="1dp"
                     android:background="@drawable/task_edit_bg"
+                    android:gravity="left"
                     android:hint="@string/teacher_task_content_hint"
-                    />
+                    android:minHeight="100dp"
+                    android:padding="3dp"
+                    android:textColorHint="#b7b7b7"
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <View style="@style/deep_line" />
 
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="16dp"
+
+                    android:src="@mipmap/tag" />
+
+                <TextView
+                    android:id="@+id/add_tag_text"
+                    style="@style/teacher_detail_text"
+                    android:layout_width="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="添加标签"
+                    android:textColor="#b7b7b7" />
+
+                <com.li.zjut.iteacher.widget.WordWrapView
+                    android:id="@+id/tags"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:background="@color/white" />
+
+                <ImageView
+                    android:id="@+id/add_tag"
+                    android:layout_width="30dp"
+                    android:layout_height="45dp"
+                    android:layout_marginRight="5dp"
+                    android:src="@mipmap/task_add" />
+
+            </LinearLayout>
+
+
             <View
-                style="@style/deep_line"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
                 android:layout_marginTop="16dp" />
 
             <LinearLayout
@@ -108,8 +146,8 @@
                     android:background="@null"
                     android:gravity="center_vertical|right"
                     android:paddingRight="23dp"
-                    android:text="请选择(必填)"
-                    android:textColor="@color/txt_black"
+                    android:text="(必填)"
+                    android:textColor="#b7b7b7"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -136,8 +174,8 @@
                     android:background="@null"
                     android:gravity="center_vertical|right"
                     android:paddingRight="23dp"
-                    android:text="请选择(必填)"
-                    android:textColor="@color/txt_black" />
+                    android:text="(必填)"
+                    android:textColor="#b7b7b7" />
             </LinearLayout>
 
             <View style="@style/deep_line" />
@@ -146,11 +184,11 @@
                 style="@style/deep_line"
                 android:layout_marginTop="16dp" />
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
-                android:minHeight="86dp"
+                android:minHeight="120dp"
                 android:orientation="vertical">
 
 
@@ -158,85 +196,57 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
-
-                    <TextView
-                        style="@style/teacher_detail_text"
-                        android:text="@string/teacher_receiver"
-                        android:textSize="14sp" />
-
-
+                    <ImageView
+                        android:id="@+id/receiver_icon"
+                        android:layout_width="25dp"
+                        android:layout_height="45dp"
+                        android:layout_marginLeft="16dp"
+                        android:src="@mipmap/add_receiver_icon"/>
                     <com.li.zjut.iteacher.widget.WordWrapView
                         android:id="@+id/receiver"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="15dp"
                         android:layout_marginTop="10dp"
+                        android:layout_marginLeft="15dp"
                         android:layout_weight="1"
                         android:background="@color/white" />
 
 
                     <ImageView
-                        android:id="@+id/add"
-                        android:layout_width="45dp"
+                        android:id="@+id/add_receiver2"
+                        android:layout_width="30dp"
                         android:layout_height="45dp"
-                        android:layout_marginRight="7dp"
-                        android:padding="7dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/icon_add" />
+                        android:layout_marginRight="5dp"
+                        android:src="@mipmap/task_add" />
+
+
                 </LinearLayout>
-
-
-            </LinearLayout>
-
-            <View style="@style/deep_line" />
-
-            <View
-                style="@style/deep_line"
-                android:layout_marginTop="16dp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:minHeight="86dp"
-                android:orientation="vertical">
-
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:id="@+id/add_receiver1"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_centerInParent="true"
+                    android:orientation="vertical">
+                   <ImageView
+                       android:layout_width="60dp"
+                       android:layout_height="60dp"
+                       android:src="@mipmap/task_receiver"/>
 
                     <TextView
-                        style="@style/teacher_detail_text"
-                        android:text="@string/tag"
-                        android:textSize="14sp" />
-
-
-                    <com.li.zjut.iteacher.widget.WordWrapView
-                        android:id="@+id/tags"
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="15dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_weight="1"
-                        android:background="@color/white" />
-
-
-                    <ImageView
-                        android:id="@+id/add_tag"
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
-                        android:layout_marginRight="7dp"
-                        android:padding="7dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/icon_add" />
+                        android:layout_gravity="center_horizontal"
+                        android:text="接收者"
+                        android:textSize="16sp"
+                        android:layout_marginTop="6dp"
+                        android:textColor="#cecece"/>
                 </LinearLayout>
 
+            </RelativeLayout>
 
-            </LinearLayout>
 
-            <View style="@style/deep_line" />
         </LinearLayout>
     </ScrollView>
 

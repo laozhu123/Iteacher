@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -25,7 +27,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class ImteacherNewTaskActivity extends FragmentActivity implements View.OnClickListener {
+public class ImteacherNewTaskActivity extends FragmentActivity implements View.OnClickListener, TextWatcher {
 
     EditText taskName, taskContent;
     TextView beginTime, endTime;
@@ -34,6 +36,11 @@ public class ImteacherNewTaskActivity extends FragmentActivity implements View.O
     private SimpleDateFormat mFormatterday = new SimpleDateFormat("yyyy-MM-dd");
     private SimpleDateFormat mFormattertime = new SimpleDateFormat("a hh:mm");
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+
+    StringBuffer sb1 = new StringBuffer("");
+    StringBuffer sb2 = new StringBuffer("");
+    StringBuffer sb;
+
 
     TextView currentView;
     ArrayList<String> ids = new ArrayList<>();
@@ -62,11 +69,13 @@ public class ImteacherNewTaskActivity extends FragmentActivity implements View.O
         TextView title = (TextView) findViewById(R.id.title);
         title.setText(getString(R.string.teacher_task_create));
 
-        findViewById(R.id.add).setOnClickListener(this);
+        findViewById(R.id.add_receiver1).setOnClickListener(this);
+        findViewById(R.id.add_receiver2).setOnClickListener(this);
         findViewById(R.id.add_tag).setOnClickListener(this);
         TextView create = (TextView) findViewById(R.id.create);
         create.setOnClickListener(this);
         create.setText(getString(R.string.teacher_task_create_btn));
+        create.setSelected(true);
 
         taskName = (EditText) findViewById(R.id.task_name);
         taskContent = (EditText) findViewById(R.id.task_content);
@@ -79,7 +88,32 @@ public class ImteacherNewTaskActivity extends FragmentActivity implements View.O
 
         beginTime.setOnClickListener(this);
         endTime.setOnClickListener(this);
+        taskName.addTextChangedListener(this);
+        taskContent.addTextChangedListener(this);
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (tags.size() == 0) {
+            findViewById(R.id.add_tag_text).setVisibility(View.VISIBLE);
+        } else {
+            findViewById(R.id.add_tag_text).setVisibility(View.GONE);
+        }
+
+        if (ids.size() == 0) {
+            findViewById(R.id.add_receiver2).setVisibility(View.GONE);
+            findViewById(R.id.receiver_icon).setVisibility(View.GONE);
+            findViewById(R.id.add_receiver1).setVisibility(View.VISIBLE);
+        } else {
+            findViewById(R.id.add_receiver2).setVisibility(View.VISIBLE);
+            findViewById(R.id.receiver_icon).setVisibility(View.VISIBLE);
+            findViewById(R.id.add_receiver1).setVisibility(View.GONE);
+        }
+
+        judgeCreateable();
+    }
+
 
     private void initData() {
 
@@ -87,11 +121,11 @@ public class ImteacherNewTaskActivity extends FragmentActivity implements View.O
         manager.setmLongListener(getLongClickListener());
     }
 
-    private String[] getTags(){
+    private String[] getTags() {
         int count = wwTags.getChildCount();
         String[] tags = new String[count];
-        for (int i = 0;i < count;i++){
-            tags[i] = ((TextView)wwTags.getChildAt(i)).getText().toString();
+        for (int i = 0; i < count; i++) {
+            tags[i] = ((TextView) wwTags.getChildAt(i)).getText().toString();
         }
         return tags;
     }
@@ -100,28 +134,33 @@ public class ImteacherNewTaskActivity extends FragmentActivity implements View.O
     public void onClick(View v) {
         Intent intent = new Intent();
         switch (v.getId()) {
-            case R.id.add:
+            case R.id.add_receiver1:
+            case R.id.add_receiver2:
                 intent.setClass(ImteacherNewTaskActivity.this, ImteacherStuSelectActivity.class);
                 intent.putStringArrayListExtra("ids", ids);
                 startActivityForResult(intent, REQUEST_ADD_PEOPLE);
                 break;
+
             case R.id.add_tag:
                 intent.setClass(ImteacherNewTaskActivity.this, AddTagsActivity.class);
                 intent.putExtra("tags", getTags());
                 startActivityForResult(intent, REQUEST_ADD_TAG);
                 break;
             case R.id.create:
-                finish();
+                if (!findViewById(R.id.create).isSelected())
+                    finish();
                 break;
             case R.id.left_img:
                 finish();
                 break;
             case R.id.begin_time:
                 currentView = (TextView) findViewById(R.id.begin_time);
+                sb = sb1;
                 showTimeChoose();
                 break;
             case R.id.end_time:
                 currentView = (TextView) findViewById(R.id.end_time);
+                sb = sb2;
                 showTimeChoose();
                 break;
         }
@@ -155,6 +194,8 @@ public class ImteacherNewTaskActivity extends FragmentActivity implements View.O
                             time += format.substring(3);
                         }
                         currentView.setText(time);
+                        sb.replace(0, sb.length(), time);
+                        judgeCreateable();
                     }
                 }).setInitialDate(date).setSelectItem(1).setIs24HourTime(false)
                 .setisClientSpecified24HourTime(false).build().show();
@@ -202,7 +243,6 @@ public class ImteacherNewTaskActivity extends FragmentActivity implements View.O
         return textview;
     }
 
-    ;
 
     /*添加标签view*/
     private void addView(String s, boolean selected) {
@@ -270,4 +310,46 @@ public class ImteacherNewTaskActivity extends FragmentActivity implements View.O
         return l;
     }
 
+
+    private void judgeCreateable() {
+        boolean valid = false;
+
+        if (sb1 != null && !sb1.toString().trim().equals("")) {
+            if (sb2 != null && !sb2.toString().trim().equals("")) {
+                if (sb2.toString().compareTo(sb1.toString()) > 0) {
+                    if (taskName.getText() != null && !taskName.getText().toString().trim().equals("")) {
+                        if (taskContent.getText() != null && !taskContent.getText().toString().trim().equals("")) {
+                            if (ids.size() > 0)
+                                valid = true;
+                        }
+                    }
+                } else {
+                    Toast.makeText(ImteacherNewTaskActivity.this, "开始时间需早于结束时间", Toast.LENGTH_SHORT).show();
+                    endTime.setText(sb1.toString());
+                    sb2 = new StringBuffer(sb1.toString());
+                }
+            }
+        }
+        if (valid) {
+            findViewById(R.id.create).setSelected(false);
+        } else {
+            findViewById(R.id.create).setSelected(true);
+        }
+
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+        judgeCreateable();
+    }
+
+    @Override
+    public void afterTextChanged(Editable s) {
+
+    }
 }

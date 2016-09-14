@@ -66,17 +66,7 @@ public class SelectSchoolActivity extends BaseActivity {
         });
     }
 
-    View.OnClickListener listener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            switch (v.getId()) {
-                case R.id.left_img:
-                    startActivity(new Intent(SelectSchoolActivity.this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
-                    finish();
-                    break;
-            }
-        }
-    };
+
 
     private void initData() {
 
