@@ -1,12 +1,10 @@
 package com.li.zjut.iteacher.activity.wel_login;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.annotation.TargetApi;
 import android.content.Intent;
-import android.os.Build;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
@@ -17,28 +15,24 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-
 import com.li.zjut.iteacher.R;
 import com.li.zjut.iteacher.activity.base.BaseActivity;
+import com.li.zjut.iteacher.activity.main.MainActivity;
+import com.li.zjut.iteacher.app.MyApplication;
 import com.li.zjut.iteacher.bean.Ret_Register;
 import com.li.zjut.iteacher.bean.register.College;
 import com.li.zjut.iteacher.common.CommonTestUtil;
 import com.li.zjut.iteacher.common.SharePerfrence;
 import com.li.zjut.iteacher.common.StaticData;
-import com.li.zjut.iteacher.common.md5.Encryption;
+import com.li.zjut.iteacher.common.observer.ObserverImpl;
 import com.li.zjut.iteacher.http.RetrofitHttp;
-
-import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
-import cn.smssdk.UserInterruptException;
-import cn.smssdk.utils.SMSLog;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -49,21 +43,15 @@ import static android.os.SystemClock.sleep;
 /**
  * A login screen that offers login via phone/password.
  */
-public class RegisterActivity extends BaseActivity {
+public class RegisterActivity extends BaseActivity implements ObserverImpl {
 
 
     // UI references.
     private AutoCompleteTextView mPhoneView;
-    private EditText mPasswordView;
-    private EditText mPasswordRepeatView;
-    private View mProgressView;
-    private View mLoginFormView;
-    private int mResultCode = 1;
-    private int ANDROID = 1;
     private College college;
-    private EventHandler mEh;
+
     private Button mBtn;
-    private static Handler myHandler;
+    private Handler myHandler;
     private final int changeBtn = 1;
 
     Thread thread;
@@ -74,7 +62,7 @@ public class RegisterActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        super.setContext(findViewById(R.id.toolbar),getString(R.string.register),true);
+        super.setContext(findViewById(R.id.toolbar), getString(R.string.register), true);
 
 
         college = (College) getIntent().getSerializableExtra("college");
@@ -86,112 +74,35 @@ public class RegisterActivity extends BaseActivity {
             public void handleMessage(Message msg) {
                 switch (msg.what) {
                     case changeBtn:
-                        if (msg.arg1 == 0){
+                        if (msg.arg1 == 0) {
                             mBtn.setText(getString(R.string.get_token));
                             mBtn.setOnClickListener(listener);
-                        }
-                        else
+                        } else
                             mBtn.setText(msg.arg1 + getString(R.string.time_leave));
                         break;
                 }
             }
         };
 
-        mEh = new EventHandler() {
 
-            @Override
-            public void beforeEvent(int event, Object data) {
-                Log.d(TAG, "before");
-                if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE) {
-//                    showProgress(true);
-                } else if (event == SMSSDK.EVENT_GET_VERIFICATION_CODE) {
-                    Log.d(TAG, "before");
-                    StaticData.closeThread = true;
-                    thread = new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-
-                            for (int i = 60; i >= 0; i--) {
-                                if (!StaticData.closeThread)
-                                    return;
-                                Message msg = new Message();
-                                msg.what = changeBtn;
-                                msg.arg1 = i;
-                                myHandler.sendMessage(msg);
-                                sleep(1000);
-                            }
-                            mBtn.setOnClickListener(listener);
-                        }
-                    });
-                    thread.start();
-                }
-            }
-
-            @Override
-            public void afterEvent(int event, int result, Object data) {
-
-                if (result == SMSSDK.RESULT_COMPLETE) {
-                    //回调完成
-                    if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE) {
-                        //提交验证码成功
-                        register(mPhoneView.getText().toString(), mPasswordView.getText().toString());
-                    } else if (event == SMSSDK.EVENT_GET_VERIFICATION_CODE) {
-                        //获取验证码成功
-                        findViewById(R.id.phone_sign_in_button).setOnClickListener(listener);
-
-                    } else if (event == SMSSDK.EVENT_GET_SUPPORTED_COUNTRIES) {
-                        //返回支持发送验证码的国家列表
-                        Log.d(TAG, data.toString());
-                    }
-                } else {
-                    if (event == 2 && data != null && data instanceof UserInterruptException) {
-                        Log.d(TAG,getString(R.string.fail_getver));
-                        return;
-                    }
-                    if (event == 3){
-                        Log.d(TAG,getString(R.string.fail_ver)+"and so on");
-                        return;
-                    }
-
-
-                    try {
-                        if (data != null) {
-                            ((Throwable) data).printStackTrace();
-                        }
-                        Throwable resId = (Throwable) data;
-                        assert resId != null;
-                        JSONObject object = new JSONObject(resId.getMessage());
-                        String des = object.optString("detail");
-//                        int status1 = object.optInt("status");
-
-                        if (!TextUtils.isEmpty(des)) {
-                            Toast.makeText(RegisterActivity.this, des, Toast.LENGTH_SHORT).show();
-                        }
-                    } catch (Exception var5) {
-                        SMSLog.getInstance().w(var5);
-                    }
-
-                }
-            }
-        };
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        SMSSDK.registerEventHandler(mEh); //注册短信回调
+        MyApplication.subject_sms.attach(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        SMSSDK.unregisterEventHandler(mEh);  //解除短信回调
+        MyApplication.subject_sms.detach(this);
+//        SMSSDK.unregisterEventHandler(mEh);  //解除短信回调
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        StaticData.closeThread = false;
     }
 
     /*
@@ -200,13 +111,10 @@ public class RegisterActivity extends BaseActivity {
     private void initView() {
 
         mPhoneView = (AutoCompleteTextView) findViewById(R.id.phone);
-        mPasswordView = (EditText) findViewById(R.id.password);
-        mPasswordRepeatView = (EditText) findViewById(R.id.password_repeat);
-        mLoginFormView = findViewById(R.id.login_form);
-        mProgressView = findViewById(R.id.login_progress);
 
         mBtn = (Button) findViewById(R.id.get_token);
         mBtn.setOnClickListener(listener);
+        findViewById(R.id.phone_sign_in_button).setOnClickListener(listener);
     }
 
     OnClickListener listener = new OnClickListener() {
@@ -217,11 +125,11 @@ public class RegisterActivity extends BaseActivity {
                     finish();
                     break;
                 case R.id.get_token:
-                    mBtn.setOnClickListener(null);
+
                     getToken();
                     break;
                 case R.id.phone_sign_in_button:
-
+                    Log.d("helo", "attempt");
                     attemptRegister();
                     break;
             }
@@ -262,10 +170,9 @@ public class RegisterActivity extends BaseActivity {
         } else {
             Log.d(TAG, "getverificationcode");
             SMSSDK.getVerificationCode(StaticData.country, phone);
+            mBtn.setOnClickListener(null);
         }
     }
-
-
 
 
     /**
@@ -279,31 +186,13 @@ public class RegisterActivity extends BaseActivity {
 
         // Reset errors.
         mPhoneView.setError(null);
-        mPasswordView.setError(null);
 
         // Store values at the time of the login attempt.
         String phone = mPhoneView.getText().toString();
-        String password = mPasswordView.getText().toString();
-        String password_repeat = mPasswordRepeatView.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
-
-
-        // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
-            mPasswordView.setError(getString(R.string.error_invalid_password));
-            focusView = mPasswordView;
-            cancel = true;
-        }
-
-        // Check for a valid password repeat, if the user entered one.
-        if (!cancel && !password.equals(password_repeat)) {
-            mPasswordRepeatView.setError(getString(R.string.error_repeat_password));
-            focusView = mPasswordRepeatView;
-            cancel = true;
-        }
-
+        EditText token = (EditText) findViewById(R.id.token);
         // Check for a valid phone.
         if (TextUtils.isEmpty(phone)) {
             mPhoneView.setError(getString(R.string.error_field_required));
@@ -312,6 +201,10 @@ public class RegisterActivity extends BaseActivity {
         } else if (!isPhoneValid(phone)) {
             mPhoneView.setError(getString(R.string.error_invalid_phone));
             focusView = mPhoneView;
+            cancel = true;
+        } else if (TextUtils.isEmpty(token.getText().toString())) {
+            token.setError("请输入验证码");
+            focusView = token;
             cancel = true;
         }
 
@@ -322,7 +215,7 @@ public class RegisterActivity extends BaseActivity {
         } else {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
-            EditText token = (EditText) findViewById(R.id.token);
+
             if (TextUtils.isEmpty(token.getText().toString())) {
                 CommonTestUtil.toast(this, getString(R.string.please_input_token));
                 return;
@@ -346,80 +239,42 @@ public class RegisterActivity extends BaseActivity {
         return m.matches();
     }
 
-    private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
-        return password.length() > 6;
-    }
-
-    /**
-     * Shows the progress UI and hides the login form.
-     */
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
-    private void showProgress(final boolean show) {
-        // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
-        // for very easy animations. If available, use these APIs to fade-in
-        // the progress spinner.
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
-            int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
-
-            mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-            mLoginFormView.animate().setDuration(shortAnimTime).alpha(
-                    show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-                }
-            });
-
-            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-            mProgressView.animate().setDuration(shortAnimTime).alpha(
-                    show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-                }
-            });
-        } else {
-            // The ViewPropertyAnimator APIs are not available, so simply show
-            // and hide the relevant UI components.
-            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-            mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-        }
-    }
 
     /*
     * connect the network, and register the username and password
     * use async method
     * */
-    private void register(final String phone, final String password) {
+    private void register(final String phone) {
 
         Map<String, Object> map = new HashMap<>();
         map.put("phone", phone);
-        map.put("password", Encryption.MD5(password));
         map.put("schoolid", college.getSchoolid());
         map.put("campusid", college.getCampusid());
         map.put("collegeid", college.getId());
-        map.put("cid", StaticData.cid);
-
-        map.put("device", ANDROID);
+        map.put("cid", getSharedPreferences(StaticData.USER_DATA, StaticData.SHARE_MODE).getString(SharePerfrence.DEVICE_TOKEN, ""));
+        map.put("device", 1);
         Call<Ret_Register> call = RetrofitHttp.github.accountRegister(map);
 
         call.enqueue(new Callback<Ret_Register>() {
             @Override
             public void onResponse(Call<Ret_Register> call, Response<Ret_Register> response) {
 
-                showProgress(false);
 
                 if (response.body() != null) {
                     if (response.body().getRt() == 1) {
                         Toast.makeText(RegisterActivity.this, getString(R.string.phone_hasbeen_register), Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    getSharedPreferences(StaticData.USER_DATA, StaticData.SHARE_MODE).edit()
+                    Toast.makeText(RegisterActivity.this, "注册成功", Toast.LENGTH_SHORT).show();
+
+                    SharedPreferences sps = getSharedPreferences(StaticData.USER_DATA, StaticData.SHARE_MODE);
+                    sps.edit().putBoolean(SharePerfrence.UNLOGIN, false)
                             .putString(SharePerfrence.PHONE, phone)
-                            .putString(SharePerfrence.PASSWORD, password)
-                            .commit();
-                    startActivity(new Intent(RegisterActivity.this, LoginActivity.class).putExtra("phone", phone).putExtra("password", password));
+                            .putString(SharePerfrence.SID, response.body().getSid())
+                            .putString(SharePerfrence.IM_TOKEN, response.body().getImToken())
+                            .apply();
+
+                    startActivity(new Intent(RegisterActivity.this, MainActivity.class));
                 } else {
                     Toast.makeText(RegisterActivity.this, getString(R.string.return_null), Toast.LENGTH_SHORT).show();
                 }
@@ -432,6 +287,67 @@ public class RegisterActivity extends BaseActivity {
                 Log.d(TAG, t.getMessage());
             }
         });
+    }
+
+    @Override
+    public void update() {
+
+    }
+
+    @Override
+    public void update(int s) {
+        System.out.println("====" + s);
+
+        switch (s) {
+            case 0:
+                thread = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        for (int i = 60; i >= 0; i--) {
+                            Message msg = new Message();
+                            msg.what = changeBtn;
+                            msg.arg1 = i;
+                            if (myHandler != null)
+                                myHandler.sendMessage(msg);
+                            sleep(1000);
+                        }
+                    }
+                });
+                thread.start();
+                break;
+            case 1:
+
+                register(mPhoneView.getText().toString());
+                break;
+            case 2:
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(RegisterActivity.this, "获取成功", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                break;
+            case 3:
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(RegisterActivity.this, getString(R.string.fail_getver), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                break;
+            case 4:
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(RegisterActivity.this, getString(R.string.fail_ver), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                break;
+        }
     }
 }
 

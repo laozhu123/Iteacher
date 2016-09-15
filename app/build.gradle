@@ -50,6 +50,8 @@ dependencies {
     compile project(':IMKit')
     compile 'com.google.android.gms:play-services-appindexing:8.1.0'
     compile files('libs/AMap_Search_V3.3.0_20160616.jar')
+    compile 'com.squareup:otto:+'
+    compile 'com.nononsenseapps:filepicker:2.5.2'
 }
 
 

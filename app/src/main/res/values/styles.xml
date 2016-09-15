@@ -28,6 +28,34 @@
         <item name="android:background">@color/line_gray</item>
     </style>
 
+    <style name="AppThemeWithActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@android:color/white</item><!-- 启动加载默认的颜色 -->
+    </style>
+
+    <!-- You can also inherit from NNF_BaseTheme.Light -->
+    <style name="FilePickerTheme" parent="NNF_BaseTheme">
+        <!-- Set these to match your theme -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <!-- Need to set this also to style create folder dialog -->
+        <item name="alertDialogTheme">@style/FilePickerAlertDialogTheme</item>
+
+        <!-- If you want to set a specific toolbar theme, do it here -->
+        <!-- <item name="nnf_toolbarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item> -->
+    </style>
+
+    <style name="FilePickerAlertDialogTheme" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
     <!--ref to customdialog-->
     <style name="AppBaseTheme" parent="android:Theme.Light"></style>
 
@@ -158,6 +186,12 @@
         <item name="android:layout_marginBottom">15dp</item>
     </style>
 
+    <style name="list_view_line" parent="Widget.AppCompat.ActionBar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1px</item>
+        <item name="android:background">#DDDDDD</item>
+    </style>
+
     <style name="common_item">
         <item name="android:paddingLeft">15dp</item>
         <item name="android:paddingRight">15dp</item>
@@ -223,10 +257,10 @@
 
     <style name="stu_select_item_bg">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">45dp</item>
+        <item name="android:layout_height">50dp</item>
         <item name="android:gravity">center</item>
         <item name="android:background">@drawable/stu_select_item_bg</item>
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">#222222</item>
         <item name="android:textSize">16sp</item>
     </style>
 
@@ -294,7 +328,7 @@
 
 
     <style name="deep_line">
-        <item name="android:background">@color/line_gray</item>
+        <item name="android:background">@color/gray_back_deep</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">0.5dp</item>
     </style>

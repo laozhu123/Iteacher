@@ -7,6 +7,24 @@ public class Ret_Register {
 
     String sid;
     int rt;
+    String des;
+    String imToken;
+
+    public String getDes() {
+        return des;
+    }
+
+    public void setDes(String des) {
+        this.des = des;
+    }
+
+    public String getImToken() {
+        return imToken;
+    }
+
+    public void setImToken(String imToken) {
+        this.imToken = imToken;
+    }
 
     public String getSid() {
         return sid;

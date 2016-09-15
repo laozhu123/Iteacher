@@ -11,21 +11,24 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
 
-    <View
-        style="@style/deep_line"
-        android:layout_marginTop="16dp" />
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="#eff6fc"
-        android:drawableLeft="@mipmap/ic_syllabus_menu_setting_icon"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:drawableLeft="@mipmap/imteacher_stu"
         android:drawablePadding="3dp"
         android:gravity="center_vertical"
         android:paddingLeft="15dp"
         android:text="学生信息"
-        android:textColor="#48758c"
+        android:textColor="#666666"
         android:textSize="16sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/gray_back_deep" />
 
     <RelativeLayout
         android:id="@+id/student_list"
@@ -42,7 +45,7 @@
             android:gravity="center"
             android:paddingLeft="15dp"
             android:text="学生列表"
-            android:textColor="@color/black"
+            android:textColor="#888888"
             android:textSize="16sp" />
 
         <TextView
@@ -59,6 +62,8 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_alignParentBottom="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
             android:background="@color/gray_back_deep" />
     </RelativeLayout>
 
@@ -77,29 +82,31 @@
             android:gravity="center"
             android:paddingLeft="15dp"
             android:text="学生课表"
-            android:textColor="@color/black"
+            android:textColor="#888888"
             android:textSize="16sp" />
 
 
     </RelativeLayout>
 
-    <View style="@style/deep_line" />
-
-    <View
-        style="@style/deep_line"
-        android:layout_marginTop="10dp" />
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="#eff6fc"
-        android:drawableLeft="@mipmap/ic_syllabus_menu_setting_icon"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/white"
+        android:drawableLeft="@mipmap/imteacher_task"
         android:drawablePadding="3dp"
         android:gravity="center_vertical"
         android:paddingLeft="15dp"
         android:text="任务相关"
-        android:textColor="#48758c"
+        android:textColor="#666666"
         android:textSize="16sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/gray_back_deep" />
 
     <RelativeLayout
         android:id="@+id/task_list"
@@ -116,7 +123,7 @@
             android:gravity="center"
             android:paddingLeft="15dp"
             android:text="任务列表"
-            android:textColor="@color/black"
+            android:textColor="#888888"
             android:textSize="16sp" />
 
         <TextView
@@ -133,6 +140,8 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_alignParentBottom="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
             android:background="@color/gray_back_deep" />
     </RelativeLayout>
 
@@ -151,11 +160,10 @@
             android:gravity="center"
             android:paddingLeft="15dp"
             android:text="发布任务"
-            android:textColor="@color/black"
+            android:textColor="#888888"
             android:textSize="16sp" />
 
 
     </RelativeLayout>
 
-    <View style="@style/deep_line" />
 </LinearLayout>

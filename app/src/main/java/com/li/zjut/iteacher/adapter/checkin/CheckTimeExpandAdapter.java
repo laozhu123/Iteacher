@@ -120,11 +120,13 @@ public class CheckTimeExpandAdapter implements ExpandableListAdapter {
             convertView.findViewById(R.id.tv_check_date).setVisibility(View.GONE);
             convertView.findViewById(R.id.img_arrow).setVisibility(View.GONE);
             convertView.findViewById(R.id.line).setVisibility(View.GONE);
+            convertView.findViewById(R.id.dot).setVisibility(View.GONE);
             return convertView;
         }
         convertView.findViewById(R.id.tv_check_date).setVisibility(View.VISIBLE);
         convertView.findViewById(R.id.img_arrow).setVisibility(View.VISIBLE);
         convertView.findViewById(R.id.line).setVisibility(View.VISIBLE);
+        convertView.findViewById(R.id.dot).setVisibility(View.VISIBLE);
 
         TextView tvCheckDate = (TextView) convertView
                 .findViewById(R.id.tv_check_date);

@@ -1,25 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="55dp"
+    android:layout_height="65dp"
     android:gravity="center_vertical"
     android:orientation="vertical"
-    android:paddingLeft="32dp"
-    android:paddingRight="32dp">
+    android:background="#f5f5f7"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp">
 
     <TextView
         android:id="@+id/tv_check_time"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_height="64dp"
+        android:layout_marginLeft="30dp"
         android:gravity="center_vertical"
-        android:textColor="@color/txt_black"
+        android:textColor="#666666"
         android:textSize="16sp" />
 
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"

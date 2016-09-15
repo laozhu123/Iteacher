@@ -56,12 +56,12 @@ public class MessageDetailActivity extends BaseActivity implements View.OnClickL
         });
 
 
-        mDatas.add(new CommentContent("laoli", "nihaoma !!", "2016/6/13 12:30", 12, 5));
-        mDatas.add(new CommentContent("laoli", "nihaoma !!", "2016/6/13 12:30", 12, 5));
-        mDatas.add(new CommentContent("laoli", "nihaoma !!", "2016/6/13 12:30", 12, 5));
-        mDatas.add(new CommentContent("laoli", "nihaoma !!", "2016/6/13 12:30", 12, 5));
-        mDatas.add(new CommentContent("laoli", "nihaoma !!", "2016/6/13 12:30", 12, 5));
-        mDatas.add(new CommentContent("laoli", "nihaoma !!", "2016/6/13 12:30", 12, 5));
+        mDatas.add(new CommentContent("laoli", "nihaoma !!", "16/6/13 12:30", 12, 5));
+        mDatas.add(new CommentContent("laoli", "nihaoma !!", "16/6/13 12:30", 12, 5));
+        mDatas.add(new CommentContent("laoli", "nihaoma !!", "16/6/13 12:30", 12, 5));
+        mDatas.add(new CommentContent("laoli", "nihaoma !!", "16/6/13 12:30", 12, 5));
+        mDatas.add(new CommentContent("laoli", "nihaoma !!", "16/6/13 12:30", 12, 5));
+        mDatas.add(new CommentContent("laoli", "nihaoma !!", "16/6/13 12:30", 12, 5));
         adapter.notifyDataSetChanged();
         Utils.setListViewHeightBasedOnChildren(lv);
     }

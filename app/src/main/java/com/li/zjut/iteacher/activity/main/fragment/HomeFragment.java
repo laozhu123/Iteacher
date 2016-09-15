@@ -23,6 +23,7 @@ import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.li.zjut.iteacher.R;
 import com.li.zjut.iteacher.activity.checkin.newactivity.CheckInActivity;
+import com.li.zjut.iteacher.activity.email.NewLetterActivity;
 import com.li.zjut.iteacher.activity.imteacher.ImTeacherFirstNewActivity;
 import com.li.zjut.iteacher.activity.main.MainActivity;
 import com.li.zjut.iteacher.activity.myLesson.MyLessonActivity;
@@ -247,6 +248,7 @@ public class HomeFragment extends Fragment implements AMapLocationListener, Grid
                 getActivity().startActivity(new Intent(getActivity(), ImTeacherFirstNewActivity.class));
                 break;
             case 4:
+                getActivity().startActivity(new Intent(getActivity(), NewLetterActivity.class));
                 break;
             case 5:
                 break;

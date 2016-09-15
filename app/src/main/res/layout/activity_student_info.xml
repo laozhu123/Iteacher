@@ -25,16 +25,15 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
-                android:background="@color/person_info_blue"
+                android:background="@mipmap/bg_my"
                 android:gravity="center">
 
                 <TextView
                     android:id="@+id/tv_head"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:background="@drawable/person_info_head_icon"
+                    android:background="@mipmap/head_defalt"
                     android:gravity="center"
-                    android:text="老朱"
                     android:textColor="@color/white"
                     android:textSize="16sp" />
 
@@ -47,7 +46,7 @@
                     android:gravity="center"
                     android:text="laozhu"
                     android:textColor="@color/white"
-                    android:textSize="16sp" />
+                    android:textSize="20sp" />
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/cimg_head"

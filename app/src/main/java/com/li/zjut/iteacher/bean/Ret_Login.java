@@ -6,7 +6,25 @@ package com.li.zjut.iteacher.bean;
 public class Ret_Login {
     private String sid;
     private String userid;
+    private String imToken;
     private int rt;
+    private String des;
+
+    public String getImToken() {
+        return imToken;
+    }
+
+    public void setImToken(String imToken) {
+        this.imToken = imToken;
+    }
+
+    public String getDes() {
+        return des;
+    }
+
+    public void setDes(String des) {
+        this.des = des;
+    }
 
     public String getSid() {
         return sid;

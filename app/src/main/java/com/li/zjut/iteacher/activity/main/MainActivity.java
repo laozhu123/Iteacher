@@ -36,7 +36,6 @@ import io.rong.imlib.RongIMClient;
 public class MainActivity extends AppCompatActivity {
 
     private LayoutInflater mInflater;
-    private String mUserid;
     private TextView title;
     public static View content = null;
 
@@ -44,18 +43,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        String Token = "BCnpm62Kb/6zuUsR9ltrrMQhpCp8ipq/by9/H90XYQZiIVBlp1hxqNXVA40N1PDQlIrQuAf/i5QdtYcUFtdLA8TMXXZuKt43";//test
-        connect(Token);
+        connect(getSharedPreferences(StaticData.USER_DATA, StaticData.SHARE_MODE).getString(SharePerfrence.IM_TOKEN,""));//连接IM
+        Log.d("helo",getSharedPreferences(StaticData.USER_DATA, StaticData.SHARE_MODE).getString(SharePerfrence.IM_TOKEN,""));
         initTab();
         initData();
-
         content = findViewById(R.id.realtabcontent);
     }
 
     private void initData() {
         title = (TextView) findViewById(R.id.title);
         title.setText(getString(R.string.chat));
-        mUserid = getSharedPreferences(StaticData.USER_DATA, StaticData.SHARE_MODE).getString(SharePerfrence.USERID, "");  //获取用户id 用于获取用户数据
     }
 
 

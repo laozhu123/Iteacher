@@ -21,16 +21,15 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
-                android:background="@color/person_info_blue"
+                android:background="@mipmap/bg_my"
                 android:gravity="center">
 
                 <TextView
                     android:id="@+id/tv_head"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:background="@drawable/person_info_head_icon"
+                    android:background="@mipmap/head_defalt"
                     android:gravity="center"
-                    android:text="老朱"
                     android:textColor="@color/white"
                     android:textSize="16sp" />
 
@@ -43,7 +42,7 @@
                     android:gravity="center"
                     android:text="laozhu"
                     android:textColor="@color/white"
-                    android:textSize="16sp" />
+                    android:textSize="20sp" />
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/cimg_head"
@@ -75,9 +74,8 @@
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="15dp"
-                    android:scaleType="fitXY"
-                    android:src="@mipmap/img_pic_test" />
+                    android:layout_marginLeft="22dp"
+                    android:src="@mipmap/my_phone" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -110,9 +108,8 @@
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="15dp"
-                    android:scaleType="fitXY"
-                    android:src="@mipmap/img_pic_test" />
+                    android:layout_marginLeft="22dp"
+                    android:src="@mipmap/my_short_phone" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -145,9 +142,8 @@
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="15dp"
-                    android:scaleType="fitXY"
-                    android:src="@mipmap/img_pic_test" />
+                    android:layout_marginLeft="22dp"
+                    android:src="@mipmap/my_email" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -180,9 +176,8 @@
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="15dp"
-                    android:scaleType="fitXY"
-                    android:src="@mipmap/img_pic_test" />
+                    android:layout_marginLeft="22dp"
+                    android:src="@mipmap/my_qq" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -220,9 +215,8 @@
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="15dp"
-                    android:scaleType="fitXY"
-                    android:src="@mipmap/img_pic_test" />
+                    android:layout_marginLeft="22dp"
+                    android:src="@mipmap/my_setting" />
 
                 <TextView
                     android:layout_width="wrap_content"

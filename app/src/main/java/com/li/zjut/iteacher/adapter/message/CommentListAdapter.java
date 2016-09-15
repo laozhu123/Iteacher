@@ -54,7 +54,7 @@ public class CommentListAdapter extends BaseAdapter {
         ViewHolder holder;
         //观察convertView随ListView滚动情况
         if (convertView == null) {
-            convertView = mInflater.inflate(R.layout.item_comment,
+            convertView = mInflater.inflate(R.layout.item_comment1,
                     null);
             holder = new ViewHolder();
                     /*得到各个控件的对象*/

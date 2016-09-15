@@ -67,9 +67,9 @@
     <string name="teacher_task_list">任务列表</string>
     <string name="teacher_add_task">发布任务</string>
     <string name="teacher_task_name">任务名</string>
-    <string name="teacher_task_name_hint">请输入任务名(必填)</string>
+    <string name="teacher_task_name_hint">(必填)</string>
     <string name="teacher_task_content">任务内容</string>
-    <string name="teacher_task_content_hint">请输入任务内容(必填)</string>
+    <string name="teacher_task_content_hint">(必填)</string>
     <string name="teacher_progress">任务进度</string>
     <string name="teacher_receiver">接收者</string>
     <string name="teacher_task_detail">任务详情</string>
@@ -85,6 +85,11 @@
     <string name="return_null">返回内容为空</string>
     <string name="disconnect">链接失败</string>
     <string name="save">保存</string>
+    <string name="ok">确定</string>
+
+    <string name="menu_clock_tip">设置定时发送</string>
+    <string name="menu_attach_tip">添加附件</string>
+    <string name="menu_send_tip">发送</string>
 
     <!-- Strings related to register and login-->
     <string name="register">注册</string>
