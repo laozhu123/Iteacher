@@ -85,6 +85,11 @@
     <string name="return_null">返回内容为空</string>
     <string name="disconnect">链接失败</string>
     <string name="save">保存</string>
+    <string name="ok">确定</string>
+
+    <string name="menu_clock_tip">设置定时发送</string>
+    <string name="menu_attach_tip">添加附件</string>
+    <string name="menu_send_tip">发送</string>
 
     <!-- Strings related to register and login-->
     <string name="register">注册</string>

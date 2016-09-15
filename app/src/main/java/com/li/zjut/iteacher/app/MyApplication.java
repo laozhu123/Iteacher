@@ -46,11 +46,12 @@ public class MyApplication extends Application {
     EventHandler mEh;
     String TAG = "app";
     public static Subject_sms subject_sms = new Subject_sms();
+    public static Context context;
 
     @Override
     public void onCreate() {
         super.onCreate();
-
+        context = this;
         /**
          * OnCreate 会被多个进程重入，这段保护代码，确保只有您需要使用 RongIM 的进程和 Push 进程执行了 init。
          * io.rong.push 为融云 push 进程名称，不可修改。

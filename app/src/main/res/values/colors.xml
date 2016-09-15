@@ -13,6 +13,10 @@
     <color name="blue_deep_deep">#eea5eafa</color>
     <color name="blue_shadow">#5303a9f5</color>
 
+    <color name="newL_text_color">#555555</color>
+    <color name="newM_text_color">#b4b4b4</color>
+    <color name="newS_text_color">#c8c8c8</color>
+
     <!--person_info page-->
     <color name="person_info_blue">#46b5fd</color>
     <color name="person_info_yellow">#f6bf26</color>
